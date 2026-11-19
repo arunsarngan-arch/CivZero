@@ -33,93 +33,154 @@ With a metal-turning lathe, you can machine steam engine cylinders, turn precisi
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="latheGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="ironGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: The Bed & Prismatic Ways -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. THE KINEMATIC BED</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Prismatic Ground Ways</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#latheGrid)"/>
 
-    <!-- Prismatic lathe bed cross section -->
-    <polygon points="60,65 140,65 130,85 115,85 110,75 90,75 85,85 70,85" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
-    <polygon points="60,65 75,55 85,65" fill="#38bdf8" stroke="#0284c7"/>
-    <polygon points="115,65 125,55 140,65" fill="#38bdf8" stroke="#0284c7"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">THE MOTHER MACHINE: METAL-TURNING TREADLE LATHE ARCHITECTURE</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">SELF-REPLICATING MACHINE TOOL</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">WHITWORTH 3-PLATE:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Three Scraping Planes</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Scrape A against B, B vs C</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">True plane within 0.01mm</text>
+  <!-- MODULE 1: THE KINEMATIC BED & WHITWORTH SCRAPING (LEFT) -->
+  <g id="bedWays" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">BED STRUCTURE:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Cast Iron / Heavy Oak</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Massive cross-rib damping</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Zero flex under cutter load</text>
+    <!-- Prismatic Lathe Bed Cross Section -->
+    <polygon points="50,75 195,75 180,105 160,105 150,90 120,90 110,105 65,105" fill="url(#ironGrad)" stroke="#64748b" stroke-width="1.5"/>
+    <!-- Inverted V-Prism Ways (Precision Ground) -->
+    <polygon points="50,75 70,60 85,75" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <polygon points="160,75 175,60 195,75" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="122" y="70" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="middle">Prismatic V-Ways</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Flatness Determines Precision</text>
+    <!-- Whitworth 3-Plate Cycle Diagram -->
+    <rect x="18" y="125" width="210" height="85" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="28" y="142" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">WHITWORTH 3-PLATE METHOD:</text>
+    <text x="28" y="157" fill="#cbd5e1" font-size="8" font-family="monospace">• Plate A vs Plate B: Matched</text>
+    <text x="28" y="170" fill="#cbd5e1" font-size="8" font-family="monospace">• Plate B vs Plate C: Matched</text>
+    <text x="28" y="183" fill="#cbd5e1" font-size="8" font-family="monospace">• Plate A vs Plate C: Doubles Error</text>
+    <text x="28" y="198" fill="#fde68a" font-size="8" font-family="monospace">Scrape Prussian Blue high spots</text>
+
+    <!-- Caliper / Flatness Precision Pill -->
+    <rect x="18" y="225" width="210" height="85" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="244" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">BED DYNAMICS:</text>
+    <text x="28" y="260" fill="#cbd5e1" font-size="8" font-family="monospace">Massive cast-iron cross ribbing</text>
+    <text x="28" y="274" fill="#cbd5e1" font-size="8" font-family="monospace">20–25 bearing spots / sq inch</text>
+    <text x="28" y="292" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace">Tolerance: ±0.01 mm / meter</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">PRISMATIC BED WAYS</text>
   </g>
 
-  <!-- Module 2: The Spindle & Headstock -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. HEADSTOCK SPINDLE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Babbitt Bearings &amp; Chuck</text>
+  <!-- MODULE 2: SPINDLE HEADSTOCK & BABBITT BEARINGS (CENTER) -->
+  <g id="headstock" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Spindle & Pulley -->
-    <rect x="60" y="55" width="25" height="40" rx="3" fill="#64748b" stroke="#94a3b8"/>
-    <rect x="90" y="62" width="20" height="26" fill="#f59e0b"/>
-    <rect x="115" y="55" width="25" height="40" rx="3" fill="#64748b" stroke="#94a3b8"/>
-    <line x1="45" y1="75" x2="155" y2="75" stroke="#cbd5e1" stroke-width="4"/>
+    <!-- Headstock Casting with Spindle & Step Cone Pulley -->
+    <rect x="35" y="60" width="30" height="50" rx="3" fill="#334155" stroke="#94a3b8"/>
+    <rect x="185" y="60" width="30" height="50" rx="3" fill="#334155" stroke="#94a3b8"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">BEARING ALLOY:</text>
-    <text x="25" y="149" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Poured Babbitt Metal</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">80% Tin + 10% Copper + Sb</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Poured directly around shaft</text>
+    <!-- Spindle Shaft (Turned ground steel) -->
+    <line x1="20" y1="85" x2="230" y2="85" stroke="#cbd5e1" stroke-width="6"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">DRIVE TRANSMISSION:</text>
-    <text x="25" y="222" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Step Cone Pulley</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Leather belt from foot treadle</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Variable speeds: 80 - 450 RPM</text>
+    <!-- Step Cone Pulley -->
+    <rect x="80" y="55" width="25" height="60" fill="#f59e0b" stroke="#d97706"/>
+    <rect x="105" y="65" width="25" height="40" fill="#d97706" stroke="#b45309"/>
+    <rect x="130" y="73" width="25" height="24" fill="#b45309" stroke="#78350f"/>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Rigid Zero-Play Rotation</text>
+    <!-- Poured Babbitt Bearing Liners -->
+    <rect x="37" y="78" width="26" height="14" fill="#fde68a" stroke="#ef4444" stroke-width="1"/>
+    <rect x="187" y="78" width="26" height="14" fill="#fde68a" stroke="#ef4444" stroke-width="1"/>
+    <text x="125" y="130" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">Step Cone Pulley (80–450 RPM)</text>
+
+    <!-- Babbitt Alloy Specs Pill -->
+    <rect x="18" y="145" width="214" height="75" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="28" y="163" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">BABBITT ALLOY LINING:</text>
+    <text x="28" y="178" fill="#cbd5e1" font-size="8" font-family="monospace">• 80% Tin (Sn) + 10% Copper (Cu)</text>
+    <text x="28" y="191" fill="#cbd5e1" font-size="8" font-family="monospace">• 10% Antimony (Sb) for hardness</text>
+    <text x="28" y="206" fill="#fef08a" font-size="8" font-family="monospace">Poured liquid at 350°C around shaft</text>
+
+    <!-- Drive Mechanics Pill -->
+    <rect x="18" y="235" width="214" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">TREADLE FLYWHEEL DRIVE:</text>
+    <text x="28" y="269" fill="#cbd5e1" font-size="8" font-family="monospace">Heavy 40kg cast foot flywheel</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Flat leather cross belt drive</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Provides high inertia cutting torque</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="86" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">HEADSTOCK &amp; BABBITT</text>
   </g>
 
-  <!-- Module 3: Compound Slide & Threading -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. COMPOUND SLIDE REST</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Screw Cutting &amp; Feeds</text>
+  <!-- MODULE 3: COMPOUND SLIDE REST & LEAD SCREW (RIGHT) -->
+  <g id="slideRest" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Tool holder graphic -->
-    <rect x="75" y="70" width="50" height="20" rx="2" fill="#1e293b" stroke="#cbd5e1"/>
-    <polygon points="125,75 145,80 125,85" fill="#f59e0b"/>
-    <line x1="50" y1="95" x2="150" y2="95" stroke="#10b981" stroke-width="2.5" stroke-dasharray="2,2"/>
-    <text x="100" y="108" fill="#86efac" font-size="7" font-family="monospace" text-anchor="middle">Precision Lead Screw</text>
+    <!-- Compound Slide Dovetail Graphic -->
+    <polygon points="70,60 175,60 160,82 85,82" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="122" y="75" fill="#86efac" font-size="7.5" font-family="monospace" text-anchor="middle">Dovetail Cross Slide</text>
+    <!-- Tool Post & Single-Point Cutting Tool -->
+    <rect x="100" y="82" width="45" height="26" fill="#334155" stroke="#cbd5e1"/>
+    <polygon points="145,90 175,95 145,100" fill="#f59e0b" stroke="#d97706"/>
+    <text x="180" y="98" fill="#f59e0b" font-size="7.5" font-family="monospace">60° Bit</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">RIGID TOOL HOLDER:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Compound Dovetail Slide</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Adjustable gib brass strips</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Clamps high-carbon tool bit</text>
+    <!-- Lead Screw with Acorn / Square Thread -->
+    <line x1="30" y1="120" x2="215" y2="120" stroke="#10b981" stroke-width="3" stroke-dasharray="3,2"/>
+    <text x="122" y="134" fill="#10b981" font-size="8" font-family="monospace" text-anchor="middle">Precision Lead Screw Shaft</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">THREAD GENERATION:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Geared Lead Screw</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Advances tool precisely per rev</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Standardizes nuts &amp; bolts</text>
+    <!-- Tool Holding Mechanics Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="163" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">COMPOUND DOVETAIL SLIDE:</text>
+    <text x="28" y="178" fill="#cbd5e1" font-size="8" font-family="monospace">Adjustable brass gib strips</text>
+    <text x="28" y="191" fill="#cbd5e1" font-size="8" font-family="monospace">Zero backlash cross/long feeds</text>
+    <text x="28" y="206" fill="#86efac" font-size="8" font-family="monospace">Clamps high-carbon hardened tool</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Micrometer Coordinate Control</text>
+    <!-- Thread Cutting Generation Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">SCREW THREAD GENERATION:</text>
+    <text x="28" y="269" fill="#cbd5e1" font-size="8" font-family="monospace">Geared lead screw advances tool</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">precisely per spindle rotation</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Generates standard nuts &amp; bolts</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="160" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="91" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">COMPOUND SLIDE REST</text>
   </g>
 
-  <!-- Bottom Machine Tool Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE WHITWORTH LAW: You cannot produce a flat plane with only two surfaces.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Two surfaces rubbed together make a ball and socket. You MUST hand-scrape THREE surfaces alternately.</text>
+  <!-- BOTTOM MACHINE TOOL MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">★</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">THE WHITWORTH LAW: YOU CANNOT PRODUCE A FLAT PLANE WITH ONLY TWO SURFACES</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Two plates rubbed together form a spherical concave/convex pair. You MUST scrape THREE plates alternately (A-B, B-C, A-C) to converge on a true mathematical flat plane.</text>
 </svg>
 ```
 

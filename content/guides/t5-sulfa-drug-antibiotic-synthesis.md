@@ -51,90 +51,136 @@ In 1935, Gerhard Domagk discovered that the sulfonamide group actively halts bac
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="sulfaGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="crystalShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <marker id="arrowGold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
 
-  <!-- Phase 1: Coal to Aniline -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">PHASE 1: TAR TO ANILINE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Benzene &amp; Iron Reduction</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#sulfaGrid)"/>
 
-    <!-- Benzene ring icon -->
-    <polygon points="100,52 120,63 120,87 100,98 80,87 80,63" fill="none" stroke="#38bdf8" stroke-width="2"/>
-    <circle cx="100" cy="75" r="10" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">SULFANILAMIDE BROAD-SPECTRUM ANTIBIOTIC SYNTHESIS FLOWSHEET</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">TOTAL ORGANIC CHEMICAL SYNTHESIS</text>
 
-    <rect x="15" y="112" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="128" fill="#f8fafc" font-size="9" font-family="monospace">1. FRACTIONATE TAR:</text>
-    <text x="25" y="142" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Benzene @ 80°C</text>
-    <text x="25" y="156" fill="#cbd5e1" font-size="8" font-family="monospace">2. Nitration (HNO3/H2SO4)</text>
-    <text x="25" y="169" fill="#fca5a5" font-size="8.5" font-family="monospace">-> Nitrobenzene (Oily yellow)</text>
+  <!-- PHASE 1: COAL TAR TO ANILINE (LEFT) -->
+  <g id="phase1" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="186" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="202" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">3. IRON BECHEMP REDUCTION:</text>
-    <text x="25" y="218" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Fe + HCl -> Aniline</text>
-    <text x="25" y="233" fill="#cbd5e1" font-size="8.5" font-family="monospace">Steam distill oily aromatic base</text>
-    <text x="25" y="244" fill="#fef08a" font-size="8" font-family="monospace">BP: 184°C (Toxic amine)</text>
+    <!-- Benzene Ring Molecular Icon -->
+    <polygon points="122,48 147,62 147,90 122,104 97,90 97,62" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+    <circle cx="122" cy="76" r="14" fill="none" stroke="#38bdf8" stroke-width="1.8"/>
+    <text x="122" y="122" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">Benzene C₆H₆ (BP 80°C)</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Precursor Foundation</text>
+    <!-- Fractionation & Nitration Specs Pill -->
+    <rect x="18" y="140" width="210" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="158" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">1. FRACTIONATION &amp; NITRATION:</text>
+    <text x="28" y="173" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">Coal Tar ──&gt; Benzene Fraction</text>
+    <text x="28" y="187" fill="#cbd5e1" font-size="8" font-family="monospace">+ Mixed Acid (HNO₃ + H₂SO₄ @ 50°C)</text>
+    <text x="28" y="200" fill="#fca5a5" font-size="8" font-family="monospace">Yields Nitrobenzene (Almond oil liquid)</text>
+
+    <!-- Bechamp Reduction Pill -->
+    <rect x="18" y="225" width="210" height="85" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="244" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">2. BÉCHAMP IRON REDUCTION:</text>
+    <text x="28" y="259" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">C₆H₅NO₂ + Fe + HCl ──&gt; Aniline</text>
+    <text x="28" y="274" fill="#cbd5e1" font-size="8" font-family="monospace">Reflux with iron filings, steam distill</text>
+    <text x="28" y="288" fill="#fde68a" font-size="8" font-family="monospace">Yields Aniline (BP 184°C toxic amine base)</text>
+    <text x="28" y="302" fill="#94a3b8" font-size="7.5" font-family="monospace">Precursor foundation for sulfa core</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">TAR TO ANILINE</text>
   </g>
 
-  <!-- Phase 2: Protection & Chlorosulfonation -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">PHASE 2: SULFONATION</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Amine Protect &amp; SO2Cl Add</text>
+  <!-- PHASE 2: AMINE PROTECTION & CHLOROSULFONATION (CENTER) -->
+  <g id="phase2" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Acetanilide flask graphic -->
-    <path d="M90 55 L110 55 L118 95 L82 95 Z" fill="#78350f" stroke="#b45309" stroke-width="1.5"/>
-    <ellipse cx="100" cy="88" rx="14" ry="5" fill="#f59e0b"/>
+    <!-- Reaction Flask & Ice Bath Graphic (0°C) -->
+    <rect x="70" y="50" width="110" height="75" rx="5" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="125" cy="85" r="22" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <ellipse cx="125" cy="92" rx="16" ry="8" fill="#f59e0b" opacity="0.4"/>
+    <text x="125" y="88" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">HSO₃Cl @ 0°C</text>
+    <text x="125" y="138" fill="#38bdf8" font-size="7.5" font-family="monospace" text-anchor="middle">Ice-Salt Cooling Bath</text>
 
-    <rect x="15" y="112" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="128" fill="#f8fafc" font-size="9" font-family="monospace">4. AMINE PROTECTION:</text>
-    <text x="25" y="142" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Aniline + Glacial Acetic</text>
-    <text x="25" y="156" fill="#cbd5e1" font-size="8.5" font-family="monospace">-> Acetanilide crystals</text>
-    <text x="25" y="169" fill="#94a3b8" font-size="8" font-family="monospace">Prevents ring destruction</text>
+    <!-- Amine Protection Pill -->
+    <rect x="18" y="150" width="214" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="168" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">3. AMINE ACETYLATION:</text>
+    <text x="28" y="183" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">Aniline + Glacial Acetic Acid</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Reflux 4 hours ──&gt; Acetanilide</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Protects -NH₂ group from destruction</text>
 
-    <rect x="15" y="186" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="202" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">5. CHLOROSULFONATION:</text>
-    <text x="25" y="218" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">+ HSO3Cl (Ice Bath @ 0°C)</text>
-    <text x="25" y="233" fill="#cbd5e1" font-size="8" font-family="monospace">Yields Sulfonyl Chloride</text>
-    <text x="25" y="244" fill="#fca5a5" font-size="8" font-family="monospace">Quench over crushed ice</text>
+    <!-- Chlorosulfonation Pill -->
+    <rect x="18" y="235" width="214" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">4. CHLOROSULFONATION:</text>
+    <text x="28" y="269" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">+ Chlorosulfonic Acid (HSO₃Cl)</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Add dropwise at 0°C, heat to 60°C</text>
+    <text x="28" y="299" fill="#fca5a5" font-size="8" font-family="monospace">Quench over crushed ice ──&gt; p-ASC</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Exothermic Reaction</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="86" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">CHLOROSULFONATION</text>
   </g>
 
-  <!-- Phase 3: Amination & Hydrolysis -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">PHASE 3: SULFA DRUG</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Ammonia &amp; Deacetylation</text>
+  <!-- PHASE 3: AMMONIATION & ACID HYDROLYSIS (RIGHT) -->
+  <g id="phase3" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Pure crystal dish -->
-    <ellipse cx="100" cy="75" rx="30" ry="12" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
-    <path d="M85 73 L100 65 L115 73 L100 81 Z" fill="#ffffff"/>
-    <circle cx="92" cy="72" r="3" fill="#86efac"/>
-    <circle cx="108" cy="74" r="3" fill="#86efac"/>
+    <!-- Pure Sulfanilamide Crystal Dish -->
+    <ellipse cx="122" cy="80" rx="42" ry="16" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <!-- Sparkling needle crystals -->
+    <line x1="100" y1="80" x2="120" y2="74" stroke="#ffffff" stroke-width="2"/>
+    <line x1="115" y1="82" x2="140" y2="78" stroke="#ffffff" stroke-width="2"/>
+    <line x1="105" y1="76" x2="130" y2="84" stroke="#86efac" stroke-width="2"/>
+    <text x="122" y="112" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Pure Sulfanilamide Needle Crystals</text>
+    <text x="122" y="125" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Melting Point: Exactly 165°C</text>
 
-    <rect x="15" y="112" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="128" fill="#f8fafc" font-size="9" font-family="monospace">6. AMMONIATION:</text>
-    <text x="25" y="142" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">+ Concentrated NH3</text>
-    <text x="25" y="156" fill="#cbd5e1" font-size="8.5" font-family="monospace">Heat to 70°C for 30 mins</text>
-    <text x="25" y="169" fill="#94a3b8" font-size="8" font-family="monospace">Forms Sulfonamide bond</text>
+    <!-- Ammoniation Reaction Pill -->
+    <rect x="18" y="150" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="168" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">5. AMMONIATION (SULFONAMIDE):</text>
+    <text x="28" y="183" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">+ Concentrated Aqueous NH₃</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Heat slurry to 70°C for 30 mins</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Forms robust -SO₂NH₂ covalent bond</text>
 
-    <rect x="15" y="186" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="202" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">7. ACID HYDROLYSIS &amp; YIELD:</text>
-    <text x="25" y="218" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Boil with Dilute HCl</text>
-    <text x="25" y="233" fill="#cbd5e1" font-size="8" font-family="monospace">Neutralize with Na2CO3</text>
-    <text x="25" y="244" fill="#86efac" font-size="8.5" font-family="monospace">Pure Sulfanilamide (MP: 165°C)</text>
+    <!-- Acid Hydrolysis Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">6. ACID HYDROLYSIS &amp; PRECIPITATION:</text>
+    <text x="28" y="269" fill="#cbd5e1" font-size="8" font-family="monospace">Boil with dilute HCl to strip acetyl group</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Neutralize with Na₂CO₃ to pH 7.0</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Recrystallize from boiling water</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">White Needle Crystals</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="155" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="88" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">PURE SULFANILAMIDE</text>
   </g>
 
-  <!-- Bottom Pharmacology Rule -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">BACTERIOSTATIC MECHANISM: Sulfanilamide competitively blocks bacterial folate synthesis.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Bacteria starve of DNA thymine. Effective against Streptococcus, Staph &amp; Meningitis.</text>
+  <!-- PHARMACOLOGY BACTERIOSTATIC MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">℞</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">BACTERIOSTATIC MECHANISM: COMPETITIVELY INHIBITS DIHYDROPTEROATE SYNTHASE</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Mimics PABA to starve bacteria of folic acid and thymine. Halts sepsis, streptococcal gangrene, dysentery, pneumonia, and battlefield wound mortality.</text>
 </svg>
 ```
 

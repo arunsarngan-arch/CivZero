@@ -40,94 +40,137 @@ You must build the digital stack from the lowest physical layer upward. This man
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="kernelGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: CPU Registers & Memory Map -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. CPU ARCHITECTURE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Von Neumann Registers</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#kernelGrid)"/>
 
-    <!-- Register block graphic -->
-    <rect x="45" y="52" width="110" height="60" rx="3" fill="#1e293b" stroke="#38bdf8"/>
-    <text x="55" y="68" fill="#38bdf8" font-size="9" font-family="monospace">RAX / EAX: Accumulator</text>
-    <text x="55" y="82" fill="#7dd3fc" font-size="9" font-family="monospace">RSP: Stack Pointer</text>
-    <text x="55" y="96" fill="#fde68a" font-size="9" font-family="monospace">RIP: Program Counter</text>
-    <text x="55" y="106" fill="#86efac" font-size="8" font-family="monospace">ALU: Add, Sub, AND, XOR</text>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">C SYSTEMS ARCHITECTURE: BARE-METAL BOOTSTRAP &amp; KERNEL INTERRUPT DISPATCH</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">RING 0 PRIVILEGED SILICON CONTROL</text>
 
-    <rect x="15" y="122" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="139" fill="#f8fafc" font-size="9" font-family="monospace">FETCH-DECODE-EXECUTE:</text>
-    <text x="25" y="155" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Cycle Every Clock Tick</text>
-    <text x="25" y="169" fill="#cbd5e1" font-size="8.5" font-family="monospace">Opcode in RAM -> Register</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8" font-family="monospace">Deterministic math operations</text>
+  <!-- MODULE 1: CPU REGISTERS & INSTRUCTION CYCLE (LEFT) -->
+  <g id="cpuArch" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">MEMORY HIERARCHY:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Registers -> L1 -> RAM</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Stack: Downward local frames</text>
-    <text x="25" y="247" fill="#fca5a5" font-size="8" font-family="monospace">Heap: Upward dynamic memory</text>
+    <!-- Register Block & ALU Display -->
+    <rect x="25" y="50" width="195" height="80" rx="4" fill="#070a0f" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="35" y="68" fill="#38bdf8" font-size="8.5" font-family="monospace">RAX: 0x0000000000000041 (Accumulator)</text>
+    <text x="35" y="82" fill="#7dd3fc" font-size="8.5" font-family="monospace">RSP: 0x000000000007FFFF (Stack Ptr)</text>
+    <text x="35" y="96" fill="#fde68a" font-size="8.5" font-family="monospace">RIP: 0x0000000000100020 (Prog Counter)</text>
+    <text x="35" y="112" fill="#86efac" font-size="8" font-weight="bold" font-family="monospace">ALU: ADD | SUB | AND | XOR | SHL | ROR</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Physical Hardware Execution</text>
+    <!-- Execution Cycle Specs Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="163" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">FETCH-DECODE-EXECUTE:</text>
+    <text x="28" y="178" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">Every Clock Pulse / Cycle</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">1. Fetch opcode byte at address RIP</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">2. Increment RIP, decode instruction</text>
+
+    <!-- Memory Map Stack/Heap Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">MEMORY HIERARCHY:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">Registers ──&gt; L1 Cache ──&gt; Physical RAM</text>
+    <text x="28" y="279" fill="#fca5a5" font-size="8" font-family="monospace">Stack grows downward (RSP push/pop)</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Heap grows upward (sbrk/kalloc)</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">CPU ARCHITECTURE</text>
   </g>
 
-  <!-- Module 2: The C Language Systems Engine -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. C SYSTEMS SYNTAX</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Pointers &amp; Memory I/O</text>
+  <!-- MODULE 2: C SYSTEMS SYNTAX & DIRECT BUS I/O (CENTER) -->
+  <g id="cSyntax" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Code block icon -->
-    <rect x="40" y="52" width="120" height="60" rx="3" fill="#090d16" stroke="#f59e0b"/>
-    <text x="48" y="68" fill="#f59e0b" font-size="8.5" font-family="monospace">uint8_t *vga =</text>
-    <text x="56" y="82" fill="#fde68a" font-size="8.5" font-family="monospace">(uint8_t*)0xB8000;</text>
-    <text x="48" y="96" fill="#86efac" font-size="8.5" font-family="monospace">*vga = 'A'; // Write!</text>
+    <!-- Memory-Mapped I/O C Code Snippet -->
+    <rect x="20" y="50" width="210" height="80" rx="4" fill="#070a0f" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="30" y="70" fill="#f59e0b" font-size="8.5" font-family="monospace">// Direct Video RAM Text Framebuffer</text>
+    <text x="30" y="85" fill="#38bdf8" font-size="8.5" font-family="monospace">uint16_t *vga = (uint16_t*)0xB8000;</text>
+    <text x="30" y="100" fill="#86efac" font-size="8.5" font-family="monospace">vga[0] = (0x0F &lt;&lt; 8) | 'C'; // White-on-Black</text>
+    <text x="30" y="115" fill="#cbd5e1" font-size="8" font-family="monospace">outb(0x3D4, 0x0A); // Hardware port write</text>
 
-    <rect x="15" y="122" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="139" fill="#f8fafc" font-size="9" font-family="monospace">POINTER ARITHMETIC:</text>
-    <text x="25" y="155" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Direct Memory Addresses</text>
-    <text x="25" y="169" fill="#cbd5e1" font-size="8.5" font-family="monospace">Pointers hold raw hex addresses</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8" font-family="monospace">Dereference (*) reads/writes bus</text>
+    <!-- Pointer Arithmetic Pill -->
+    <rect x="18" y="145" width="214" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="163" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">POINTER ARITHMETIC:</text>
+    <text x="28" y="178" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">Direct Bus Address Manipulation</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">Pointers hold absolute 32/64-bit addresses</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">Dereference (*) reads/writes physical bus</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">ZERO OVERHEAD:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Compiles to Raw Opcodes</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">No garbage collector pauses</text>
-    <text x="25" y="247" fill="#86efac" font-size="8" font-family="monospace">Full control of byte layout</text>
+    <!-- Zero Overhead Compiler Pill -->
+    <rect x="18" y="230" width="214" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">ZERO RUNTIME OVERHEAD:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">Compiles directly into bare CPU machine code</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">No garbage collector pauses or JVM VM</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Total deterministic control of RAM layout</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">The Universal Systems Language</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="83" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">C SYSTEMS SYNTAX</text>
   </g>
 
-  <!-- Module 3: Bootloader & Kernel -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. BARE-METAL KERNEL</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">512B MBR to C kmain()</text>
+  <!-- MODULE 3: BARE-METAL BOOTSTRAP & KERNEL (RIGHT) -->
+  <g id="kernelBoot" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Disk sector & monitor graphic -->
-    <rect x="65" y="52" width="70" height="40" rx="3" fill="#1e293b" stroke="#10b981"/>
-    <text x="75" y="75" fill="#86efac" font-size="8" font-family="monospace">[ 0xAA55 MBR ]</text>
-    <line x1="100" y1="92" x2="100" y2="115" stroke="#10b981" stroke-width="2"/>
-    <polygon points="95,115 105,115 100,122" fill="#10b981"/>
+    <!-- Disk Sector 0 (MBR 512 Bytes) & Transfer Arrow -->
+    <rect x="40" y="50" width="165" height="36" rx="4" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="122" y="68" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Sector 0 MBR [ 512B | 0xAA55 ]</text>
+    <path d="M 122 86 L 122 104" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+    <rect x="40" y="105" width="165" height="25" rx="3" fill="#0f172a" stroke="#38bdf8"/>
+    <text x="122" y="121" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">Kernel Loaded @ 0x100000</text>
 
-    <rect x="15" y="126" width="170" height="56" rx="4" fill="#1e293b"/>
-    <text x="25" y="142" fill="#f8fafc" font-size="9" font-family="monospace">MBR BOOTSTRAP (512B):</text>
-    <text x="25" y="157" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Loads Kernel @ 0x100000</text>
-    <text x="25" y="171" fill="#cbd5e1" font-size="8" font-family="monospace">Switches to 32/64-bit mode</text>
+    <!-- Bootstrap Protocol Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="163" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">MBR BOOTSTRAP (STAGE 1):</text>
+    <text x="28" y="178" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">BIOS loads 512 bytes @ 0x7C00</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">Enables A20 gate, sets CR0 Protected Mode</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">Jumps to 32/64-bit C entry point kmain()</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">KERNEL CAPABILITIES:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Interrupts &amp; Tasks</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Keyboard driver &amp; VRAM text</text>
-    <text x="25" y="247" fill="#fef08a" font-size="8" font-family="monospace">Preemptive task scheduling</text>
+    <!-- Kernel Capabilities Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">RING 0 KERNEL ENGINE:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">IDT Interrupt Descriptor Table</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Timer IRQ0 preemptive task scheduler</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Complete standalone digital OS</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Complete Digital Autonomy</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="86" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">BARE-METAL KERNEL</text>
   </g>
 
-  <!-- Bottom Computing Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE BARE-METAL LAW: Hardware has no concept of files, windows, or languages.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">A CPU only executes numbers from memory. Master C pointers to control the physical silicon directly.</text>
+  <!-- BARE-METAL HARDWARE LAW MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">0</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">THE BARE-METAL LAW: HARDWARE HAS NO CONCEPT OF FILES, APPS, OR SYSTEM CALLS</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Silicon executes raw machine numbers from RAM. Controlling pointers, interrupt vectors, and memory-mapped IO in C grants 100% sovereign computational control.</text>
 </svg>
 ```
 

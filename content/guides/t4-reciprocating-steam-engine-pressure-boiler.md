@@ -37,97 +37,172 @@ The reciprocating steam engine is the definitive mechanical boundary line betwee
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="steamGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="steamFireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+    <marker id="arrowSteam" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowFire" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: Fire-Tube Boiler -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. FIRE-TUBE BOILER</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Pressure Vessel &amp; Safety</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#steamGrid)"/>
 
-    <!-- Cylindrical boiler with tubes -->
-    <rect x="40" y="55" width="120" height="55" rx="10" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
-    <line x1="50" y1="72" x2="150" y2="72" stroke="#ef4444" stroke-width="2.5"/>
-    <line x1="50" y1="85" x2="150" y2="85" stroke="#ef4444" stroke-width="2.5"/>
-    <circle cx="100" cy="50" r="5" fill="#f59e0b"/>
-    <text x="100" y="42" fill="#fca5a5" font-size="7" font-family="monospace" text-anchor="middle">Pop-Off Valve</text>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#ef4444" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">RECIPROCATING STEAM ENGINE &amp; FIRE-TUBE BOILER — ENGINEERING SCHEMATIC</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">THERMODYNAMIC KINETIC DRIVE</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">OPERATING PARAMETERS:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">6 - 8 Bar (90-120 PSI)</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Hydrostatic test @ 1.5x load</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Rolled boiler steel / bronze</text>
+  <!-- MODULE 1: THE FIRE-TUBE BOILER (LEFT) -->
+  <g id="boiler" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">CRITICAL FAIL-SAFE:</text>
-    <text x="25" y="222" fill="#fca5a5" font-size="11" font-weight="bold" font-family="monospace">Lead Fusible Plug</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Melts @ 200°C if water low</text>
-    <text x="25" y="248" fill="#fde047" font-size="8" font-family="monospace">Steam douses fire instantly</text>
+    <!-- Cylindrical Boiler Shell with Dished Heads -->
+    <rect x="30" y="55" width="180" height="70" rx="14" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <!-- Water Level Fill -->
+    <rect x="35" y="80" width="170" height="40" rx="4" fill="#0369a1" opacity="0.35"/>
+    <text x="120" y="95" fill="#38bdf8" font-size="7.5" font-family="monospace" text-anchor="middle">Water Reservoir (175°C)</text>
 
-    <text x="100" y="268" fill="#ef4444" font-size="9" font-family="monospace" text-anchor="middle">Zero Tolerance for Leaks</text>
+    <!-- Horizontal Fire Tubes -->
+    <line x1="45" y1="90" x2="195" y2="90" stroke="#f59e0b" stroke-width="3"/>
+    <line x1="45" y1="102" x2="195" y2="102" stroke="#f59e0b" stroke-width="3"/>
+    <line x1="45" y1="114" x2="195" y2="114" stroke="#f59e0b" stroke-width="3"/>
+
+    <!-- Spring Pop-Off Relief Valve -->
+    <rect x="85" y="38" width="16" height="17" rx="2" fill="#d97706" stroke="#fef08a"/>
+    <line x1="93" y1="38" x2="93" y2="28" stroke="#ef4444" stroke-width="2"/>
+    <circle cx="93" cy="28" r="3" fill="#ef4444"/>
+
+    <!-- Lead Fusible Crown Plug Fail-Safe -->
+    <circle cx="150" cy="55" r="4" fill="#94a3b8" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="150" y="45" fill="#fca5a5" font-size="7" font-family="monospace" text-anchor="middle">Fusible Plug</text>
+
+    <!-- Operating Specs Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+    <text x="28" y="163" fill="#ef4444" font-size="8.5" font-weight="bold" font-family="monospace">OPERATING PARAMETERS:</text>
+    <text x="28" y="178" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">6–8 Bar Working Pressure (90–120 PSI)</text>
+    <text x="28" y="193" fill="#cbd5e1" font-size="8" font-family="monospace">• Hydrostatic proof test @ 12 Bar (1.5x)</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">• 6mm rolled steel / double riveted</text>
+
+    <!-- Fail-Safe Protection Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">FAIL-SAFE REDUNDANCY:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">• Dual pop-off spring relief valves</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">• Lead crown plug melts @ 220°C</text>
+    <text x="28" y="295" fill="#86efac" font-size="8" font-family="monospace">Steam quenches firebox if water low</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#ef4444"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">FIRE-TUBE BOILER</text>
   </g>
 
-  <!-- Module 2: Cylinder & D-Slide Valve -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. D-SLIDE VALVE CYLINDER</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Double-Acting Piston Stroke</text>
+  <!-- HIGH-PRESSURE STEAM SUPPLY MANIFOLD PIPE -->
+  <path d="M 235 125 L 285 125" stroke="#38bdf8" stroke-width="4" marker-end="url(#arrowSteam)"/>
+  <rect x="238" y="105" width="46" height="16" rx="3" fill="#0f172a" stroke="#38bdf8"/>
+  <text x="261" y="116" fill="#38bdf8" font-size="7.5" font-family="monospace" text-anchor="middle">8 BAR</text>
 
-    <!-- Cylinder & Piston cross section -->
-    <rect x="50" y="52" width="100" height="50" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-    <rect x="75" y="55" width="15" height="44" fill="#38bdf8"/>
-    <line x1="90" y1="77" x2="165" y2="77" stroke="#cbd5e1" stroke-width="4"/>
-    <!-- D-valve above -->
-    <path d="M75 42 L105 42 L100 48 L80 48 Z" fill="#f59e0b"/>
+  <!-- MODULE 2: DOUBLE-ACTING PISTON & D-SLIDE VALVE (CENTER) -->
+  <g id="cylinder" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">VALVE PORT TIMING:</text>
-    <text x="25" y="149" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Alternating Admission</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Eccentric cam 90° out-of-phase</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Powers both forward &amp; back</text>
+    <!-- Cylinder Block & Steam Ports -->
+    <rect x="40" y="60" width="140" height="65" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    
+    <!-- D-Slide Valve Chest (Top) -->
+    <rect x="65" y="45" width="90" height="16" fill="#0f172a" stroke="#f59e0b"/>
+    <path d="M 85 47 L 115 47 L 110 57 L 90 57 Z" fill="#f59e0b"/>
+    <text x="155" y="40" fill="#fde68a" font-size="7.5" font-family="monospace">D-Slide</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">PACKING &amp; SEALS:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Hemp / Graphite Glands</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Tallow lubrication grease</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Zero metal-on-metal scoring</text>
+    <!-- Steam Ports (Left, Exhaust, Right) -->
+    <line x1="70" y1="60" x2="70" y2="70" stroke="#38bdf8" stroke-width="3"/>
+    <line x1="110" y1="60" x2="110" y2="70" stroke="#64748b" stroke-width="3"/>
+    <line x1="150" y1="60" x2="150" y2="70" stroke="#38bdf8" stroke-width="3"/>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Continuous Double Power</text>
+    <!-- Double-Acting Piston & Connecting Rod -->
+    <rect x="95" y="65" width="20" height="55" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5"/>
+    <line x1="115" y1="92" x2="225" y2="92" stroke="#cbd5e1" stroke-width="5"/>
+    <text x="115" y="135" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">Double-Acting Piston Stroke</text>
+
+    <!-- Valve Port Timing Pill -->
+    <rect x="18" y="145" width="214" height="75" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="28" y="163" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">VALVE PORT TIMING:</text>
+    <text x="28" y="178" fill="#cbd5e1" font-size="8" font-family="monospace">Alternating live steam admission</text>
+    <text x="28" y="191" fill="#cbd5e1" font-size="8" font-family="monospace">Eccentric cam 90° out-of-phase</text>
+    <text x="28" y="206" fill="#fde68a" font-size="8" font-family="monospace">Continuous power on both strokes</text>
+
+    <!-- Glands & Lubrication Pill -->
+    <rect x="18" y="230" width="214" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">SEALS &amp; LUBRICATION:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">• Hemp &amp; graphite gland packing</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">• Tallow tallow/oil cup injector</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Prevents bore scoring &amp; steam loss</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="165" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="94" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">D-SLIDE CYLINDER</text>
   </g>
 
-  <!-- Module 3: Watt Governor & Flywheel -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. FLYWHEEL &amp; GOVERNOR</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Centrifugal Speed Regulation</text>
+  <!-- MODULE 3: WATT GOVERNOR & FLYWHEEL (RIGHT) -->
+  <g id="governorFlywheel" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Watt flyball governor -->
-    <line x1="100" y1="50" x2="100" y2="100" stroke="#cbd5e1" stroke-width="2.5"/>
-    <line x1="100" y1="65" x2="75" y2="85" stroke="#10b981" stroke-width="2"/>
-    <circle cx="75" cy="85" r="5" fill="#f59e0b"/>
-    <line x1="100" y1="65" x2="125" y2="85" stroke="#10b981" stroke-width="2"/>
-    <circle cx="125" cy="85" r="5" fill="#f59e0b"/>
+    <!-- Watt Flyball Governor Diagram -->
+    <line x1="85" y1="45" x2="85" y2="115" stroke="#cbd5e1" stroke-width="3"/>
+    <line x1="85" y1="65" x2="60" y2="88" stroke="#10b981" stroke-width="2.5"/>
+    <circle cx="60" cy="88" r="7" fill="#f59e0b" stroke="#fef08a"/>
+    <line x1="85" y1="65" x2="110" y2="88" stroke="#10b981" stroke-width="2.5"/>
+    <circle cx="110" cy="88" r="7" fill="#f59e0b" stroke="#fef08a"/>
+    <text x="85" y="130" fill="#86efac" font-size="7.5" font-family="monospace" text-anchor="middle">Centrifugal Throttle</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">AUTOMATIC THROTTLE:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Centrifugal Lift Linkage</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Speed up -> balls fly out</text>
-    <text x="25" y="174" fill="#86efac" font-size="8" font-family="monospace">Chokes steam valve closed</text>
+    <!-- Heavy Cast Flywheel (Right) -->
+    <circle cx="180" cy="85" r="40" fill="none" stroke="#64748b" stroke-width="6"/>
+    <circle cx="180" cy="85" r="10" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+    <line x1="140" y1="85" x2="220" y2="85" stroke="#475569" stroke-width="2"/>
+    <line x1="180" y1="45" x2="180" y2="125" stroke="#475569" stroke-width="2"/>
+    <text x="180" y="135" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">100kg Flywheel</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">KINETIC FLYWHEEL:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Cast Iron / 100 kg Mass</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Carries through top/bottom TDC</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Smooth 180 RPM output shaft</text>
+    <!-- Autonomous Speed Control Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="163" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">CENTRIFUGAL GOVERNOR:</text>
+    <text x="28" y="178" fill="#cbd5e1" font-size="8" font-family="monospace">Engine accelerates ──&gt; balls rise</text>
+    <text x="28" y="191" fill="#cbd5e1" font-size="8" font-family="monospace">Mechanical linkage chokes valve</text>
+    <text x="28" y="206" fill="#86efac" font-size="8" font-family="monospace">Holds constant 180 RPM speed</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Self-Regulating Autonomous Power</text>
+    <!-- Flywheel Kinetics Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">KINETIC FLYWHEEL:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">Carries piston over Top Dead Center</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Smooth torque for dynamos &amp; mills</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Output: 5–15 Continuous Horsepower</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="160" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="91" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">GOVERNOR &amp; FLYWHEEL</text>
   </g>
 
-  <!-- Bottom Engineering Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
-  <text x="350" y="336" fill="#fca5a5" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">BOILER EXPLOSION WARNING: A pressurized boiler holds the explosive energy of dynamite.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">NEVER operate without two independent pop-off safety valves and a fusible lead crown plug.</text>
+  <!-- BOILER EXPLOSION CAUTION FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#1a0606" stroke="#ef4444" stroke-width="1.5"/>
+  <circle cx="45" cy="423" r="10" fill="#ef4444"/>
+  <text x="45" y="427" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">!</text>
+  <text x="65" y="420" fill="#fca5a5" font-size="10.5" font-weight="bold" font-family="monospace">CRITICAL STEAM BOILER EXPLOSION HAZARD (1700x INSTANT EXPANSION RATIO)</text>
+  <text x="65" y="434" fill="#f87171" font-size="8.5" font-family="monospace">A failed boiler explodes with dynamite velocity. NEVER fire boiler without two independent calibrated relief valves and a cold hydrostatic 1.5x test.</text>
 </svg>
 ```
 

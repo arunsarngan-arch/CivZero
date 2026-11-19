@@ -14,99 +14,194 @@ summary: Determine whether an unknown non-woody wild plant is non-toxic and calo
 In a post-collapse scenario, **plant poisoning causes lethal hepatic failure, respiratory paralysis, or debilitating dysentery**. Never eat unknown plants when known foods are available. **Rules of Exclusion:** Avoid plants with milky/cloudy sap, umbrella-shaped flower clusters (hemlock family), fine hair barbs, almond-like scent (cyanogenic glycosides), beans/bulbs inside pods, or three-leaf patterns.
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#0f172a"/>
+    <!-- Background Grid -->
+    <pattern id="uetGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="uetCardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#090d16" stop-opacity="0.98"/>
     </linearGradient>
+
+    <linearGradient id="uetDangerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a0d0d" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#150505" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Marker Arrow -->
+    <marker id="uetArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="uetArrowWarn" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+  <!-- Canvas Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#uetGrid)"/>
 
-  <!-- Title Banner -->
-  <text x="350" y="32" fill="#f59e0b" font-size="14" font-weight="bold" font-family="monospace" text-anchor="middle">THE 8-STAGE BOTANICAL TOXICITY TRIAGE</text>
-  <text x="350" y="50" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">Mandatory 8-Hour Fast Prior to Stage 1. Test Only ONE Plant Part at a Time.</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="42" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="35" r="5" fill="#38bdf8"/>
+  <text x="60" y="32" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">TACTICAL BOTANICAL TRIAGE: 8-STAGE UNIVERSAL EDIBILITY PROTOCOL</text>
+  <text x="60" y="47" fill="#64748b" font-size="9" font-family="monospace">PRE-FLIGHT: MANDATORY 8-HR FAST (WATER ONLY) • TEST EXACTLY ONE MORPHOLOGICAL ORGAN AT A TIME</text>
 
-  <!-- Stage 1: Separation -->
-  <rect x="30" y="70" width="140" height="75" rx="6" fill="url(#stepGrad)" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="40" y="90" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">STAGE 1</text>
-  <text x="40" y="108" fill="#f8fafc" font-size="11" font-family="sans-serif">Dissect Plant</text>
-  <text x="40" y="125" fill="#94a3b8" font-size="9" font-family="monospace">Test ONLY leaves,</text>
-  <text x="40" y="137" fill="#94a3b8" font-size="9" font-family="monospace">roots OR stems.</text>
+  <!-- ================= ROW 1: STAGES 1 - 4 ================= -->
+  <!-- Connector Row 1 -->
+  <line x1="205" y1="120" x2="225" y2="120" stroke="#38bdf8" stroke-width="2" marker-end="url(#uetArrow)"/>
+  <line x1="395" y1="120" x2="415" y2="120" stroke="#38bdf8" stroke-width="2" marker-end="url(#uetArrow)"/>
+  <line x1="585" y1="120" x2="605" y2="120" stroke="#38bdf8" stroke-width="2" marker-end="url(#uetArrow)"/>
 
-  <path d="M170 107 L200 107" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Stage 1: Organ Dissection -->
+  <g transform="translate(25, 68)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <rect x="42" y="12" width="76" height="18" rx="4" fill="#0369a1" fill-opacity="0.3"/>
+    <text x="80" y="24" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">DISSECTION</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Isolate Single Organ</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Divide: Leaf/Root/Stem</text>
+    <text x="14" y="82" fill="#94a3b8" font-size="9" font-family="monospace">• Never test mixed lot</text>
+    <text x="14" y="96" fill="#38bdf8" font-size="8.5" font-family="monospace">Organ triage: 1 sample</text>
+  </g>
 
-  <!-- Stage 2: Skin Contact -->
-  <rect x="200" y="70" width="140" height="75" rx="6" fill="url(#stepGrad)" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="210" y="90" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">STAGE 2 (15m)</text>
-  <text x="210" y="108" fill="#f8fafc" font-size="11" font-family="sans-serif">Skin Contact</text>
-  <text x="210" y="125" fill="#94a3b8" font-size="9" font-family="monospace">Rub inside elbow.</text>
-  <text x="210" y="137" fill="#fca5a5" font-size="9" font-family="monospace">Watch: Rash, burn.</text>
+  <!-- Stage 2: Dermal Assay -->
+  <g transform="translate(215, 68)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <rect x="42" y="12" width="76" height="18" rx="4" fill="#0284c7" fill-opacity="0.3"/>
+    <text x="80" y="24" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">DERMAL: 15M</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Inner Elbow Fossa</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Crush sample to exude sap</text>
+    <text x="14" y="82" fill="#94a3b8" font-size="9" font-family="monospace">• Rub 5cm soft skin area</text>
+    <text x="14" y="96" fill="#fca5a5" font-size="8.5" font-family="monospace">Hives / itching = REJECT</text>
+  </g>
 
-  <path d="M340 107 L370 107" stroke="#64748b" stroke-width="2"/>
+  <!-- Stage 3: Vermilion Lip Assay -->
+  <g transform="translate(405, 68)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <rect x="42" y="12" width="76" height="18" rx="4" fill="#0284c7" fill-opacity="0.3"/>
+    <text x="80" y="24" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">MUCOSA: 3M</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Outer Lip Touch</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Light touch to outer lip</text>
+    <text x="14" y="82" fill="#94a3b8" font-size="9" font-family="monospace">• 3-minute contact hold</text>
+    <text x="14" y="96" fill="#fca5a5" font-size="8.5" font-family="monospace">Tingling / burn = REJECT</text>
+  </g>
 
-  <!-- Stage 3: Lip Contact -->
-  <rect x="370" y="70" width="140" height="75" rx="6" fill="url(#stepGrad)" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="380" y="90" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">STAGE 3 (3m)</text>
-  <text x="380" y="108" fill="#f8fafc" font-size="11" font-family="sans-serif">Lip Mucosa</text>
-  <text x="380" y="125" fill="#94a3b8" font-size="9" font-family="monospace">Touch moist outer</text>
-  <text x="380" y="137" fill="#94a3b8" font-size="9" font-family="monospace">lip. No tingling.</text>
+  <!-- Stage 4: Tongue Dorsum Assay -->
+  <g transform="translate(595, 68)">
+    <rect width="200" height="106" rx="8" fill="url(#uetCardBg)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❹</text>
+    <rect x="42" y="12" width="76" height="18" rx="4" fill="#0284c7" fill-opacity="0.3"/>
+    <text x="80" y="24" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">TONGUE: 15M</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Dorsal Tongue Tip</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Postage-stamp piece</text>
+    <text x="14" y="82" fill="#94a3b8" font-size="9" font-family="monospace">• Zero chewing / swallowing</text>
+    <text x="14" y="96" fill="#fca5a5" font-size="8.5" font-family="monospace">Bitter / numb = REJECT</text>
+  </g>
 
-  <path d="M510 107 L540 107" stroke="#64748b" stroke-width="2"/>
+  <!-- Inter-Row Flow Routing Line -->
+  <path d="M 695 174 L 695 194 L 115 194 L 115 208" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#uetArrowWarn)"/>
 
-  <!-- Stage 4: Tongue Tip -->
-  <rect x="540" y="70" width="130" height="75" rx="6" fill="url(#stepGrad)" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="550" y="90" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">STAGE 4 (15m)</text>
-  <text x="550" y="108" fill="#f8fafc" font-size="11" font-family="sans-serif">Tongue Tip</text>
-  <text x="550" y="125" fill="#94a3b8" font-size="9" font-family="monospace">Touch tongue tip.</text>
-  <text x="550" y="137" fill="#fca5a5" font-size="9" font-family="monospace">Bitter / Numb = STOP</text>
+  <!-- ================= ROW 2: STAGES 5 - 8 ================= -->
+  <!-- Connector Row 2 -->
+  <line x1="205" y1="262" x2="225" y2="262" stroke="#f59e0b" stroke-width="2" marker-end="url(#uetArrowWarn)"/>
+  <line x1="395" y1="262" x2="415" y2="262" stroke="#f59e0b" stroke-width="2" marker-end="url(#uetArrowWarn)"/>
+  <line x1="585" y1="262" x2="605" y2="262" stroke="#10b981" stroke-width="2"/>
 
-  <!-- Downward connector -->
-  <path d="M605 145 L605 180 L100 180 L100 210" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
+  <!-- Stage 5: Mastication Hold -->
+  <g transform="translate(25, 210)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#f59e0b" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❺</text>
+    <rect x="42" y="12" width="86" height="18" rx="4" fill="#b45309" fill-opacity="0.3"/>
+    <text x="85" y="24" fill="#f59e0b" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">MASTICATE: 15M</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Chew &amp; Salivate</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Chew sample thoroughly</text>
+    <text x="14" y="82" fill="#ef4444" font-size="9" font-weight="bold" font-family="monospace">• DO NOT SWALLOW SALIVA</text>
+    <text x="14" y="96" fill="#cbd5e1" font-size="8.5" font-family="monospace">Expel &amp; rinse mouth clean</text>
+  </g>
 
-  <!-- Stage 5: Chew & Hold -->
-  <rect x="30" y="210" width="140" height="85" rx="6" fill="url(#stepGrad)" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="40" y="230" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">STAGE 5 (15m)</text>
-  <text x="40" y="248" fill="#f8fafc" font-size="11" font-family="sans-serif">Chew &amp; Hold</text>
-  <text x="40" y="265" fill="#cbd5e1" font-size="9" font-family="monospace">Chew sample piece.</text>
-  <text x="40" y="278" fill="#fca5a5" font-size="9" font-family="monospace">DO NOT SWALLOW.</text>
-  <text x="40" y="289" fill="#94a3b8" font-size="9" font-family="monospace">Spit out cleanly.</text>
+  <!-- Stage 6: The Thumbnail Ingestion -->
+  <g transform="translate(215, 210)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#f59e0b" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#b45309" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❻</text>
+    <rect x="42" y="12" width="86" height="18" rx="4" fill="#b45309" fill-opacity="0.3"/>
+    <text x="85" y="24" fill="#f59e0b" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">SWALLOW: 1 PORTION</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Micro Ingestion</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Swallow 5mm (pea-size)</text>
+    <text x="14" y="82" fill="#94a3b8" font-size="9" font-family="monospace">• Ingest with purified H2O</text>
+    <text x="14" y="96" fill="#f59e0b" font-size="8.5" font-family="monospace">Prepare identically</text>
+  </g>
 
-  <path d="M170 252 L200 252" stroke="#64748b" stroke-width="2"/>
+  <!-- Stage 7: 8-Hour Systemic Fast -->
+  <g transform="translate(405, 210)">
+    <rect width="180" height="106" rx="8" fill="url(#uetCardBg)" stroke="#ef4444" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="12" fill="#b91c1c" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❼</text>
+    <rect x="42" y="12" width="76" height="18" rx="4" fill="#b91c1c" fill-opacity="0.3"/>
+    <text x="80" y="24" fill="#ef4444" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">FAST: 8 HOURS</text>
+    <text x="14" y="52" fill="#f8fafc" font-size="11" font-weight="bold" font-family="sans-serif">Systemic Window</text>
+    <text x="14" y="68" fill="#94a3b8" font-size="9" font-family="monospace">• Absolute food fasting</text>
+    <text x="14" y="82" fill="#fca5a5" font-size="9" font-family="monospace">• Watch: Nausea, ataxia,</text>
+    <text x="14" y="96" fill="#fca5a5" font-size="8.5" font-family="monospace">cramps, blurred vision</text>
+  </g>
 
-  <!-- Stage 6: The Swallow -->
-  <rect x="200" y="210" width="140" height="85" rx="6" fill="url(#stepGrad)" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="210" y="230" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">STAGE 6</text>
-  <text x="210" y="248" fill="#f8fafc" font-size="11" font-family="sans-serif">Swallow Pinch</text>
-  <text x="210" y="265" fill="#cbd5e1" font-size="9" font-family="monospace">Swallow ONE</text>
-  <text x="210" y="278" fill="#cbd5e1" font-size="9" font-family="monospace">teaspoon quantity</text>
-  <text x="210" y="289" fill="#94a3b8" font-size="9" font-family="monospace">with clean water.</text>
+  <!-- Stage 8: Safe Lot Clearance -->
+  <g transform="translate(595, 210)">
+    <rect width="200" height="106" rx="8" fill="url(#uetCardBg)" stroke="#10b981" stroke-width="2"/>
+    <circle cx="22" cy="22" r="12" fill="#047857" stroke="#10b981" stroke-width="1.5"/>
+    <text x="22" y="27" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">❽</text>
+    <rect x="42" y="12" width="90" height="18" rx="4" fill="#047857" fill-opacity="0.3"/>
+    <text x="87" y="24" fill="#10b981" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">PASS / CONFIRMED</text>
+    <text x="14" y="52" fill="#a7f3d0" font-size="11" font-weight="bold" font-family="sans-serif">Caloric Clearance</text>
+    <text x="14" y="68" fill="#cbd5e1" font-size="9" font-family="monospace">• Consume 1/4 cup sample</text>
+    <text x="14" y="82" fill="#cbd5e1" font-size="9" font-family="monospace">• Same organ &amp; preparation</text>
+    <text x="14" y="96" fill="#10b981" font-size="8.5" font-family="monospace">Declared safe edible biomass</text>
+  </g>
 
-  <path d="M340 252 L370 252" stroke="#64748b" stroke-width="2"/>
+  <!-- ================= TACTICAL BOTANICAL EXCLUSION BANNER ================= -->
+  <g transform="translate(25, 332)">
+    <rect width="770" height="108" rx="8" fill="url(#uetDangerBg)" stroke="#dc2626" stroke-width="1.5"/>
+    <rect x="14" y="12" width="220" height="20" rx="4" fill="#7f1d1d"/>
+    <text x="124" y="26" fill="#fca5a5" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">🛑 CRITICAL BOTANICAL EXCLUSION RULES</text>
+    <text x="14" y="46" fill="#ef4444" font-size="10" font-weight="bold" font-family="monospace">NEVER INGEST PLANTS DISPLAYING ANY OF THESE 6 FATAL SIGNALS (INSTANT ABORT):</text>
+    
+    <!-- 6 Exclusion Badges -->
+    <rect x="14" y="56" width="118" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="73" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">MILKY / WHITE SAP</text>
+    <text x="73" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">Toxic latex alkaloids</text>
 
-  <!-- Stage 7: 8-Hour Fast -->
-  <rect x="370" y="210" width="140" height="85" rx="6" fill="url(#stepGrad)" stroke="#ef4444" stroke-width="1.5"/>
-  <text x="380" y="230" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">STAGE 7 (8h)</text>
-  <text x="380" y="248" fill="#f8fafc" font-size="11" font-family="sans-serif">8-Hour Fast</text>
-  <text x="380" y="265" fill="#cbd5e1" font-size="9" font-family="monospace">Zero other food.</text>
-  <text x="380" y="278" fill="#fca5a5" font-size="9" font-family="monospace">Monitor nausea,</text>
-  <text x="380" y="289" fill="#fca5a5" font-size="9" font-family="monospace">cramps, or ataxia.</text>
+    <rect x="140" y="56" width="118" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="199" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">UMBEL FLOWERS</text>
+    <text x="199" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">Conium hemlock fatal</text>
 
-  <path d="M510 252 L540 252" stroke="#64748b" stroke-width="2"/>
+    <rect x="266" y="56" width="118" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="325" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">ALMOND / PEACH SCENT</text>
+    <text x="325" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">Cyanogenic glycosides</text>
 
-  <!-- Stage 8: Safe Lot -->
-  <rect x="540" y="210" width="130" height="85" rx="6" fill="url(#stepGrad)" stroke="#10b981" stroke-width="2"/>
-  <text x="550" y="230" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">STAGE 8 (PASS)</text>
-  <text x="550" y="248" fill="#86efac" font-size="11" font-family="sans-serif">Cleared for Use</text>
-  <text x="550" y="265" fill="#cbd5e1" font-size="9" font-family="monospace">Eat 1/4 cup.</text>
-  <text x="550" y="278" fill="#cbd5e1" font-size="9" font-family="monospace">Prepare strictly</text>
-  <text x="550" y="289" fill="#cbd5e1" font-size="9" font-family="monospace">in identical way.</text>
+    <rect x="392" y="56" width="118" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="451" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">FINE SPINES / BARBS</text>
+    <text x="451" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">Internal throat ulcer</text>
 
-  <!-- Fatal Signs Warning Bottom -->
-  <rect x="30" y="315" width="640" height="48" rx="6" fill="#1e1b18" stroke="#dc2626" stroke-width="1.5"/>
-  <text x="45" y="333" fill="#f87171" font-size="11" font-weight="bold" font-family="monospace">INSTANT FAILURE TRIGGERS (ABORT IMMEDIATELY):</text>
-  <text x="45" y="350" fill="#cbd5e1" font-size="10" font-family="monospace">Soapy/bitter taste, almond odor, lip tingling, dizziness, or cramps = ABORT &amp; SPIT.</text>
+    <rect x="518" y="56" width="118" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="577" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">WHITE / YELLOW BERRIES</text>
+    <text x="577" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">99% statistical lethality</text>
+
+    <rect x="644" y="56" width="128" height="42" rx="4" fill="#170606" stroke="#991b1b" stroke-width="1"/>
+    <text x="708" y="72" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">3-LEAF CLUSTERS</text>
+    <text x="708" y="88" fill="#94a3b8" font-size="7.5" font-family="monospace" text-anchor="middle">Urushiol severe dermatitis</text>
+  </g>
 </svg>
 ```
 

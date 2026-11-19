@@ -16,91 +16,185 @@ Soap is the single most effective intervention in human medical history, respons
 $$\text{Triglyceride (Fat)} + 3\,KOH \longrightarrow \text{Glycerol} + 3\,\text{Potassium Carboxylate (Soap)}$$
 
 ```svg
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="ashGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <!-- Blueprint Grid -->
+    <pattern id="soapGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="soapAshGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#52525b"/>
+      <stop offset="50%" stop-color="#3f3f46"/>
       <stop offset="100%" stop-color="#27272a"/>
     </linearGradient>
-    <linearGradient id="lyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#b45309"/>
+
+    <linearGradient id="soapLyeAmber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#b45309" stop-opacity="0.95"/>
     </linearGradient>
+
+    <linearGradient id="soapEmulsion" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+
+    <!-- Marker -->
+    <marker id="soapArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="700" height="360" fill="#090d16" rx="8"/>
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#soapGrid)"/>
 
-  <!-- Left: Ash Leaching Hopper Barrel -->
-  <g transform="translate(40, 40)">
-    <rect x="0" y="0" width="180" height="260" rx="6" fill="#18181b" stroke="#71717a" stroke-width="2"/>
-    <text x="90" y="24" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. ASH LEACH HOPPER</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#f59e0b"/>
+  <text x="60" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">WOOD-ASH LYE EXTRACTION &amp; SAPONIFICATION SYNTHESIS</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">HARDWOOD K2CO3 LEACHING ➔ SPECIFIC GRAVITY ASSAY (SG ~1.28) ➔ TRIGLYCERIDE BASE HYDROLYSIS</text>
 
-    <!-- Rainwater inlet -->
-    <path d="M70 35 L110 35 L100 55 L80 55 Z" fill="#38bdf8"/>
-    <text x="90" y="50" fill="#ffffff" font-size="9" font-family="monospace" text-anchor="middle">Rainwater</text>
+  <!-- Connector Arrows between Panels -->
+  <line x1="265" y1="210" x2="285" y2="210" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#soapArrow)"/>
+  <line x1="535" y1="210" x2="555" y2="210" stroke="#10b981" stroke-width="2.5" marker-end="url(#soapArrow)"/>
 
-    <!-- Hardwood Ash Layer -->
-    <rect x="15" y="60" width="150" height="90" fill="url(#ashGrad)" stroke="#3f3f46"/>
-    <text x="90" y="105" fill="#e4e4e7" font-size="10" font-family="monospace" text-anchor="middle">Clean Hardwood Ash</text>
-    <text x="90" y="120" fill="#a1a1aa" font-size="8" font-family="monospace" text-anchor="middle">(Oak, Hickory, Beech)</text>
+  <!-- ================= PANEL 1: ASH LEACH HOPPER ================= -->
+  <g transform="translate(25, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❶ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#b45309"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="44" y="26" fill="#fde68a" font-size="10" font-weight="bold" font-family="sans-serif">Ash Leach Hopper</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Hardwood Rainwater Extraction</text>
 
-    <!-- Straw & Pebble Filter Bed -->
-    <rect x="15" y="150" width="150" height="25" fill="#ca8a04" opacity="0.6"/>
-    <text x="90" y="167" fill="#fef08a" font-size="9" font-family="monospace" text-anchor="middle">Straw Filter Layer</text>
-    <rect x="15" y="175" width="150" height="20" fill="#52525b"/>
-    <text x="90" y="190" fill="#d4d4d8" font-size="9" font-family="monospace" text-anchor="middle">Clean River Gravel</text>
+    <!-- 200L Wooden Leach Barrel Cutaway -->
+    <rect x="30" y="55" width="180" height="185" rx="5" fill="#18181b" stroke="#71717a" stroke-width="1.5"/>
+    
+    <!-- Rainwater Feed Vector Top -->
+    <path d="M 90 55 L 150 55 L 135 68 L 105 68 Z" fill="#38bdf8"/>
+    <text x="120" y="65" fill="#ffffff" font-size="7.5" font-weight="bold" font-family="monospace" text-anchor="middle">Soft Rainwater</text>
 
-    <!-- Spigot Drip into Catchment -->
-    <path d="M85 220 L95 220 L90 250 Z" fill="#f59e0b"/>
-    <rect x="55" y="235" width="70" height="30" rx="3" fill="#27272a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="90" y="253" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Raw Lye (KOH)</text>
+    <!-- Compressed Hardwood Ash Layer -->
+    <rect x="35" y="72" width="170" height="75" fill="url(#soapAshGrad)" stroke="#3f3f46" stroke-width="1"/>
+    <text x="120" y="105" fill="#f8fafc" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">HARDWOOD ASH</text>
+    <text x="120" y="118" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Oak, Beech, Hickory (K2CO3)</text>
+
+    <!-- Filter Bed: Straw Layer -->
+    <rect x="35" y="147" width="170" height="22" fill="#ca8a04" fill-opacity="0.6" stroke="#a16207" stroke-width="0.8"/>
+    <text x="120" y="162" fill="#fef08a" font-size="8" font-family="monospace" text-anchor="middle">Clean Straw Pre-Filter</text>
+
+    <!-- Filter Bed: River Gravel Layer -->
+    <rect x="35" y="169" width="170" height="20" fill="#52525b" stroke="#3f3f46" stroke-width="0.8"/>
+    <text x="120" y="183" fill="#e4e4e7" font-size="8" font-family="monospace" text-anchor="middle">Washed River Gravel</text>
+
+    <!-- Bottom Spigot & Amber Drip -->
+    <rect x="115" y="189" width="10" height="12" fill="#a16207"/>
+    <path d="M 120 201 L 120 216" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3,2"/>
+
+    <!-- Catchment Vessel with Golden KOH Lye -->
+    <rect x="85" y="215" width="70" height="20" rx="3" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="120" y="229" fill="#fde68a" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">Amber Lye (KOH)</text>
+
+    <!-- Hopper Rule Box -->
+    <rect x="12" y="248" width="216" height="56" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="264" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">NO PINE / RESINOUS SOFTWOOD:</text>
+    <text x="20" y="278" fill="#f8fafc" font-size="8" font-family="monospace">• Softwoods lack potassium salts</text>
+    <text x="20" y="292" fill="#cbd5e1" font-size="8" font-family="monospace">• Re-pour first run 2–3x to concentrate</text>
   </g>
 
-  <!-- Middle: The Egg Float Density Assay -->
-  <g transform="translate(260, 40)">
-    <rect x="0" y="0" width="170" height="260" rx="6" fill="#18181b" stroke="#f59e0b" stroke-width="2"/>
-    <text x="85" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. EGG FLOAT TEST</text>
-    <text x="85" y="40" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Specific Gravity Check</text>
+  <!-- ================= PANEL 2: EGG FLOAT DENSITY ASSAY ================= -->
+  <g transform="translate(290, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#38bdf8" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❷ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#0284c7"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="44" y="26" fill="#7dd3fc" font-size="10" font-weight="bold" font-family="sans-serif">Egg Float Hydrometer</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Specific Gravity Calibration</text>
 
-    <!-- Glass/Jar of Lye -->
-    <rect x="35" y="60" width="100" height="130" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-    <rect x="37" y="100" width="96" height="88" fill="url(#lyeGrad)" opacity="0.7"/>
+    <!-- Glass Testing Cylinder -->
+    <rect x="65" y="60" width="110" height="150" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    
+    <!-- Concentrated Amber Lye Fluid Level -->
+    <rect x="68" y="100" width="104" height="106" rx="3" fill="url(#soapLyeAmber)"/>
+    <line x1="68" y1="100" x2="172" y2="100" stroke="#fde047" stroke-width="1.5"/>
 
-    <!-- Floating Egg -->
-    <ellipse cx="85" cy="100" rx="16" ry="24" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5"/>
-    <line x1="85" y1="76" x2="85" y2="100" stroke="#ef4444" stroke-width="2"/>
-    <text x="85" y="70" fill="#fca5a5" font-size="9" font-family="monospace" text-anchor="middle">Quarter-Sized Tip</text>
+    <!-- Buoyant Egg in Fluid -->
+    <ellipse cx="120" cy="108" rx="20" ry="28" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5"/>
+    
+    <!-- Quarter-Sized Exposed Crown Caliper -->
+    <line x1="110" y1="80" x2="130" y2="80" stroke="#ef4444" stroke-width="1.5"/>
+    <line x1="120" y1="80" x2="120" y2="92" stroke="#ef4444" stroke-width="1.2"/>
+    <rect x="75" y="65" width="90" height="16" rx="3" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+    <text x="120" y="77" fill="#fca5a5" font-size="7.5" font-family="monospace" text-anchor="middle">Quarter-Size Dome</text>
 
-    <!-- Criteria Box -->
-    <rect x="15" y="200" width="140" height="50" rx="4" fill="#090d16"/>
-    <text x="85" y="218" fill="#86efac" font-size="9" font-family="monospace" text-anchor="middle">IF SINK: Boil to boil off</text>
-    <text x="85" y="232" fill="#86efac" font-size="9" font-family="monospace" text-anchor="middle">excess water (concentrate)</text>
-    <text x="85" y="244" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">Target SG: ~1.28</text>
+    <!-- Specific Gravity Metric Box -->
+    <rect x="12" y="220" width="216" height="84" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="238" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="monospace">TARGET SPECIFIC GRAVITY:</text>
+    <text x="20" y="254" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">SG ≈ 1.28 (13%–15% KOH)</text>
+    <text x="20" y="270" fill="#fde68a" font-size="8" font-family="monospace">• If egg SINKS: Boil lye to evaporate</text>
+    <text x="20" y="284" fill="#86efac" font-size="8" font-family="monospace">• If floats too high: Dilute with rainwater</text>
   </g>
 
-  <!-- Right: Saponification Kettle -->
-  <g transform="translate(470, 40)">
-    <rect x="0" y="0" width="190" height="260" rx="6" fill="#18181b" stroke="#10b981" stroke-width="2"/>
-    <text x="95" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. HEATED CAULDRON</text>
-    <text x="95" y="40" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Tallow + Lye Emulsion</text>
+  <!-- ================= PANEL 3: SAPONIFICATION CAULDRON ================= -->
+  <g transform="translate(555, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#10b981" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❸ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#047857"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="44" y="26" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="sans-serif">Heated Cauldron</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Emulsification &amp; Trace Phase</text>
 
-    <!-- Iron Pot -->
-    <path d="M35 110 Q95 200 155 110 Z" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
-    <ellipse cx="95" cy="110" rx="60" ry="12" fill="#ca8a04"/>
-    <text x="95" y="145" fill="#fef08a" font-size="10" font-family="monospace" text-anchor="middle">Hot Emulsion</text>
-    <text x="95" y="160" fill="#f8fafc" font-size="8" font-family="monospace" text-anchor="middle">Stir Continuously</text>
+    <!-- Heavy Cast-Iron Cauldron -->
+    <g transform="translate(35, 60)">
+      <path d="M 15 35 Q 85 110 155 35 Z" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+      <ellipse cx="85" cy="35" rx="70" ry="12" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
 
-    <!-- Flame under pot -->
-    <path d="M75 190 Q95 160 100 190 Q115 165 115 190 Z" fill="#ef4444"/>
+      <!-- Simmering Emulsion Soup -->
+      <ellipse cx="85" cy="38" rx="64" ry="10" fill="url(#soapEmulsion)"/>
+      <text x="85" y="58" fill="#451a03" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">Tallow + Lye (50°C)</text>
 
-    <!-- Finished Soap Output -->
-    <rect x="25" y="205" width="140" height="42" rx="4" fill="#090d16" stroke="#10b981" stroke-width="1"/>
-    <text x="95" y="222" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">TRACE STATE (3-5 Hours)</text>
-    <text x="95" y="238" fill="#d4d4d8" font-size="8" font-family="monospace" text-anchor="middle">Pour into wooden molds.</text>
+      <!-- Wooden Stirring Paddle -->
+      <line x1="125" y1="5" x2="85" y2="60" stroke="#a16207" stroke-width="3.5"/>
+      <rect x="80" y="50" width="16" height="22" rx="2" fill="#78350f" transform="rotate(-30, 88, 61)"/>
+
+      <!-- Low Embers Flame Below Cauldron -->
+      <path d="M 60 95 Q 85 75 110 95 Z" fill="#ef4444"/>
+      <circle cx="85" cy="88" r="6" fill="#f59e0b"/>
+    </g>
+
+    <!-- Curing Soap Bar Graphic -->
+    <rect x="40" y="165" width="160" height="38" rx="4" fill="#090d16" stroke="#10b981" stroke-width="1"/>
+    <text x="120" y="180" fill="#a7f3d0" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">TRACE PHASE (Warm Pudding)</text>
+    <text x="120" y="194" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Pour into wooden mold ➔ Cure 4-6 wks</text>
+
+    <!-- Saponification Formula Box -->
+    <rect x="12" y="215" width="216" height="89" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="233" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="monospace">SAPONIFICATION RATIO:</text>
+    <text x="20" y="249" fill="#f8fafc" font-size="8.5" font-family="monospace">• 2 Vol: Rendered Tallow (50°C)</text>
+    <text x="20" y="263" fill="#f8fafc" font-size="8.5" font-family="monospace">• 1 Vol: Hot Standard Lye (50°C)</text>
+    <text x="20" y="277" fill="#fde68a" font-size="8" font-family="monospace">• Stir steadily in one direction</text>
+    <text x="20" y="291" fill="#86efac" font-size="8" font-family="monospace">Yields 100% antimicrobial soap bar</text>
   </g>
 
-  <rect x="40" y="315" width="620" height="30" rx="4" fill="#2e1010" stroke="#ef4444" stroke-width="1"/>
-  <text x="350" y="334" fill="#fca5a5" font-size="9.5" font-family="monospace" text-anchor="middle">CAUTION: Never use aluminum pots (lye releases explosive H2 gas). Use iron, enamel, or clay only.</text>
+  <!-- ================= BOTTOM ALUMINUM EXPLOSION DANGER WARNING ================= -->
+  <g transform="translate(25, 388)">
+    <rect width="770" height="58" rx="6" fill="#1b0707" stroke="#dc2626" stroke-width="1.5"/>
+    <circle cx="45" cy="29" r="14" fill="#7f1d1d"/>
+    <text x="45" y="34" fill="#ffffff" font-size="14" font-weight="bold" font-family="monospace" text-anchor="middle">⚠</text>
+    
+    <text x="70" y="25" fill="#f87171" font-size="10" font-weight="bold" font-family="monospace">LETHAL CHEMICAL EXPLOSION HAZARD — NEVER USE ALUMINUM:</text>
+    <text x="70" y="42" fill="#cbd5e1" font-size="8.5" font-family="monospace">Potassium hydroxide reacts violently with aluminum vessels, dissolving metal and releasing explosive Hydrogen gas (H2).</text>
+    <text x="70" y="52" fill="#fca5a5" font-size="8" font-family="monospace">Use exclusively Cast Iron, Enamel-coated steel, Stainless Steel, Stoneware, or Wooden troughs.</text>
+  </g>
 </svg>
 ```
 

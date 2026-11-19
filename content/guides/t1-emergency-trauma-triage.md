@@ -50,39 +50,141 @@ Penetrating trauma to the thoracic cage (stab, shrapnel, puncture) disrupts nega
 
 #### 1. The Vented Flutter Seal Blueprint
 
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="360" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="320" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
+```svg
+<svg viewBox="0 0 820 450" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Coordinate Grid -->
+    <pattern id="chestGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.4"/>
+    </pattern>
+
+    <!-- Chest Wall Skin Gradient -->
+    <linearGradient id="chestSkinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#292524"/>
+      <stop offset="50%" stop-color="#44403c"/>
+      <stop offset="100%" stop-color="#1c1917"/>
+    </linearGradient>
+
+    <!-- Occlusive Plastic Foil Gradient -->
+    <linearGradient id="plasticFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Adhesive Duct Tape Gradient -->
+    <linearGradient id="ductTapeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Canvas & Grid -->
+  <rect x="0" y="0" width="820" height="450" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="450" fill="url(#chestGrid)"/>
+  <rect x="10" y="10" width="800" height="430" rx="10" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ================= 1. THORACIC CHEST WALL ================= -->
+  <!-- Torso Surface Representation -->
+  <rect x="180" y="60" width="460" height="320" rx="12" fill="url(#chestSkinGrad)" stroke="#57534e" stroke-width="2.5"/>
+
+  <!-- Rib Cage Contour Lines (Behind Skin) -->
+  <g stroke="#78716c" stroke-width="2" opacity="0.35" fill="none">
+    <path d="M 210 110 Q 410 130 610 110"/>
+    <path d="M 200 170 Q 410 190 620 170"/>
+    <path d="M 200 230 Q 410 250 620 230"/>
+    <path d="M 210 290 Q 410 310 610 290"/>
+    <path d="M 230 350 Q 410 365 590 350"/>
+  </g>
+
+  <!-- ================= 2. PENETRATING SUCKING WOUND ================= -->
+  <!-- Pneumothorax Puncture Hole -->
+  <ellipse cx="410" cy="210" rx="22" ry="32" fill="#7f1d1d" stroke="#ef4444" stroke-width="3"/>
+  <ellipse cx="410" cy="210" rx="12" ry="18" fill="#450a0a"/>
   
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">IMPROVISED THREE-SIDED FLUTTER CHEST SEAL</text>
+  <!-- Sucking Air Whistle Vectors -->
+  <g stroke="#fca5a5" stroke-width="1.5" stroke-linecap="round" opacity="0.8">
+    <line x1="395" y1="200" x2="380" y2="190"/>
+    <line x1="425" y1="200" x2="440" y2="190"/>
+    <line x1="410" y1="185" x2="410" y2="170"/>
+  </g>
+
+  <!-- Wound Callout Badge -->
+  <rect x="25" y="195" width="235" height="38" rx="6" fill="#1c1917" stroke="#ef4444" stroke-width="1.2"/>
+  <circle cx="40" cy="214" r="7" fill="#ef4444"/>
+  <text x="40" y="218" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+  <text x="140" y="208" fill="#fecaca" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">SUCKING CHEST WOUND</text>
+  <text x="140" y="222" fill="#f87171" font-size="9" font-family="monospace" text-anchor="middle">Disrupts negative pleural vacuum</text>
+  <line x1="260" y1="214" x2="388" y2="210" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 3. IMPERVOUS PLASTIC MEMBRANE ================= -->
+  <!-- Square Occlusive Barrier (15cm x 15cm) extending 5cm past wound -->
+  <rect x="290" y="110" width="240" height="200" rx="6" fill="url(#plasticFoilGrad)" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,2"/>
   
-  <!-- Chest Wall Skin -->
-  <rect x="180" y="80" width="340" height="220" fill="#292524" stroke="#57534e" stroke-width="2" rx="8"/>
-  <text x="350" y="105" font-family="monospace" font-size="12" fill="#a8a29e" text-anchor="middle">Thoracic Chest Wall</text>
-  
-  <!-- Penetrating Wound -->
-  <ellipse cx="350" cy="190" rx="15" ry="25" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
-  <text x="350" y="195" font-family="monospace" font-size="9" fill="#fca5a5" text-anchor="middle">Puncture</text>
-  
-  <!-- Plastic Sheet (Occlusive Barrier) -->
-  <rect x="270" y="130" width="160" height="130" fill="#38bdf8" opacity="0.3" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,2"/>
-  <text x="350" y="150" font-family="monospace" font-size="11" fill="#7dd3fc" text-anchor="middle">Airtight Plastic Foil</text>
-  
-  <!-- Tape On 3 Sides -->
-  <rect x="260" y="125" width="180" height="12" fill="#eab308" stroke="#ca8a04" stroke-width="1"/>
-  <rect x="260" y="125" width="12" height="140" fill="#eab308" stroke="#ca8a04" stroke-width="1"/>
-  <rect x="428" y="125" width="12" height="140" fill="#eab308" stroke="#ca8a04" stroke-width="1"/>
-  
-  <text x="350" y="120" font-family="monospace" font-size="9" fill="#fde047" text-anchor="middle">Top Tape Strip (Sealed)</text>
-  <text x="210" y="195" font-family="monospace" font-size="9" fill="#fde047" text-anchor="middle">Left Tape</text>
-  <text x="490" y="195" font-family="monospace" font-size="9" fill="#fde047" text-anchor="middle">Right Tape</text>
-  
-  <!-- Bottom Flutter Valve (Open) -->
-  <line x1="260" y1="265" x2="440" y2="265" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,4"/>
-  <text x="350" y="285" font-family="monospace" font-size="11" fill="#4ade80" font-weight="bold" text-anchor="middle">BOTTOM UNTAPED (ONE-WAY FLUTTER VALVE)</text>
-  <text x="350" y="300" font-family="monospace" font-size="9" fill="#cbd5e1" text-anchor="middle">Inhalation: Plastic sucks flat, sealing air out</text>
-  <text x="350" y="315" font-family="monospace" font-size="9" fill="#cbd5e1" text-anchor="middle">Exhalation: Trapped pleural air vents out bottom</text>
+  <!-- Plastic Sheet Callout Badge -->
+  <rect x="25" y="90" width="235" height="38" rx="6" fill="#0c1929" stroke="#38bdf8" stroke-width="1.2"/>
+  <circle cx="40" cy="109" r="7" fill="#0284c7"/>
+  <text x="40" y="113" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+  <text x="140" y="103" fill="#e0f2fe" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">AIRTIGHT PLASTIC FOIL</text>
+  <text x="140" y="117" fill="#7dd3fc" font-size="9" font-family="monospace" text-anchor="middle">MRE wrapper, freezer bag, tape</text>
+  <line x1="260" y1="109" x2="290" y2="125" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 4. THREE-SIDED ADHESIVE TAPE SEALS ================= -->
+  <!-- Top Sealed Tape Strip -->
+  <rect x="275" y="100" width="270" height="20" rx="3" fill="url(#ductTapeGrad)" stroke="#a16207" stroke-width="1.2"/>
+  <text x="410" y="114" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">SEALED (TOP TAPE STRIP)</text>
+
+  <!-- Left Sealed Tape Strip -->
+  <rect x="275" y="120" width="20" height="190" rx="3" fill="url(#ductTapeGrad)" stroke="#a16207" stroke-width="1.2"/>
+
+  <!-- Right Sealed Tape Strip -->
+  <rect x="525" y="120" width="20" height="190" rx="3" fill="url(#ductTapeGrad)" stroke="#a16207" stroke-width="1.2"/>
+
+  <!-- Tape Callout Badge -->
+  <rect x="560" y="90" width="235" height="38" rx="6" fill="#1c1917" stroke="#eab308" stroke-width="1.2"/>
+  <circle cx="575" cy="109" r="7" fill="#ca8a04"/>
+  <text x="575" y="113" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+  <text x="680" y="103" fill="#fef08a" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">3 SIDES HERMETICALLY TAPED</text>
+  <text x="680" y="117" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Duct tape, medical tape, or grease</text>
+  <line x1="560" y1="109" x2="545" y2="115" stroke="#eab308" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 5. OPEN BOTTOM FLUTTER VALVE (4TH SIDE) ================= -->
+  <!-- Untaped Bottom Edge with Flap Gap -->
+  <line x1="295" y1="310" x2="525" y2="310" stroke="#22c55e" stroke-width="3.5" stroke-dasharray="6,4"/>
+
+  <!-- Exhaling / Venting Air Exhaust Vectors (Downward Flutter) -->
+  <g stroke="#4ade80" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M 370 290 Q 370 320 360 340"/>
+    <polygon points="360,345 356,335 364,336" fill="#4ade80"/>
+    <path d="M 410 290 Q 410 325 410 345"/>
+    <polygon points="410,350 406,340 414,340" fill="#4ade80"/>
+    <path d="M 450 290 Q 450 320 460 340"/>
+    <polygon points="460,345 456,336 464,335" fill="#4ade80"/>
+  </g>
+
+  <!-- Flutter Valve Callout Badge -->
+  <rect x="560" y="295" width="235" height="48" rx="6" fill="#052e16" stroke="#22c55e" stroke-width="1.2"/>
+  <circle cx="575" cy="319" r="7" fill="#22c55e"/>
+  <text x="575" y="323" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">4</text>
+  <text x="680" y="311" fill="#86efac" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">ONE-WAY FLUTTER VENT (OPEN)</text>
+  <text x="680" y="325" fill="#4ade80" font-size="9" font-family="monospace" text-anchor="middle">Inhale: Vacuum seals flap flat</text>
+  <text x="680" y="337" fill="#bbf7d0" font-size="8.5" font-family="monospace" text-anchor="middle">Exhale: Trapped pleural air escapes</text>
+  <line x1="560" y1="319" x2="525" y2="310" stroke="#22c55e" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 6. EMERGENCY "BURPING" PROTOCOL ================= -->
+  <!-- Tension Pneumothorax Warning Card -->
+  <rect x="25" y="295" width="235" height="48" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1.2"/>
+  <circle cx="40" cy="319" r="7" fill="#ea580c"/>
+  <text x="40" y="323" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">5</text>
+  <text x="140" y="311" fill="#fed7aa" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">"BURP THE SEAL" ALERT</text>
+  <text x="140" y="325" fill="#fdba74" font-size="9" font-family="monospace" text-anchor="middle">If patient deteriorates or lips turn blue,</text>
+  <text x="140" y="337" fill="#fca5a5" font-size="8.5" font-family="monospace" text-anchor="middle">peel flap 2 sec to release trapped gas</text>
+
+  <!-- ================= FOOTER CLINICAL NOTE ================= -->
+  <rect x="25" y="405" width="770" height="26" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="410" y="422" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">PNEUMOTHORAX MECHANISM: Atmospheric air entering the pleural space collapses the lung and kinks the vena cava. Flutter seal vents pressure safely.</text>
 </svg>
+```
 
 #### 2. Improvised Dressing Procedure
 1. Find any clean, airtight plastic sheet: heavy-duty plastic packaging, resealable freezer bag, or clean laminated foil.

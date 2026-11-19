@@ -49,90 +49,159 @@ This manual documents the primitive and semi-industrial synthesis of the four fu
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="chemGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="acidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <marker id="arrowGas" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowChlorine" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: Vitriol Roasting (H2SO4) -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. SULFURIC ACID</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Vitriol Retort Roasting</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#chemGrid)"/>
 
-    <!-- Clay retort icon -->
-    <path d="M50 85 C50 60, 90 55, 110 70 L160 110 L155 118 L110 85 C95 75, 65 75, 65 95 Z" fill="#b45309" stroke="#d97706" stroke-width="1.5"/>
-    <ellipse cx="60" cy="95" rx="20" ry="15" fill="#78350f"/>
-    <!-- Flames below -->
-    <path d="M45 120 Q60 100 65 120 Q70 100 75 120 Z" fill="#f59e0b"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">INDUSTRIAL CHEMICAL REAGENTS: VITRIOL DISTILLATION &amp; CHLORALKALI CELL</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">FIRST-PRINCIPLES ACID-BASE SYNTHESIS</text>
 
-    <rect x="15" y="130" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="148" fill="#f8fafc" font-size="9.5" font-family="monospace">FEEDSTOCK: Green Vitriol</text>
-    <text x="25" y="165" fill="#fca5a5" font-size="12" font-weight="bold" font-family="monospace">FeSO4 • 7H2O</text>
-    <text x="25" y="180" fill="#94a3b8" font-size="8.5" font-family="monospace">Heat to 650°C in retort</text>
+  <!-- MODULE 1: SULFURIC ACID FROM GREEN VITRIOL (LEFT) -->
+  <g id="sulfuric" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="198" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="215" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">OUTPUT: 98% H2SO4</text>
-    <text x="25" y="231" fill="#cbd5e1" font-size="8.5" font-family="monospace">SO3 gas bubbled in water</text>
-    <text x="25" y="244" fill="#fca5a5" font-size="8" font-family="monospace">Boiling point: 337°C</text>
+    <!-- Clay Retort with Long Condenser Neck -->
+    <path d="M 45 105 C 45 65, 95 60, 115 80 L 195 125 L 188 135 L 115 95 C 95 85, 65 85, 65 115 Z" fill="#78350f" stroke="#d97706" stroke-width="1.8"/>
+    <ellipse cx="60" cy="115" rx="24" ry="18" fill="#451a03"/>
+    
+    <!-- Heating Furnace Flames (650°C) -->
+    <path d="M 45 145 Q 55 125 60 145 Q 68 120 75 145 Z" fill="#ef4444"/>
+    <path d="M 52 145 Q 60 130 65 145 Z" fill="#f59e0b"/>
+    <text x="60" y="160" fill="#fca5a5" font-size="8" font-family="monospace" text-anchor="middle">650°C Fire</text>
 
-    <text x="100" y="268" fill="#fca5a5" font-size="9" font-family="monospace" text-anchor="middle">Dense, Oily Reagent</text>
+    <!-- Glass Condenser Receiver Flask -->
+    <circle cx="205" cy="140" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <ellipse cx="205" cy="145" rx="14" ry="8" fill="#ef4444" opacity="0.4"/>
+    <text x="205" y="148" fill="#fca5a5" font-size="7" font-family="monospace" text-anchor="middle">H₂SO₄</text>
+
+    <!-- Reaction Feedstock Pill -->
+    <rect x="18" y="175" width="210" height="60" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+    <text x="28" y="193" fill="#ef4444" font-size="8.5" font-weight="bold" font-family="monospace">FEEDSTOCK: GREEN VITRIOL</text>
+    <text x="28" y="208" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">FeSO₄ • 7H₂O (Iron Sulfate)</text>
+    <text x="28" y="222" fill="#cbd5e1" font-size="8" font-family="monospace">Dry to monohydrate, heat in retort</text>
+
+    <!-- Output Product Pill -->
+    <rect x="18" y="245" width="210" height="65" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="264" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">OUTPUT: 98% OIL OF VITRIOL</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">SO₃ gas absorbs in condensate</text>
+    <text x="28" y="293" fill="#86efac" font-size="8" font-family="monospace">Boiling Pt: 337°C | Specific Grav: 1.84</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#ef4444"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">SULFURIC ACID (H₂SO₄)</text>
   </g>
 
-  <!-- Module 2: Nitric Acid (HNO3) -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. NITRIC ACID</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Saltpeter Distillation</text>
+  <!-- MODULE 2: NITRIC ACID FROM SALTPETER DISTILLATION (CENTER) -->
+  <g id="nitric" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Glass Liebig Distillation -->
-    <rect x="60" y="55" width="25" height="40" rx="3" fill="#0284c7" opacity="0.6" stroke="#38bdf8"/>
-    <line x1="85" y1="65" x2="145" y2="105" stroke="#38bdf8" stroke-width="3"/>
-    <rect x="135" y="100" width="20" height="25" rx="3" fill="#f59e0b" opacity="0.6" stroke="#fbbf24"/>
+    <!-- Boiling Flask & Retort Neck -->
+    <circle cx="65" cy="115" r="28" fill="#1e293b" stroke="#38bdf8" stroke-width="1.8"/>
+    <ellipse cx="65" cy="125" rx="22" ry="12" fill="#f59e0b" opacity="0.3"/>
+    <path d="M 78 95 L 175 130" stroke="#38bdf8" stroke-width="4"/>
+    <path d="M 85 92 L 180 126" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2"/>
+    <text x="65" y="128" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">KNO₃ + H₂SO₄</text>
 
-    <rect x="15" y="130" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="148" fill="#f8fafc" font-size="9.5" font-family="monospace">REACTION MIXTURE:</text>
-    <text x="25" y="165" fill="#fde68a" font-size="12" font-weight="bold" font-family="monospace">KNO3 + H2SO4</text>
-    <text x="25" y="180" fill="#94a3b8" font-size="8.5" font-family="monospace">Distill at 83°C (Gentle)</text>
+    <!-- Receiver Flask in Cold Water Bath -->
+    <circle cx="195" cy="140" r="22" fill="#1e293b" stroke="#38bdf8" stroke-width="1.8"/>
+    <ellipse cx="195" cy="148" rx="18" ry="10" fill="#f59e0b" opacity="0.6"/>
+    <rect x="165" y="150" width="60" height="20" rx="3" fill="#0369a1" opacity="0.3"/>
+    <text x="195" y="152" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">HNO₃</text>
+    <text x="195" y="165" fill="#38bdf8" font-size="7" font-family="monospace" text-anchor="middle">Ice Bath</text>
 
-    <rect x="15" y="198" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="215" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">OUTPUT: 68% HNO3</text>
-    <text x="25" y="231" fill="#cbd5e1" font-size="8.5" font-family="monospace">Red Fuming / Corrosive</text>
-    <text x="25" y="244" fill="#fde047" font-size="8" font-family="monospace">Key for Medicine &amp; Nital</text>
+    <!-- Reaction Mixture Pill -->
+    <rect x="18" y="175" width="214" height="60" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="28" y="193" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">RETORT REACTION (83°C):</text>
+    <text x="28" y="208" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">KNO₃ + H₂SO₄ ──&gt; KHSO₄ + HNO₃↑</text>
+    <text x="28" y="222" fill="#cbd5e1" font-size="8" font-family="monospace">Gentle water-bath heat below 90°C</text>
 
-    <text x="100" y="268" fill="#fca5a5" font-size="9" font-family="monospace" text-anchor="middle">Vapors Lethal to Lungs</text>
+    <!-- Distillate Specs Pill -->
+    <rect x="18" y="245" width="214" height="65" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="264" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">OUTPUT: 68% FUMING NITRIC ACID</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Deep amber/yellow fuming liquid</text>
+    <text x="28" y="293" fill="#fca5a5" font-size="8" font-family="monospace">NO₂ fumes destroy pulmonary tissue</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="83" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">NITRIC ACID (HNO₃)</text>
   </g>
 
-  <!-- Module 3: Chloralkali Electrolysis (NaOH + Cl2) -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. CHLORALKALI CELL</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Brine DC Electrolysis</text>
+  <!-- MODULE 3: CHLORALKALI DIAPHRAGM CELL (RIGHT) -->
+  <g id="chloralkali" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Electrolytic Cell Graphic -->
-    <rect x="50" y="52" width="100" height="55" rx="4" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
-    <line x1="70" y1="45" x2="70" y2="95" stroke="#ef4444" stroke-width="4"/>
-    <text x="70" y="42" fill="#ef4444" font-size="8" font-family="monospace" text-anchor="middle">(+) C</text>
-    <line x1="130" y1="45" x2="130" y2="95" stroke="#38bdf8" stroke-width="4"/>
-    <text x="130" y="42" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">(-) Fe</text>
+    <!-- Electrolytic Cell Vessel -->
+    <rect x="30" y="55" width="185" height="85" rx="5" fill="#082f49" stroke="#0284c7" stroke-width="1.8"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">ELECTRODES &amp; BRINE:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">2NaCl + 2H2O + e-</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8" font-family="monospace">Anode (+): Cl2 toxic gas</text>
-    <text x="25" y="174" fill="#cbd5e1" font-size="8" font-family="monospace">Cathode (-): H2 fuel gas</text>
+    <!-- Porous Diaphragm Divider -->
+    <line x1="122" y1="55" x2="122" y2="140" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3,2"/>
+    <text x="122" y="50" fill="#fde68a" font-size="7" font-family="monospace" text-anchor="middle">Diaphragm</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">OUTPUT: Caustic Soda</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">NaOH (Liquid / Solid)</text>
-    <text x="25" y="237" fill="#94a3b8" font-size="8.5" font-family="monospace">pH 14 Strong Alkali</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Essential for Paper &amp; Soap</text>
+    <!-- Graphite Anode (+) -->
+    <rect x="65" y="65" width="16" height="55" fill="#334155" stroke="#ef4444" stroke-width="1.5"/>
+    <line x1="73" y1="65" x2="73" y2="40" stroke="#ef4444" stroke-width="2.5"/>
+    <text x="73" y="35" fill="#ef4444" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">(+) Anode</text>
+    <!-- Cl2 gas bubbles -->
+    <circle cx="73" cy="80" r="3" fill="#10b981" opacity="0.8"/><circle cx="85" cy="72" r="2.5" fill="#10b981" opacity="0.8"/>
+    <text x="73" y="132" fill="#86efac" font-size="8" font-family="monospace" text-anchor="middle">Cl₂ ↑</text>
 
-    <text x="100" y="268" fill="#86efac" font-size="9" font-family="monospace" text-anchor="middle">Continuous Off-Grid Reagents</text>
+    <!-- Iron Mesh Cathode (-) -->
+    <rect x="160" y="65" width="16" height="55" fill="#64748b" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="168" y1="65" x2="168" y2="40" stroke="#38bdf8" stroke-width="2.5"/>
+    <text x="168" y="35" fill="#38bdf8" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">(-) Cathode</text>
+    <!-- H2 gas bubbles -->
+    <circle cx="168" cy="80" r="2.5" fill="#ffffff" opacity="0.8"/><circle cx="155" cy="72" r="2" fill="#ffffff" opacity="0.8"/>
+    <text x="168" y="132" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">H₂ ↑ + NaOH</text>
+
+    <!-- Chemical Equation Pill -->
+    <rect x="18" y="175" width="210" height="60" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="193" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">CELL STOICHIOMETRY (DC):</text>
+    <text x="28" y="208" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">2NaCl + 2H₂O ──&gt; 2NaOH + Cl₂↑ + H₂↑</text>
+    <text x="28" y="222" fill="#cbd5e1" font-size="8" font-family="monospace">DC Current: 4.5V @ 10–50 Amps</text>
+
+    <!-- Products Pill -->
+    <rect x="18" y="245" width="210" height="65" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="264" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">OUTPUTS &amp; PRODUCTS:</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">• NaOH (Caustic soda pH 14)</text>
+    <text x="28" y="293" fill="#86efac" font-size="8" font-family="monospace">• Cl₂ disinfectant &amp; H₂ fuel gas</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="86" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">CHLORALKALI CELL</text>
   </g>
 
-  <!-- Bottom Safety & Engineering Warning -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
-  <text x="350" y="336" fill="#fca5a5" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">LETHAL GAS PROTOCOL: NEVER generate Chlorine (Cl2) or NO2 indoors.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">A single lungful of Cl2 causes irreversible pulmonary edema. Work strictly outdoors downwind.</text>
+  <!-- LETHAL GAS CAUTION FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#1a0606" stroke="#ef4444" stroke-width="1.5"/>
+  <circle cx="45" cy="423" r="10" fill="#ef4444"/>
+  <text x="45" y="427" fill="#ffffff" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">!</text>
+  <text x="65" y="420" fill="#fca5a5" font-size="10.5" font-weight="bold" font-family="monospace">LETHAL GAS TOXICITY HAZARD: CHLORINE (Cl₂) &amp; NITROGEN DIOXIDE (NO₂)</text>
+  <text x="65" y="434" fill="#f87171" font-size="8.5" font-family="monospace">A single inhalation of Cl₂ or NO₂ causes acute chemical pneumonitis and asphyxiation. NEVER distill or electrolyze indoors or without full ventilation.</text>
 </svg>
 ```
 

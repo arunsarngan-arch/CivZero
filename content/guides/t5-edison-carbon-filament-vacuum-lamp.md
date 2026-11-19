@@ -41,92 +41,154 @@ Thomas Edison's 1879 breakthrough was not merely the concept of electric light, 
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="lampGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bulbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: Bamboo Pyrolysis -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. FILAMENT PYROLYSIS</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Bamboo Fiber Carbonization</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#lampGrid)"/>
 
-    <!-- Crucible & horseshoe filament graphic -->
-    <rect x="65" y="55" width="70" height="50" rx="4" fill="#78350f" stroke="#b45309" stroke-width="1.5"/>
-    <path d="M85 95 C85 68, 115 68, 115 95" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">EDISON CARBON FILAMENT INCANDESCENT LAMP &amp; SPRENGEL VACUUM SYSTEM</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">HERMETIC VACUUM ELECTRONICS</text>
 
-    <rect x="15" y="118" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">BAMBOO PREPARATION:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">0.25mm Stripped Fiber</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">Bend into horseshoe loop</text>
-    <text x="25" y="175" fill="#94a3b8" font-size="8" font-family="monospace">Pack in bone-black graphite</text>
+  <!-- MODULE 1: BAMBOO FIBER PYROLYSIS (LEFT) -->
+  <g id="pyrolysis" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="62" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">KILN BAKING @ 1000°C:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">8 Hours Anaerobic</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Yields flexible pure carbon</text>
-    <text x="25" y="246" fill="#fca5a5" font-size="8" font-family="monospace">Resistance: ~100 - 150 Ohms</text>
+    <!-- Cast Iron Crucible with Charcoal Pack -->
+    <rect x="45" y="55" width="155" height="65" rx="5" fill="#1e293b" stroke="#78350f" stroke-width="2"/>
+    <rect x="55" y="65" width="135" height="45" fill="#070a0f"/>
+    <!-- Horseshoe Bamboo Filament Loop Inside Crucible -->
+    <path d="M 100 102 C 100 70, 145 70, 145 102" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <text x="122" y="100" fill="#fde68a" font-size="7.5" font-family="monospace" text-anchor="middle">Horseshoe Loop</text>
+    <text x="122" y="135" fill="#fca5a5" font-size="8" font-family="monospace" text-anchor="middle">Packed in Bone-Black Graphite</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Conductive Elastic Carbon</text>
+    <!-- Fiber Preparation Specs Pill -->
+    <rect x="18" y="150" width="210" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="168" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">BAMBOO PREPARATION:</text>
+    <text x="28" y="183" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">0.25mm Shaved Heartwood Fiber</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">• Bent around carbonized mandrel</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">• Submerged in bone charcoal dust</text>
+
+    <!-- Kiln Baking Dynamics Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">KILN PYROLYSIS (1000°C):</text>
+    <text x="28" y="269" fill="#cbd5e1" font-size="8" font-family="monospace">8 Hours anaerobic kiln firing</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Yields elastic, pure graphite filament</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Resistance: 100–150 Ohms cold</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="86" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">FILAMENT PYROLYSIS</text>
   </g>
 
-  <!-- Module 2: The Sprengel Vacuum Pump -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. SPRENGEL PUMP</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Mercury Fall-Tube Evacuator</text>
+  <!-- MODULE 2: SPRENGEL MERCURY VACUUM PUMP (CENTER) -->
+  <g id="sprengel" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Sprengel capillary drop tube -->
-    <rect x="88" y="50" width="24" height="20" rx="2" fill="#64748b" stroke="#94a3b8"/>
-    <line x1="100" y1="70" x2="100" y2="120" stroke="#cbd5e1" stroke-width="2.5"/>
-    <circle cx="100" cy="85" r="2" fill="#ffffff"/>
-    <circle cx="100" cy="100" r="2" fill="#ffffff"/>
-    <line x1="100" y1="80" x2="135" y2="80" stroke="#f59e0b" stroke-width="1.5"/>
+    <!-- Upper Mercury Reservoir Funnel -->
+    <polygon points="105,48 145,48 135,70 115,70" fill="#64748b" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="125" y="44" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Hg Reservoir</text>
 
-    <rect x="15" y="128" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="145" fill="#f8fafc" font-size="9" font-family="monospace">PHYSICAL MECHANISM:</text>
-    <text x="25" y="161" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Falling Mercury Pellets</text>
-    <text x="25" y="175" fill="#cbd5e1" font-size="8" font-family="monospace">Trap air bubbles down tube</text>
+    <!-- Capillary Fall-Tube (760mm Torricelli Leg) -->
+    <line x1="125" y1="70" x2="125" y2="135" stroke="#38bdf8" stroke-width="2.5"/>
+    <!-- Falling Mercury Droplets -->
+    <ellipse cx="125" cy="82" rx="2" ry="3" fill="#ffffff"/>
+    <ellipse cx="125" cy="98" rx="2" ry="3" fill="#ffffff"/>
+    <ellipse cx="125" cy="114" rx="2" ry="3" fill="#ffffff"/>
 
-    <rect x="15" y="196" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="213" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">VACUUM THRESHOLD:</text>
-    <text x="25" y="229" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">10^-4 Torr (0.01 Pa)</text>
-    <text x="25" y="242" fill="#cbd5e1" font-size="8" font-family="monospace">Zero moving piston seals</text>
+    <!-- Bulb Exhaust Tap Connection -->
+    <path d="M 125 90 L 175 90 L 175 110" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arrowAmber)"/>
+    <text x="165" y="85" fill="#f59e0b" font-size="7" font-family="monospace">Air Entrapment</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Torricellian Barometer Leg</text>
+    <!-- Lower Mercury Collector Flask -->
+    <rect x="110" y="130" width="30" height="15" rx="2" fill="#475569" stroke="#94a3b8"/>
+    <text x="125" y="142" fill="#ffffff" font-size="7" font-family="monospace" text-anchor="middle">Trap</text>
+
+    <!-- Sprengel Physics Pill -->
+    <rect x="18" y="150" width="214" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="168" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">MERCURY DROPLET ACTION:</text>
+    <text x="28" y="183" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">Falling liquid drops form pistons</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Traps &amp; compresses air down tube</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Zero rubber gaskets or mechanical seals</text>
+
+    <!-- Vacuum Threshold Pill -->
+    <rect x="18" y="235" width="214" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">HIGH VACUUM REACHED:</text>
+    <text x="28" y="269" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">10⁻⁴ Torr (0.013 Pascal)</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Eliminates all oxygen molecules</text>
+    <text x="28" y="299" fill="#86efac" font-size="8" font-family="monospace">Prevents instant filament combustion</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">SPRENGEL PUMP</text>
   </g>
 
-  <!-- Module 3: Assembled Vacuum Lamp -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. THE GLOWING BULB</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Incandescence in Vacuum</text>
+  <!-- MODULE 3: THE INCANDESCENT VACUUM BULB (RIGHT) -->
+  <g id="bulb" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Glowing bulb graphic -->
-    <circle cx="100" cy="80" r="28" fill="#fef08a" opacity="0.3"/>
-    <circle cx="100" cy="80" r="24" fill="none" stroke="#fef08a" stroke-width="1.5"/>
-    <path d="M92 90 C92 70, 108 70, 108 90" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
-    <line x1="92" y1="90" x2="92" y2="105" stroke="#94a3b8" stroke-width="1.5"/>
-    <line x1="108" y1="90" x2="108" y2="105" stroke="#94a3b8" stroke-width="1.5"/>
+    <!-- Glowing Bulb Envelope (Radial Aura) -->
+    <circle cx="122" cy="85" r="45" fill="url(#bulbGlow)"/>
+    <circle cx="122" cy="85" r="32" fill="none" stroke="#fef08a" stroke-width="1.5"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">ELECTRICAL PARAMS:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">12V - 24V DC / 0.8A</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">Filament Temp: 2100°C</text>
-    <text x="25" y="175" fill="#fef08a" font-size="8" font-family="monospace">Warm golden glow (2400K)</text>
+    <!-- Incandescent Carbon Filament -->
+    <path d="M 112 95 C 112 72, 132 72, 132 95" fill="none" stroke="#fef08a" stroke-width="3"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">OPERATIONAL LIFE:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">600 - 1200 Hours</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Outlasts 500 candles</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Zero soot / Zero fire hazard</text>
+    <!-- Platinum Lead-In Wires & Glass Pinch Seal -->
+    <rect x="110" y="105" width="24" height="15" fill="#475569" stroke="#94a3b8"/>
+    <line x1="114" y1="95" x2="114" y2="128" stroke="#cbd5e1" stroke-width="2"/>
+    <line x1="130" y1="95" x2="130" y2="128" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="122" y="142" fill="#38bdf8" font-size="7.5" font-family="monospace" text-anchor="middle">Platinum Pinch Seal</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Continuous Electric Night Light</text>
+    <!-- Electrical Performance Pill -->
+    <rect x="18" y="150" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="168" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">ELECTRICAL PARAMS:</text>
+    <text x="28" y="183" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">12V–24V DC / 0.8 Amperes</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Filament Temp: 2100°C</text>
+    <text x="28" y="210" fill="#fde68a" font-size="8" font-family="monospace">Warm 2400K golden illumination</text>
+
+    <!-- Operational Lifespan Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">LIFESPAN &amp; EFFICIENCY:</text>
+    <text x="28" y="269" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">600–1200 Continuous Hours</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Equals light output of 500 candles</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Zero soot, zero fire hazard</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="155" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="88" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">INCANDESCENT BULB</text>
   </g>
 
-  <!-- Bottom Engineering Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-  <text x="350" y="336" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">HERMETIC SEAL MANDATE: Platinum or Dumet copper-alloy wire matches glass expansion.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Ordinary copper wire expands faster than glass, cracking the seal and causing instant burnout.</text>
+  <!-- HERMETIC GLASS-METAL EXPANSION MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#f59e0b"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">★</text>
+  <text x="65" y="420" fill="#fde68a" font-size="10.5" font-weight="bold" font-family="monospace">HERMETIC SEAL MANDATE: PLATINUM OR DUMET ALLOY MATCHES GLASS EXPANSION</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Ordinary copper expands 2x faster than borosilicate glass upon cooling, cracking the stem seal and causing instant filament burnout.</text>
 </svg>
 ```
 

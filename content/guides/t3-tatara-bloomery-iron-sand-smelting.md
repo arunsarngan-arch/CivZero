@@ -45,94 +45,191 @@ In a rebuild scenario where commercial iron ore mines and 1,000-ton blast furnac
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Grid -->
+    <pattern id="tataraGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
 
-  <!-- Module 1: Iron Sand Panning -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. IRON SAND HARVEST</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Gravity Sluice &amp; Magnet</text>
+    <!-- Gradients -->
+    <linearGradient id="tataraFlame" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="40%" stop-color="#ea580c"/>
+      <stop offset="75%" stop-color="#f59e0b"/>
+      <stop offset="95%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
 
-    <!-- River pan graphic -->
-    <ellipse cx="100" cy="70" rx="35" ry="14" fill="#334155" stroke="#64748b" stroke-width="2"/>
-    <ellipse cx="100" cy="68" rx="26" ry="9" fill="#0284c7" opacity="0.4"/>
-    <circle cx="95" cy="68" r="3" fill="#000000"/>
-    <circle cx="105" cy="70" r="2.5" fill="#000000"/>
-    <circle cx="100" cy="71" r="3" fill="#000000"/>
+    <!-- Markers -->
+    <marker id="tataraArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
 
-    <rect x="15" y="118" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">IDENTIFYING SATETSU:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Heavy Black Magnetite</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">Specific gravity: 5.2</text>
-    <text x="25" y="175" fill="#94a3b8" font-size="8" font-family="monospace">Clings to natural lodestone</text>
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#tataraGrid)"/>
 
-    <rect x="15" y="190" width="170" height="62" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">PURIFICATION YIELD:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Wash Away Light Silica</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Dry in hot sun on mats</text>
-    <text x="25" y="246" fill="#fde047" font-size="8" font-family="monospace">100 kg sand -> 65 kg Fe3O4</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#f59e0b"/>
+  <text x="60" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">TATARA BLOOMERY IRON SAND SMELTING &amp; TAMAHAGANE</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">PLACER MAGNETITE (Fe3O4) ➔ SOLID-STATE CO REDUCTION (1200°C) ➔ SINTERED KERA SPONGE BLOOM</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Placer River Concentration</text>
+  <!-- Inter-Panel Connectors -->
+  <line x1="265" y1="210" x2="285" y2="210" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#tataraArrow)"/>
+  <line x1="535" y1="210" x2="555" y2="210" stroke="#10b981" stroke-width="2.5" marker-end="url(#tataraArrow)"/>
+
+  <!-- ================= PANEL 1: PLACER ORE HARVEST & SLUICE ================= -->
+  <g transform="translate(25, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#38bdf8" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❶ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#0284c7"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="44" y="26" fill="#7dd3fc" font-size="10" font-weight="bold" font-family="sans-serif">Magnetite Ore Harvest</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Satetsu River Sand Sluicing</text>
+
+    <!-- Sloped Wooden Sluice Flume Graphic -->
+    <g transform="translate(25, 55)">
+      <!-- Slanted Sluice Box (5° Angle) -->
+      <polygon points="10,15 175,45 170,75 5,45" fill="#292524" stroke="#78716c" stroke-width="1.5"/>
+      <!-- Water Stream in Sluice -->
+      <polygon points="12,20 172,48 168,60 8,32" fill="#0284c7" fill-opacity="0.5"/>
+      
+      <!-- Burlap / Hemp Riffle Traps with Dense Black Iron Sand -->
+      <line x1="45" y1="26" x2="40" y2="38" stroke="#ca8a04" stroke-width="2"/>
+      <ellipse cx="43" cy="35" rx="5" ry="3" fill="#000000"/>
+
+      <line x1="85" y1="33" x2="80" y2="45" stroke="#ca8a04" stroke-width="2"/>
+      <ellipse cx="83" cy="42" rx="6" ry="3" fill="#000000"/>
+
+      <line x1="125" y1="40" x2="120" y2="52" stroke="#ca8a04" stroke-width="2"/>
+      <ellipse cx="123" cy="49" rx="7" ry="4" fill="#000000"/>
+
+      <!-- Permanent Magnet Sweep Icon -->
+      <rect x="135" y="5" width="20" height="14" rx="2" fill="#ef4444"/>
+      <rect x="135" y="19" width="8" height="6" fill="#cbd5e1"/>
+      <rect x="147" y="19" width="8" height="6" fill="#cbd5e1"/>
+      <text x="145" y="0" fill="#fca5a5" font-size="7" font-family="monospace" text-anchor="middle">Lodestone</text>
+    </g>
+
+    <!-- Ore Specs Box -->
+    <rect x="12" y="145" width="216" height="74" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="163" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="monospace">SPECIFIC GRAVITY TRIAGE:</text>
+    <text x="20" y="179" fill="#f8fafc" font-size="8.5" font-family="monospace">• Magnetite (Fe3O4): SG = 5.2 (Heavy)</text>
+    <text x="20" y="193" fill="#94a3b8" font-size="8.5" font-family="monospace">• Quartz Sand: SG = 2.6 (Swept away)</text>
+    <text x="20" y="207" fill="#86efac" font-size="8.5" font-family="monospace">Concentrates from 25% to 90%+ purity</text>
+
+    <!-- Yield Box -->
+    <rect x="12" y="225" width="216" height="79" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="20" y="243" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace">PLACER HARVEST EFFICIENCY:</text>
+    <text x="20" y="259" fill="#f8fafc" font-size="8.5" font-family="monospace">100 kg river placer sand yields</text>
+    <text x="20" y="273" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">15 kg to 30 kg black magnetite</text>
+    <text x="20" y="289" fill="#cbd5e1" font-size="8" font-family="monospace">Wash in tubs &amp; sun-dry on straw mats</text>
   </g>
 
-  <!-- Module 2: The Clay Tatara Furnace -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. THE TATARA SHAFT</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Clay Stack &amp; Tuyere Blast</text>
+  <!-- ================= PANEL 2: CLAY TATARA FURNACE SHAFT ================= -->
+  <g transform="translate(290, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❷ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#b45309"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="44" y="26" fill="#fde68a" font-size="10" font-weight="bold" font-family="sans-serif">The Tatara Shaft</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">1200°C Solid-State CO Reduction</text>
 
-    <!-- Furnace cross section -->
-    <path d="M70 50 L80 120 L120 120 L130 50 Z" fill="#78350f" stroke="#b45309" stroke-width="1.5"/>
-    <line x1="55" y1="105" x2="82" y2="105" stroke="#cbd5e1" stroke-width="4"/>
-    <text x="50" y="102" fill="#cbd5e1" font-size="7" font-family="monospace">Tuyere</text>
-    <!-- Glowing core -->
-    <ellipse cx="100" cy="105" rx="14" ry="10" fill="#f59e0b"/>
+    <!-- Tatara Furnace Cutaway Graphic -->
+    <g transform="translate(45, 52)">
+      <!-- Refractory Clay Furnace Walls -->
+      <polygon points="10,0 25,95 45,95 30,0" fill="#78350f" stroke="#b45309" stroke-width="1"/>
+      <polygon points="140,0 125,95 105,95 120,0" fill="#78350f" stroke="#b45309" stroke-width="1"/>
 
-    <rect x="15" y="128" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="145" fill="#f8fafc" font-size="9" font-family="monospace">KILN PROPORTIONS:</text>
-    <text x="25" y="161" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Refractory Clay Walls</text>
-    <text x="25" y="175" fill="#cbd5e1" font-size="8.5" font-family="monospace">1.2m Height • 20cm Tuyere</text>
+      <!-- Interior Charge: Alternating Charcoal & Iron Sand -->
+      <rect x="30" y="10" width="90" height="8" fill="#18181b"/>
+      <rect x="30" y="20" width="90" height="6" fill="#ca8a04"/>
+      <rect x="30" y="28" width="90" height="8" fill="#18181b"/>
+      <rect x="30" y="38" width="90" height="6" fill="#ca8a04"/>
+      <rect x="30" y="46" width="90" height="8" fill="#18181b"/>
+      <rect x="30" y="56" width="90" height="6" fill="#ca8a04"/>
 
-    <rect x="15" y="196" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="213" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">REDUCTION THERMAL ZONE:</text>
-    <text x="25" y="229" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">1150°C - 1250°C</text>
-    <text x="25" y="242" fill="#cbd5e1" font-size="8" font-family="monospace">Solid-state sintered bloom</text>
+      <!-- Incandescent Reaction Bed (1200°C) -->
+      <ellipse cx="75" cy="78" rx="35" ry="16" fill="url(#tataraFlame)"/>
+      <text x="75" y="82" fill="#450a0a" font-size="7.5" font-weight="bold" font-family="monospace" text-anchor="middle">1200°C BLOOM</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Never Melt into Pig Iron!</text>
+      <!-- Tuyere Forced Air Blast Pipe -->
+      <line x1="-15" y1="78" x2="28" y2="78" stroke="#cbd5e1" stroke-width="4"/>
+      <text x="-5" y="72" fill="#38bdf8" font-size="7" font-family="monospace">Tuyere O2</text>
+
+      <!-- Slag Tap Hole at base -->
+      <rect x="120" y="90" width="15" height="6" fill="#451a03"/>
+      <path d="M 135 93 Q 145 95 150 105" stroke="#f59e0b" stroke-width="2" fill="none"/>
+      <text x="145" y="115" fill="#f59e0b" font-size="6.5" font-family="monospace">Slag Tap</text>
+    </g>
+
+    <!-- Reduction Chemical Box -->
+    <rect x="12" y="175" width="216" height="129" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="193" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">CO REDUCTION REACTION:</text>
+    <text x="20" y="209" fill="#f8fafc" font-size="9" font-weight="bold" font-family="monospace">Fe3O4 + 4 CO ➔ 3 Fe + 4 CO2 ↑</text>
+    <text x="20" y="225" fill="#cbd5e1" font-size="8" font-family="monospace">• Hardwood charcoal generates CO gas</text>
+    <text x="20" y="239" fill="#cbd5e1" font-size="8" font-family="monospace">• Oxygen stripped from iron in solid phase</text>
+    <text x="20" y="253" fill="#fca5a5" font-size="8" font-family="monospace">• Liquid silicate slag tapped via base hole</text>
+    <text x="20" y="267" fill="#86efac" font-size="8.5" font-family="monospace">• Iron sinters into solid sponge bloom (Kera)</text>
+    <text x="20" y="283" fill="#38bdf8" font-size="8" font-family="monospace">Never liquefy into high-carbon pig iron!</text>
   </g>
 
-  <!-- Module 3: Kera & Tamahagane -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. TAMAHAGANE STEEL</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Forge-Welding &amp; Folding</text>
+  <!-- ================= PANEL 3: KERA & TAMAHAGANE STEEL ================= -->
+  <g transform="translate(555, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#10b981" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❸ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#047857"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="44" y="26" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="sans-serif">Tamahagane Steel</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Forge-Welding &amp; Folding</text>
 
-    <!-- Steel ingot / hammer graphic -->
-    <rect x="80" y="60" width="40" height="22" rx="2" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
-    <path d="M110 50 L125 40 L132 48 L117 58 Z" fill="#94a3b8"/>
-    <line x1="120" y1="45" x2="145" y2="25" stroke="#a16207" stroke-width="3"/>
+    <!-- Tamahagane Ingot & Cross-Section Fracture Graphic -->
+    <g transform="translate(45, 55)">
+      <!-- Sponge Bloom / Sintered Steel Ingot -->
+      <polygon points="10,25 70,10 140,25 80,45" fill="#475569" stroke="#94a3b8" stroke-width="1.2"/>
+      <polygon points="10,25 80,45 80,75 10,55" fill="#334155" stroke="#94a3b8" stroke-width="1.2"/>
+      <polygon points="80,45 140,25 140,55 80,75" fill="#1e293b" stroke="#94a3b8" stroke-width="1.2"/>
+      <!-- Silvery high-carbon crystalline fracture texture -->
+      <circle cx="50" cy="35" r="2" fill="#ffffff"/>
+      <circle cx="75" cy="30" r="2.5" fill="#ffffff"/>
+      <circle cx="105" cy="35" r="2" fill="#ffffff"/>
+      <text x="75" y="62" fill="#f8fafc" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">TAMAHAGANE</text>
+      <text x="75" y="71" fill="#fde68a" font-size="7" font-family="monospace" text-anchor="middle">1.2% - 1.5% Carbon</text>
+    </g>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">SORTING THE KERA:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Tamahagane (1.2% C)</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">Silvery, brittle fracture</text>
-    <text x="25" y="175" fill="#86efac" font-size="8.5" font-family="monospace">Wrought Iron (Malleable)</text>
+    <!-- Steel Sorting Breakdown Box -->
+    <rect x="12" y="145" width="216" height="74" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="163" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="monospace">SORTING THE KERA BLOOM:</text>
+    <text x="20" y="179" fill="#fde68a" font-size="8.5" font-family="monospace">• Tamahagane (1.2% C): Silvery fracture</text>
+    <text x="20" y="193" fill="#94a3b8" font-size="8.5" font-family="monospace">• Wrought Iron (0.05% C): Malleable, fibrous</text>
+    <text x="20" y="207" fill="#86efac" font-size="8.5" font-family="monospace">Break with heavy sledge to sort crystals</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">FOLDING BLACKSMITHING:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">10 to 15 Folds</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Expels glass slag silicates</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Unifies carbon homogeny</text>
-
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Surgical Blades &amp; Tools</text>
+    <!-- Folding Blacksmithing Box -->
+    <rect x="12" y="225" width="216" height="79" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="20" y="243" fill="#10b981" font-size="9" font-weight="bold" font-family="monospace">10–15 FOLD FORGE-WELDING:</text>
+    <text x="20" y="259" fill="#f8fafc" font-size="8.5" font-family="monospace">Repeated heating, folding, &amp; hammering</text>
+    <text x="20" y="273" fill="#a7f3d0" font-size="8.5" font-family="monospace">expels glass slag silicates completely.</text>
+    <text x="20" y="287" fill="#cbd5e1" font-size="8" font-family="monospace">Produces ultra-dense surgical edge steel</text>
   </g>
 
-  <!-- Bottom Metallurgy Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE BLOOMERY LAW: Iron MUST remain a solid sponge during reduction (1150°C-1250°C).</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">If temperatures exceed 1350°C, iron liquefies into cast iron (4% C), which is brittle and unmalleable.</text>
+  <!-- ================= BOTTOM BLOOMERY SMELTING MANDATE ================= -->
+  <g transform="translate(25, 388)">
+    <rect width="770" height="58" rx="6" fill="#0b1322" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="20" y="22" fill="#f59e0b" font-size="9.5" font-weight="bold" font-family="monospace">THE CRITICAL SOLID-STATE BLOOMERY LAW:</text>
+    <text x="20" y="38" fill="#cbd5e1" font-size="8.5" font-family="monospace">Iron must NEVER melt into liquid during smelting. Maintain temperature strictly between 1150°C and 1250°C.</text>
+    <text x="20" y="50" fill="#fca5a5" font-size="8.5" font-family="monospace">Exceeding 1350°C causes liquid pig iron (4% carbon), which is glassy, unmalleable, and shatters under the hammer.</text>
+  </g>
 </svg>
+```
 ```
 
 ---

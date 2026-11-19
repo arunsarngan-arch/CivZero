@@ -33,99 +33,149 @@ The invention that made modern telecommunications, radar, and early computing po
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="triodeGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="rfGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: The Triode Vacuum Tube -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. THE TRIODE TUBE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Thermionic Electrostatics</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#triodeGrid)"/>
 
-    <!-- Glass tube envelope -->
-    <rect x="70" y="50" width="60" height="70" rx="20" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-    <!-- Anode Plate -->
-    <rect x="78" y="60" width="44" height="48" fill="none" stroke="#ef4444" stroke-width="2"/>
-    <!-- Grid Mesh -->
-    <line x1="88" y1="65" x2="88" y2="103" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
-    <line x1="112" y1="65" x2="112" y2="103" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
-    <!-- Filament -->
-    <path d="M96 100 L96 72 Q100 68 104 72 L104 100" fill="none" stroke="#fef08a" stroke-width="2"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">TRIODE VACUUM TUBE &amp; ARMSTRONG RF OSCILLATOR TRANSMITTER</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">THERMIONIC HIGH-FREQUENCY CW</text>
 
-    <rect x="15" y="126" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="142" fill="#f8fafc" font-size="9" font-family="monospace">ELEMENT ANATOMY:</text>
-    <text x="25" y="157" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Cathode, Grid, Plate</text>
-    <text x="25" y="171" fill="#cbd5e1" font-size="8.5" font-family="monospace">Tungsten wire filament</text>
-    <text x="25" y="181" fill="#94a3b8" font-size="8" font-family="monospace">Nickel mesh spiral grid</text>
+  <!-- MODULE 1: THE TRIODE VACUUM TUBE (LEFT) -->
+  <g id="triodeTube" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="192" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="208" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">AMPLIFICATION FACTOR:</text>
-    <text x="25" y="224" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Mu (μ) = 25 - 40x</text>
-    <text x="25" y="238" fill="#cbd5e1" font-size="8.5" font-family="monospace">Small grid volt swings</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Modulate huge plate amps</text>
+    <!-- Glass Vacuum Tube Envelope -->
+    <rect x="75" y="45" width="95" height="90" rx="28" fill="#1e293b" stroke="#38bdf8" stroke-width="1.8"/>
+    <!-- Anode Plate (Outer Red) -->
+    <rect x="88" y="55" width="68" height="65" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+    <!-- Control Grid Mesh (Dashed Amber) -->
+    <line x1="104" y1="60" x2="104" y2="115" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,2"/>
+    <line x1="140" y1="60" x2="140" y2="115" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,2"/>
+    <!-- Incandescent Filament Cathode (Center Yellow Loop) -->
+    <path d="M 116 115 L 116 75 Q 122 70 128 75 L 128 115" fill="none" stroke="#fef08a" stroke-width="2.5"/>
+    <circle cx="122" cy="72" r="3" fill="#fef08a"/>
+    <text x="122" y="148" fill="#bae6fd" font-size="8" font-family="monospace" text-anchor="middle">Plate • Grid • Filament</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Active Electronic Valve</text>
+    <!-- Electrode Physics Specs Pill -->
+    <rect x="18" y="155" width="210" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="173" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">ELEMENT ANATOMY:</text>
+    <text x="28" y="188" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">Directly Heated Tungsten Cathode</text>
+    <text x="28" y="202" fill="#cbd5e1" font-size="8" font-family="monospace">Nickel mesh spiral grid electrostatic gate</text>
+    <text x="28" y="215" fill="#94a3b8" font-size="8" font-family="monospace">Cylindrical nickel plate anode (+250V)</text>
+
+    <!-- Amplification Factor Pill -->
+    <rect x="18" y="238" width="210" height="72" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="257" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">AMPLIFICATION FACTOR:</text>
+    <text x="28" y="272" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">Gain (μ) = 25× – 40×</text>
+    <text x="28" y="286" fill="#cbd5e1" font-size="8" font-family="monospace">Millivolt grid swings gate heavy plate amps</text>
+    <text x="28" y="299" fill="#fde68a" font-size="8" font-family="monospace">The fundamental active electronic valve</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">TRIODE VALVE</text>
   </g>
 
-  <!-- Module 2: The LC Oscillator Transmitter -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. RF OSCILLATOR</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Armstrong Tuned Tank</text>
+  <!-- MODULE 2: ARMSTRONG TUNED LC OSCILLATOR (CENTER) -->
+  <g id="oscillator" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Resonant LC Tank circuit -->
-    <ellipse cx="80" cy="75" rx="14" ry="20" fill="none" stroke="#f59e0b" stroke-width="3"/>
-    <line x1="120" y1="60" x2="120" y2="90" stroke="#cbd5e1" stroke-width="3"/>
-    <line x1="130" y1="60" x2="130" y2="90" stroke="#cbd5e1" stroke-width="3"/>
-    <path d="M94 75 L120 75 M130 75 L150 75" stroke="#f59e0b" stroke-width="2"/>
+    <!-- Resonant LC Tank Schematic Graphic -->
+    <rect x="40" y="50" width="170" height="80" rx="4" fill="#070a0f" stroke="#f59e0b" stroke-width="1.5"/>
+    <!-- Inductor Coils (Left) -->
+    <ellipse cx="80" cy="90" rx="16" ry="24" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <text x="80" y="94" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">L</text>
+    <!-- Variable Air Capacitor (Right) -->
+    <line x1="140" y1="72" x2="140" y2="108" stroke="#cbd5e1" stroke-width="3"/>
+    <line x1="152" y1="72" x2="152" y2="108" stroke="#cbd5e1" stroke-width="3"/>
+    <path d="M 132 108 L 160 72" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowAmber)"/>
+    <text x="146" y="122" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">C (Var)</text>
+    <path d="M 96 90 L 140 90 M 152 90 L 185 90" stroke="#f59e0b" stroke-width="2"/>
 
-    <rect x="15" y="126" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="142" fill="#f8fafc" font-size="9" font-family="monospace">RESONANT TANK FREQ:</text>
-    <text x="25" y="157" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">f = 1 / (2π √LC)</text>
-    <text x="25" y="171" fill="#cbd5e1" font-size="8.5" font-family="monospace">3.5 MHz to 7.0 MHz</text>
-    <text x="25" y="181" fill="#94a3b8" font-size="8" font-family="monospace">40-meter / 80-meter HF band</text>
+    <!-- Resonant Frequency Specs Pill -->
+    <rect x="18" y="155" width="214" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="173" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">RESONANT TANK FREQUENCY:</text>
+    <text x="28" y="188" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">f = 1 / [2π √(L · C)]</text>
+    <text x="28" y="202" fill="#cbd5e1" font-size="8" font-family="monospace">3.5 MHz (80m) to 7.0 MHz (40m) HF</text>
+    <text x="28" y="215" fill="#94a3b8" font-size="8" font-family="monospace">High-Q ceramic coil form prevents drift</text>
 
-    <rect x="15" y="192" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="208" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">TICKLER COIL FEEDBACK:</text>
-    <text x="25" y="224" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace">Inductive Self-Excitation</text>
-    <text x="25" y="238" fill="#cbd5e1" font-size="8.5" font-family="monospace">Converts DC to pure sine RF</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">5 - 15 Watts RF output</text>
+    <!-- Tickler Coil Feedback Pill -->
+    <rect x="18" y="238" width="214" height="72" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="257" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">TICKLER COIL SELF-EXCITATION:</text>
+    <text x="28" y="272" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">Magnetic Inductive Feedback</text>
+    <text x="28" y="286" fill="#cbd5e1" font-size="8" font-family="monospace">Converts DC B-battery into pure RF sine wave</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">RF Output Power: 5–15 Watts CW</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Continuous Wave (CW) Generator</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="86" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">TUNED RF TANK</text>
   </g>
 
-  <!-- Module 3: Antenna & Modulation -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. ANTENNA &amp; VOICE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Dipole &amp; Carbon Mic</text>
+  <!-- MODULE 3: ANTENNA & AM MODULATION (RIGHT) -->
+  <g id="antennaMod" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Dipole antenna -->
-    <line x1="50" y1="55" x2="100" y2="55" stroke="#10b981" stroke-width="3"/>
-    <circle cx="100" cy="55" r="4" fill="#f59e0b"/>
-    <line x1="100" y1="55" x2="150" y2="55" stroke="#10b981" stroke-width="3"/>
-    <line x1="100" y1="55" x2="100" y2="100" stroke="#cbd5e1" stroke-width="2"/>
-    <path d="M90 100 L110 100 L100 115 Z" fill="#94a3b8"/>
+    <!-- Resonant Half-Wave Dipole Antenna Diagram -->
+    <line x1="30" y1="65" x2="115" y2="65" stroke="#10b981" stroke-width="3.5"/>
+    <circle cx="122" cy="65" r="5" fill="#f59e0b"/>
+    <line x1="129" y1="65" x2="215" y2="65" stroke="#10b981" stroke-width="3.5"/>
+    <line x1="122" y1="65" x2="122" y2="105" stroke="#cbd5e1" stroke-width="2.5"/>
+    <path d="M 112 105 L 132 105 L 122 120 Z" fill="#94a3b8"/>
+    <text x="122" y="55" fill="#86efac" font-size="8" font-family="monospace" text-anchor="middle">λ/2 Resonant Dipole (20.3m)</text>
 
-    <rect x="15" y="126" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="142" fill="#f8fafc" font-size="9" font-family="monospace">HALF-WAVE DIPOLE:</text>
-    <text x="25" y="157" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Length (m) = 142.5 / f</text>
-    <text x="25" y="171" fill="#cbd5e1" font-size="8.5" font-family="monospace">7 MHz = 20.3m span wire</text>
-    <text x="25" y="181" fill="#94a3b8" font-size="8" font-family="monospace">Elevated 8m over ground</text>
+    <!-- Dipole Dimensioning Pill -->
+    <rect x="18" y="155" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="173" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">DIPOLE DIMENSIONS:</text>
+    <text x="28" y="188" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">Length (m) = 142.5 / f (MHz)</text>
+    <text x="28" y="202" fill="#cbd5e1" font-size="8" font-family="monospace">At 7.0 MHz = 20.35m total copper span</text>
+    <text x="28" y="215" fill="#94a3b8" font-size="8" font-family="monospace">Elevate &gt;8 meters horizontal in trees</text>
 
-    <rect x="15" y="192" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="208" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">AM VOICE MODULATION:</text>
-    <text x="25" y="224" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Carbon Granule Mic</text>
-    <text x="25" y="238" fill="#cbd5e1" font-size="8.5" font-family="monospace">Sound varies battery flow</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Transmits human speech!</text>
+    <!-- Voice Modulation Pill -->
+    <rect x="18" y="238" width="210" height="72" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="257" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">AM VOICE MODULATION:</text>
+    <text x="28" y="272" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">Carbon Granule Microphone</text>
+    <text x="28" y="286" fill="#cbd5e1" font-size="8" font-family="monospace">Voice sound waves compress granules</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Modulates plate voltage: voice over RF!</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Global Transcontinental Reach</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="155" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="88" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">DIPOLE &amp; MODULATOR</text>
   </g>
 
-  <!-- Bottom Telecommunications Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">IONOSPHERIC SKY-WAVE: 3.5 MHz (80m) and 7 MHz (40m) signals bounce off the ionosphere.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">A modest 10-Watt transmitter reaches past line-of-sight to 500+ km night propagation.</text>
+  <!-- IONOSPHERIC PROPAGATION MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">📡</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">IONOSPHERIC SKY-WAVE PROPAGATION: 3.5 MHz (80M) &amp; 7.0 MHz (40M) BANDS</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Radio waves refract off the F2 ionospheric layer at night, bypassing the curvature of the Earth. A 10-Watt homebuilt triode reaches 500–2,000 km without satellites or repeater towers.</text>
 </svg>
 ```
 

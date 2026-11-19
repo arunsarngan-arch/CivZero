@@ -17,105 +17,173 @@ $$\text{Northern Hemisphere Latitude: } \Phi = \text{Altitude of Polaris ($^\cir
 $$\text{Solar Noon Latitude: } \Phi = 90^\circ - \text{Solar Altitude ($h$)} + \text{Solar Declination ($\delta$)}$$
 
 ```svg
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="astroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0284c7"/>
-      <stop offset="100%" stop-color="#0f172a"/>
-    </linearGradient>
+    <pattern id="celestialGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="700" height="360" fill="#090d16" rx="8"/>
+  <!-- Obsidian Base & Blueprint Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#celestialGrid)"/>
 
-  <!-- Left: Polaris Direct Sighting (North) -->
-  <g transform="translate(30, 30)">
-    <rect x="0" y="0" width="200" height="270" rx="8" fill="#18181b" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. POLARIS (NORTH STAR)</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="middle">Instant Night Latitude</text>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">CELESTIAL NAVIGATION &amp; LATITUDE SIGHT REDUCTION</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">NON-ELECTRONIC OPTICAL TRIGONOMETRY</text>
 
-    <!-- Polaris Star -->
-    <circle cx="160" cy="70" r="4" fill="#ffffff"/>
-    <path d="M160 55 L160 85 M145 70 L175 70" stroke="#38bdf8" stroke-width="1"/>
-    <text x="160" y="100" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Polaris</text>
+  <!-- SECTION 1: POLARIS STAR SIGHTING (LEFT) -->
+  <g id="polaris" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Big Dipper Pointer Stars -->
-    <circle cx="45" cy="85" r="2.5" fill="#ffffff"/>
-    <circle cx="65" cy="80" r="2.5" fill="#ffffff"/>
-    <circle cx="85" cy="95" r="2.5" fill="#ffffff"/>
-    <circle cx="100" cy="115" r="2.5" fill="#ffffff"/>
-    <circle cx="115" cy="110" r="2.5" fill="#ffffff"/>
-    <circle cx="120" cy="85" r="3" fill="#f59e0b"/>
-    <circle cx="105" cy="70" r="3" fill="#f59e0b"/>
-    <path d="M120 85 L160 70" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
-    <text x="100" y="145" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">5x Distance of Merak-Dubhe</text>
+    <!-- Night Sky Star Field -->
+    <!-- Big Dipper (Ursa Major) -->
+    <circle cx="35" cy="85" r="3" fill="#ffffff"/>
+    <line x1="35" y1="85" x2="60" y2="78" stroke="#334155" stroke-dasharray="2,2"/>
+    <circle cx="60" cy="78" r="3" fill="#ffffff"/>
+    <line x1="60" y1="78" x2="85" y2="92" stroke="#334155" stroke-dasharray="2,2"/>
+    <circle cx="85" cy="92" r="3" fill="#ffffff"/>
+    <line x1="85" y1="92" x2="105" y2="115" stroke="#334155" stroke-dasharray="2,2"/>
+    <circle cx="105" cy="115" r="3" fill="#ffffff"/>
+    <!-- Dipper Cup -->
+    <line x1="105" y1="115" x2="135" y2="120" stroke="#334155" stroke-dasharray="2,2"/>
+    <circle cx="135" cy="120" r="3" fill="#ffffff"/>
+    <!-- Merak (Outer lower) -->
+    <circle cx="140" cy="95" r="4" fill="#f59e0b"/>
+    <text x="140" y="108" fill="#fde68a" font-size="7.5" font-family="monospace" text-anchor="middle">Merak</text>
+    <!-- Dubhe (Outer upper) -->
+    <circle cx="115" cy="70" r="4" fill="#f59e0b"/>
+    <text x="115" y="62" fill="#fde68a" font-size="7.5" font-family="monospace" text-anchor="middle">Dubhe</text>
+    <line x1="140" y1="95" x2="115" y2="70" stroke="#f59e0b" stroke-width="1.8"/>
 
-    <!-- Observer on Horizon -->
-    <line x1="20" y1="210" x2="180" y2="210" stroke="#64748b" stroke-width="2"/>
-    <text x="50" y="225" fill="#94a3b8" font-size="8" font-family="monospace">Horizon</text>
-    <line x1="40" y1="210" x2="160" y2="70" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,2"/>
+    <!-- Pointer Vector Line (5x Distance) -->
+    <path d="M 115 70 L 195 45" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowSky)"/>
+    <text x="160" y="52" fill="#38bdf8" font-size="8" font-family="monospace">5x Span</text>
 
-    <!-- Angle indicator -->
-    <path d="M70 210 A 30 30 0 0 0 65 180" fill="none" stroke="#f59e0b" stroke-width="2"/>
-    <text x="80" y="195" fill="#fbbf24" font-size="10" font-family="monospace">Angle θ</text>
+    <!-- Polaris Anchor Star -->
+    <circle cx="205" cy="42" r="6" fill="#ffffff"/>
+    <circle cx="205" cy="42" r="10" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2,2"/>
+    <path d="M 205 26 L 205 58 M 189 42 L 221 42" stroke="#bae6fd" stroke-width="1"/>
+    <text x="205" y="22" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">POLARIS</text>
 
-    <rect x="15" y="235" width="170" height="25" rx="3" fill="#090d16"/>
-    <text x="100" y="252" fill="#86efac" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">Latitude = Exact Angle θ</text>
+    <!-- Ground Horizon Line & Sighting Angle -->
+    <line x1="15" y1="230" x2="230" y2="230" stroke="#64748b" stroke-width="2"/>
+    <text x="35" y="245" fill="#94a3b8" font-size="8.5" font-family="monospace">True Horizon 0°</text>
+
+    <!-- Observer Eye & Line of Sight -->
+    <circle cx="35" cy="230" r="5" fill="#38bdf8"/>
+    <path d="M 35 230 L 205 42" stroke="#38bdf8" stroke-width="2"/>
+
+    <!-- Angular Arc θ -->
+    <path d="M 85 230 A 50 50 0 0 0 75 186" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+    <text x="96" y="210" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">θ</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="135" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="78" y="24" fill="#bae6fd" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">POLARIS SIGHTING</text>
+
+    <rect x="15" y="265" width="215" height="45" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="122" y="282" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">LATITUDE = POLARIS ALTITUDE</text>
+    <text x="122" y="298" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">Direct Angle θ = Geodetic North Lat</text>
   </g>
 
-  <!-- Middle: The Cardboard Protractor & Plumb Bob Sextant -->
-  <g transform="translate(250, 30)">
-    <rect x="0" y="0" width="200" height="270" rx="8" fill="#18181b" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. PROTRACTOR SEXTANT</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="middle">Sighting Tube + Plumb Bob</text>
+  <!-- SECTION 2: PROTRACTOR SEXTANT / ASTROLABE (CENTER) -->
+  <g id="astrolabe" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Drinking Straw Sighting Tube -->
-    <rect x="30" y="65" width="140" height="10" rx="2" fill="#334155" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="100" y="60" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">Sight Tube (Drinking Straw)</text>
+    <!-- Sighting Straw Assembly -->
+    <rect x="25" y="70" width="200" height="12" rx="3" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="30" y1="76" x2="220" y2="76" stroke="#38bdf8" stroke-dasharray="3,2"/>
+    <text x="125" y="62" fill="#38bdf8" font-size="8.5" font-family="monospace" text-anchor="middle">Sight Tube (Drinking Straw)</text>
 
-    <!-- Inverted Protractor Semi-Circle -->
-    <path d="M40 75 A 60 60 0 0 0 160 75 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-    <text x="100" y="115" fill="#fef08a" font-size="9" font-family="monospace" text-anchor="middle">Protractor Degrees</text>
+    <!-- Inverted Protractor Scale -->
+    <path d="M 40 82 A 85 85 0 0 0 210 82 Z" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+    <!-- Degree Ticks -->
+    <line x1="45" y1="85" x2="52" y2="92" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="65" y1="115" x2="73" y2="120" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="125" y1="167" x2="125" y2="157" stroke="#f59e0b" stroke-width="2"/>
+    <text x="125" y="150" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">90°</text>
+    <line x1="185" y1="115" x2="177" y2="120" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="205" y1="85" x2="198" y2="92" stroke="#94a3b8" stroke-width="1"/>
 
-    <!-- Weighted String / Plumb Bob Line -->
-    <line x1="100" y1="75" x2="125" y2="180" stroke="#ef4444" stroke-width="2"/>
-    <circle cx="125" cy="180" r="8" fill="#94a3b8" stroke="#f87171" stroke-width="1.5"/>
-    <text x="125" y="200" fill="#fca5a5" font-size="8" font-family="monospace" text-anchor="middle">Lead Weight</text>
+    <!-- Center Pivot & Hanging Plumb Line -->
+    <circle cx="125" cy="82" r="4" fill="#38bdf8"/>
+    <!-- Plumb Line displaced by star sight tilt -->
+    <line x1="125" y1="82" x2="160" y2="210" stroke="#ef4444" stroke-width="2"/>
+    <circle cx="160" cy="215" r="9" fill="#64748b" stroke="#f87171" stroke-width="2"/>
+    <text x="160" y="238" fill="#fca5a5" font-size="8" font-family="monospace" text-anchor="middle">Plumb Sinker</text>
 
-    <!-- Math Calculation formula -->
-    <rect x="15" y="220" width="170" height="40" rx="3" fill="#090d16"/>
-    <text x="100" y="235" fill="#7dd3fc" font-size="9" font-family="monospace" text-anchor="middle">Altitude = 90° - Plumb Angle</text>
-    <text x="100" y="250" fill="#a7f3d0" font-size="8" font-family="monospace" text-anchor="middle">Accuracy: ±0.5° (30 Nautical Miles)</text>
+    <!-- Thumb-Lock Indicator -->
+    <rect x="140" y="160" width="38" height="18" rx="3" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+    <text x="159" y="172" fill="#ef4444" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">LOCK α</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="86" y="24" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">PROTRACTOR SEXTANT</text>
+
+    <rect x="15" y="265" width="220" height="45" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="125" y="282" fill="#fde68a" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">ALTITUDE = 90° - PLUMB (α)</text>
+    <text x="125" y="298" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">Thumb-lock string upon star alignment</text>
   </g>
 
-  <!-- Right: Shadow Stick Solar Noon Method -->
-  <g transform="translate(470, 30)">
-    <rect x="0" y="0" width="200" height="270" rx="8" fill="#18181b" stroke="#10b981" stroke-width="2"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. SOLAR NOON METHOD</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="middle">Vertical Gnomon Shadow</text>
+  <!-- SECTION 3: SOLAR NOON GNOMON METHOD (RIGHT) -->
+  <g id="gnomon" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Vertical Stick -->
-    <line x1="60" y1="90" x2="60" y2="180" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
-    <text x="60" y="80" fill="#fbbf24" font-size="8" font-family="monospace" text-anchor="middle">1m Stick</text>
+    <!-- Sun Disc & Rays -->
+    <circle cx="50" cy="55" r="14" fill="#f59e0b"/>
+    <circle cx="50" cy="55" r="18" fill="none" stroke="#fef08a" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="50" y1="55" x2="110" y2="120" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
 
-    <!-- Ground Level -->
-    <line x1="30" y1="180" x2="175" y2="180" stroke="#64748b" stroke-width="2"/>
+    <!-- Ground Surface Line -->
+    <line x1="20" y1="230" x2="225" y2="230" stroke="#64748b" stroke-width="2"/>
+    <text x="210" y="245" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">Level Earth</text>
 
-    <!-- Shadow Length -->
-    <line x1="60" y1="180" x2="140" y2="180" stroke="#000000" stroke-width="4"/>
-    <text x="100" y="195" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">Shortest Shadow = True Solar Noon</text>
+    <!-- Vertical 1.0m Dowel Gnomon -->
+    <line x1="110" y1="120" x2="110" y2="230" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+    <text x="95" y="175" fill="#cbd5e1" font-size="8.5" font-family="monospace" text-anchor="end">H = 1.0 m</text>
 
-    <!-- Triangle hypotenuse -->
-    <line x1="60" y1="90" x2="140" y2="180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
-    
-    <!-- Equinox declination cheat sheet -->
-    <rect x="15" y="210" width="170" height="50" rx="4" fill="#090d16" stroke="#10b981" stroke-width="1"/>
-    <text x="100" y="226" fill="#86efac" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">SOLAR DECLINATION (δ):</text>
-    <text x="100" y="239" fill="#e2e8f0" font-size="8" font-family="monospace" text-anchor="middle">• Mar 21 / Sep 21: δ = 0°</text>
-    <text x="100" y="251" fill="#e2e8f0" font-size="8" font-family="monospace" text-anchor="middle">• Jun 21: +23.5° | Dec 21: -23.5°</text>
+    <!-- Solar Noon Shadow Vector on Ground -->
+    <line x1="110" y1="230" x2="190" y2="230" stroke="#10b981" stroke-width="5"/>
+    <path d="M 110 120 L 190 230" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="150" y="245" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Min Shadow (L)</text>
+
+    <!-- Pebble Marker Arc (Noon trajectory) -->
+    <ellipse cx="170" cy="215" rx="35" ry="12" fill="none" stroke="#334155" stroke-width="1" stroke-dasharray="2,2"/>
+    <circle cx="145" cy="210" r="2" fill="#64748b"/>
+    <circle cx="160" cy="218" r="2" fill="#64748b"/>
+    <circle cx="190" cy="230" r="3" fill="#10b981"/>
+    <circle cx="198" cy="222" r="2" fill="#64748b"/>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="83" y="24" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">SOLAR NOON GNOMON</text>
+
+    <rect x="15" y="265" width="215" height="45" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="122" y="282" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">tan(h) = H / L (SHORTEST SHADOW)</text>
+    <text x="122" y="298" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">Points True North; Lat = 90° - h ± δ</text>
   </g>
 
-  <rect x="30" y="315" width="640" height="30" rx="4" fill="#1e293b"/>
-  <text x="350" y="334" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">ONE DEGREE OF LATITUDE = Exactly 60 Nautical Miles (111 Kilometers / 69 Statute Miles).</text>
+  <!-- GEODETIC REFERENCE FOOTER PILL -->
+  <rect x="25" y="402" width="770" height="44" rx="5" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="420" fill="#38bdf8" font-size="9.5" font-weight="bold" font-family="monospace">TRIGONOMETRIC CONSTANTS &amp; CONVERSIONS:</text>
+  <text x="40" y="435" fill="#cbd5e1" font-size="8.5" font-family="monospace">1° of Latitude = 60 Nautical Miles = 111.12 km = 69.05 Statute Miles | Equinoxes (Mar 21 / Sep 21): δ = 0° | Solstices: Jun 21 (+23.5°), Dec 21 (-23.5°)</text>
 </svg>
 ```
 

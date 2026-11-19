@@ -14,56 +14,184 @@ summary: Convert gravitational potential energy of high-head stream water into h
 Unlike low-head immersion waterwheels that operate on simple hydrostatic drag ($<30\%\text{ efficiency}$), a **Pelton impulse turbine** converts 100% of water pressure head into kinetic velocity. A tapered nozzle accelerates water into a supersonic jet. The double-cup bucket splits the jet down a razor-sharp center splitter and reverses its flow vector by nearly **165°**, transferring **85% to 92% of the water's kinetic momentum** directly to the drive shaft.
 
 ```svg
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="wheelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Blueprint Grid -->
+    <pattern id="peltonGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="peltonWheelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#475569"/>
+      <stop offset="40%" stop-color="#334155"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
-    <linearGradient id="waterJet" x1="0%" y1="0%" x2="100%" y2="0%">
+
+    <linearGradient id="peltonJetGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#0284c7"/>
       <stop offset="50%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#ffffff"/>
     </linearGradient>
+
+    <!-- Markers -->
+    <marker id="peltonArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
   </defs>
 
-  <rect x="0" y="0" width="700" height="360" fill="#090d16"/>
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#peltonGrid)"/>
 
-  <!-- Pelton Wheel Hub & Runner -->
-  <circle cx="430" cy="180" r="110" fill="url(#wheelGrad)" stroke="#94a3b8" stroke-width="3"/>
-  <circle cx="430" cy="180" r="30" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="430" cy="180" r="10" fill="#f8fafc"/>
-  <text x="430" y="160" fill="#cbd5e1" font-size="11" font-family="monospace" text-anchor="middle">Central Axle</text>
-  <text x="430" y="230" fill="#38bdf8" font-size="11" font-family="monospace" text-anchor="middle">Rotation: 800 - 1500 RPM</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#38bdf8"/>
+  <text x="60" y="30" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">PELTON WHEEL HIGH-HEAD IMPULSE HYDRO-TURBINE</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">165° DOUBLE-CUP MOMENTUM REVERSAL • HEAD &gt;15m (50 FT) • 85%–92% WATER-TO-SHAFT KINETIC TRANSFER</text>
 
-  <!-- Pelton Buckets around perimeter -->
-  <!-- Bottom Bucket (Target of Jet) -->
-  <path d="M410 290 Q430 310 450 290 Q440 280 430 285 Q420 280 410 290 Z" fill="#f59e0b" stroke="#fbbf24" stroke-width="2"/>
-  <!-- Top Bucket -->
-  <path d="M410 70 Q430 50 450 70 Q440 80 430 75 Q420 80 410 70 Z" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
-  <!-- Left Bucket -->
-  <path d="M320 160 Q300 180 320 200 Q330 190 325 180 Q330 170 320 160 Z" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
-  <!-- Right Bucket -->
-  <path d="M540 160 Q560 180 540 200 Q530 190 535 180 Q530 170 540 160 Z" fill="#64748b" stroke="#94a3b8" stroke-width="2"/>
-  
-  <!-- Penstock High Pressure Supply Pipe -->
-  <rect x="50" y="275" width="160" height="30" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
-  <text x="130" y="265" fill="#94a3b8" font-size="11" font-family="monospace" text-anchor="middle">Penstock (High Head >15m)</text>
+  <!-- Ground / Housing Base -->
+  <line x1="25" y1="365" x2="795" y2="365" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
 
-  <!-- Constriction Jet Nozzle -->
-  <path d="M210 275 L300 286 L300 294 L210 305 Z" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-  <text x="255" y="268" fill="#fde047" font-size="11" font-family="monospace">Constriction Nozzle</text>
+  <!-- ================= TURBINE RUNNER WHEEL ================= -->
+  <g transform="translate(480, 205)">
+    <!-- Main Cast Steel Rotor Hub -->
+    <circle cx="0" cy="0" r="115" fill="url(#peltonWheelGrad)" stroke="#64748b" stroke-width="3"/>
+    
+    <!-- Pitch Circle Tangent Line (Radius Reference) -->
+    <circle cx="0" cy="0" r="105" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="4,3"/>
+    
+    <!-- Central Keyed Drive Shaft -->
+    <circle cx="0" cy="0" r="32" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <circle cx="0" cy="0" r="12" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+    <rect x="-4" y="-32" width="8" height="12" fill="#38bdf8"/>
+    <text x="0" y="-38" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Keyway</text>
+    <text x="0" y="4" fill="#0f172a" font-size="7" font-weight="bold" font-family="monospace" text-anchor="middle">SHAFT</text>
 
-  <!-- High Velocity Kinetic Water Jet -->
-  <rect x="300" y="287" width="115" height="6" fill="url(#waterJet)"/>
-  <path d="M390 285 L420 270 M390 295 L420 310" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,2"/>
-  <text x="350" y="325" fill="#38bdf8" font-size="10" font-family="monospace" text-anchor="middle">165° Momentum Reversal</text>
+    <!-- Rotation Speed Indicator -->
+    <path d="M 45 -45 A 65 65 0 0 1 65 15" fill="none" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#peltonArrow)"/>
+    <text x="75" y="-20" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">800–1500 RPM</text>
 
-  <!-- Power Equation Reference Box -->
-  <rect x="30" y="50" width="260" height="80" rx="6" fill="#111827" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="40" y="75" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace">THEORETICAL POWER (WATTS):</text>
-  <text x="40" y="95" fill="#f8fafc" font-size="12" font-family="monospace">P = Q (liters/s) × H (meters) × 6.5</text>
-  <text x="40" y="115" fill="#94a3b8" font-size="10" font-family="monospace">Ex: 5 L/s @ 20m head = 650 Watts continuous!</text>
+    <!-- Pelton Buckets around perimeter (Double-Cup Spoons) -->
+    <!-- Bottom Impact Bucket (Target of Jet) -->
+    <g transform="translate(0, 115)">
+      <path d="M -24 0 Q 0 25 24 0 Q 12 -12 0 -6 Q -12 -12 -24 0 Z" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+      <line x1="0" y1="-6" x2="0" y2="24" stroke="#ffffff" stroke-width="1.5"/>
+    </g>
+
+    <!-- Top Bucket -->
+    <g transform="translate(0, -115)">
+      <path d="M -24 0 Q 0 -25 24 0 Q 12 12 0 6 Q -12 12 -24 0 Z" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+    </g>
+
+    <!-- Left Bucket -->
+    <g transform="translate(-115, 0) rotate(90)">
+      <path d="M -24 0 Q 0 25 24 0 Q 12 -12 0 -6 Q -12 -12 -24 0 Z" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+    </g>
+
+    <!-- Right Bucket -->
+    <g transform="translate(115, 0) rotate(-90)">
+      <path d="M -24 0 Q 0 25 24 0 Q 12 -12 0 -6 Q -12 -12 -24 0 Z" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+    </g>
+
+    <!-- 4 Diagonal Buckets -->
+    <g transform="translate(-81, -81) rotate(45)">
+      <path d="M -20 0 Q 0 -20 20 0 Q 10 10 0 5 Q -10 10 -20 0 Z" fill="#334155" stroke="#64748b" stroke-width="1"/>
+    </g>
+    <g transform="translate(81, -81) rotate(-45)">
+      <path d="M -20 0 Q 0 -20 20 0 Q 10 10 0 5 Q -10 10 -20 0 Z" fill="#334155" stroke="#64748b" stroke-width="1"/>
+    </g>
+    <g transform="translate(-81, 81) rotate(135)">
+      <path d="M -20 0 Q 0 -20 20 0 Q 10 10 0 5 Q -10 10 -20 0 Z" fill="#334155" stroke="#64748b" stroke-width="1"/>
+    </g>
+    <g transform="translate(81, 81) rotate(-135)">
+      <path d="M -20 0 Q 0 -20 20 0 Q 10 10 0 5 Q -10 10 -20 0 Z" fill="#334155" stroke="#64748b" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- ================= ❶ PENSTOCK & ❷ CONSTRICTION NOZZLE ================= -->
+  <g id="penstockNozzleGroup">
+    <!-- Penstock High Pressure Supply Pipe -->
+    <rect x="35" y="305" width="220" height="34" rx="3" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <text x="145" y="326" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">HIGH-PRESSURE PENSTOCK (Head &gt;15m)</text>
+
+    <!-- Tapered Constriction Nozzle Horn -->
+    <polygon points="255,305 375,317 375,327 255,339" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="315" y="300" fill="#fde047" font-size="8.5" font-family="monospace">10mm Orifice</text>
+
+    <!-- High Velocity Supersonic Jet Stream -->
+    <rect x="375" y="318" width="105" height="8" rx="2" fill="url(#peltonJetGrad)"/>
+    <line x1="375" y1="322" x2="475" y2="322" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- 165° Momentum Reversal Deflection Vectors -->
+    <path d="M 470 317 Q 490 295 460 280" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="4,2"/>
+    <path d="M 470 327 Q 490 350 460 360" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="4,2"/>
+    <text x="515" y="338" fill="#38bdf8" font-size="8" font-family="monospace">165° Reversal</text>
+  </g>
+
+  <!-- ================= TACTICAL NUMBERED BADGES ================= -->
+  <!-- ❶ Penstock Pressure -->
+  <g transform="translate(25, 75)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#0284c7"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="32" y="16" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="sans-serif">Penstock Line</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Head drop &gt;15m (50 ft)</text>
+    <text x="32" y="39" fill="#38bdf8" font-size="7.5" font-family="monospace">Velocity &gt;17 m/s at exit</text>
+  </g>
+
+  <!-- ❷ Jet Constriction Nozzle -->
+  <g transform="translate(25, 135)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#b45309"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="32" y="16" fill="#fde68a" font-size="9" font-weight="bold" font-family="sans-serif">Constriction Jet</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">8mm–14mm smooth taper</text>
+    <text x="32" y="39" fill="#f59e0b" font-size="7.5" font-family="monospace">100% head ➔ kinetic speed</text>
+  </g>
+
+  <!-- ❸ Double-Cup Bucket Geometry -->
+  <g transform="translate(25, 195)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#047857"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="32" y="16" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="sans-serif">Double-Cup Spoon</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Sharp center knife ridge</text>
+    <text x="32" y="39" fill="#10b981" font-size="7.5" font-family="monospace">Zero turbulent bounce-back</text>
+  </g>
+
+  <!-- ❹ Electrical Generator Coupling -->
+  <g transform="translate(650, 75)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#b45309"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❹</text>
+    <text x="32" y="16" fill="#fde68a" font-size="9" font-weight="bold" font-family="sans-serif">Alternator Shaft</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Direct / 1:3 V-belt drive</text>
+    <text x="32" y="39" fill="#f59e0b" font-size="7.5" font-family="monospace">PMA / Car alternator</text>
+  </g>
+
+  <!-- ❺ 24/7 Base Load -->
+  <g transform="translate(650, 135)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#047857"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❺</text>
+    <text x="32" y="16" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="sans-serif">24/7 Grid Power</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Continuous base wattage</text>
+    <text x="32" y="39" fill="#10b981" font-size="7.5" font-family="monospace">Zero weather interruption</text>
+  </g>
+
+  <!-- ================= BOTTOM THEORETICAL POWER EQUATION ================= -->
+  <g transform="translate(25, 385)">
+    <rect width="770" height="60" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+    <text x="20" y="20" fill="#38bdf8" font-size="9.5" font-weight="bold" font-family="monospace">HYDRO POWER OUTPUT FORMULA:</text>
+    <text x="20" y="36" fill="#f8fafc" font-size="11" font-weight="bold" font-family="monospace">P (Watts) = Q (Liters/sec) × H (meters) × 6.5</text>
+    <text x="20" y="49" fill="#cbd5e1" font-size="8" font-family="monospace">Derived from P = ρ · g · Q · H · η (where overall field conversion efficiency η ≈ 0.65)</text>
+
+    <line x1="430" y1="8" x2="430" y2="52" stroke="#1e293b" stroke-width="1"/>
+    <text x="450" y="20" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">TYPICAL HOMESTEAD PRODUCTION:</text>
+    <text x="450" y="36" fill="#a7f3d0" font-size="8.5" font-family="monospace">Small stream @ 5 Liters/sec with 20m drop = 650 Watts continuous 24/7.</text>
+    <text x="450" y="49" fill="#86efac" font-size="8.5" font-family="monospace">Generates 15.6 kilowatt-hours daily — enough to power lights, freezer, &amp; radios.</text>
+  </g>
 </svg>
 ```
 

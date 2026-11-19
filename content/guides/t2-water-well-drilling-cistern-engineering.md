@@ -40,96 +40,195 @@ Filtered through tens of meters of silica sand and porous limestone bedrock, dee
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Grid -->
+    <pattern id="wellGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
 
-  <!-- Module 1: The Spring-Pole Rig -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. SPRING-POLE RIG</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Percussion Chisel Impact</text>
+    <!-- Gradients -->
+    <linearGradient id="wellRockGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
 
-    <!-- Tripod & pole schematic -->
-    <line x1="45" y1="115" x2="95" y2="50" stroke="#a16207" stroke-width="3"/>
-    <line x1="145" y1="115" x2="95" y2="50" stroke="#a16207" stroke-width="3"/>
-    <line x1="25" y1="95" x2="165" y2="55" stroke="#f59e0b" stroke-width="3.5"/>
-    <line x1="140" y1="60" x2="140" y2="115" stroke="#cbd5e1" stroke-width="1.5"/>
-    <!-- Drill bit -->
-    <rect x="136" y="105" width="8" height="15" fill="#ef4444"/>
+    <linearGradient id="wellWaterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.9"/>
+    </linearGradient>
 
-    <rect x="15" y="122" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="139" fill="#f8fafc" font-size="9" font-family="monospace">SPRING POLE MECHANICS:</text>
-    <text x="25" y="155" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Green Larch / Ash Pole</text>
-    <text x="25" y="169" fill="#cbd5e1" font-size="8.5" font-family="monospace">Elastic bounce lifts bit</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8" font-family="monospace">Foot stirrup drives stroke</text>
+    <!-- Marker -->
+    <marker id="wellArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">PERCUSSION BIT:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">50 - 80 kg Chisel Head</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Rotates 15° each stroke</text>
-    <text x="25" y="247" fill="#fca5a5" font-size="8" font-family="monospace">Drills round, straight hole</text>
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#wellGrid)"/>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Deep Rock Penetration</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#38bdf8"/>
+  <text x="60" y="30" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">PERCUSSION CABLE-TOOL WELL RIG &amp; HYDRAULIC CISTERN</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">SPRING-POLE IMPACT RECIPROCATION (40 BPM) ➔ BENTONITE SANITARY CASING ➔ 50,000L SUB-SOIL VAULT</text>
+
+  <!-- Inter-Panel Flow Connector Arrows -->
+  <line x1="265" y1="210" x2="285" y2="210" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#wellArrow)"/>
+  <line x1="535" y1="210" x2="555" y2="210" stroke="#10b981" stroke-width="2.5" marker-end="url(#wellArrow)"/>
+
+  <!-- ================= PANEL 1: SPRING-POLE PERCUSSION RIG ================= -->
+  <g transform="translate(25, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#38bdf8" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❶ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#0284c7"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="44" y="26" fill="#7dd3fc" font-size="10" font-weight="bold" font-family="sans-serif">Spring-Pole Tripod</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Kinetic Chisel Reciprocation</text>
+
+    <!-- Tripod & Spring Pole Architecture -->
+    <!-- Earth Level Base -->
+    <line x1="20" y1="180" x2="220" y2="180" stroke="#475569" stroke-width="2" stroke-dasharray="4,2"/>
+
+    <!-- A-Frame Fulcrum Shearlegs -->
+    <line x1="60" y1="180" x2="110" y2="90" stroke="#92400e" stroke-width="4"/>
+    <line x1="160" y1="180" x2="110" y2="90" stroke="#92400e" stroke-width="4"/>
+    <circle cx="110" cy="90" r="4" fill="#f59e0b"/>
+
+    <!-- Green Timber Spring Pole (8m cantilever) -->
+    <line x1="30" y1="175" x2="200" y2="70" stroke="#eab308" stroke-width="4.5"/>
+    <text x="35" y="165" fill="#a8a29e" font-size="7.5" font-family="monospace">Butt Anchor</text>
+
+    <!-- Cable Dropping from Pole Tip into Borehole -->
+    <line x1="190" y1="76" x2="190" y2="175" stroke="#cbd5e1" stroke-width="1.5"/>
+    
+    <!-- Foot Stirrup Loop for Operators -->
+    <ellipse cx="190" cy="145" rx="8" ry="4" fill="none" stroke="#38bdf8" stroke-width="2"/>
+    <text x="145" y="148" fill="#38bdf8" font-size="7.5" font-family="monospace">Foot Stirrup</text>
+
+    <!-- Heavy Chisel Drill Bit (60kg) -->
+    <rect x="185" y="165" width="10" height="25" rx="1" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
+    <polygon points="185,190 195,190 190,198" fill="#ef4444"/>
+
+    <!-- Percussion Specs Box -->
+    <rect x="12" y="200" width="216" height="104" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="218" fill="#7dd3fc" font-size="9.5" font-weight="bold" font-family="monospace">CABLE-TOOL MECHANICS:</text>
+    <text x="20" y="234" fill="#f8fafc" font-size="9" font-family="monospace">• 60 kg forged chisel bit</text>
+    <text x="20" y="248" fill="#f8fafc" font-size="9" font-family="monospace">• 40 BPM stroke cadence</text>
+    <text x="20" y="262" fill="#f59e0b" font-size="8.5" font-family="monospace">• 15° rotational twist per drop</text>
+    <text x="20" y="276" fill="#cbd5e1" font-size="8" font-family="monospace">Maintains round, straight bore</text>
+    <text x="20" y="292" fill="#38bdf8" font-size="8" font-family="monospace">Penetrates 50m+ solid limestone</text>
   </g>
 
-  <!-- Module 2: The Bailer & Casing Pipe -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. CASING &amp; BAILING</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Pathogen Exclusion Seal</text>
+  <!-- ================= PANEL 2: CASING & DART BAILER ================= -->
+  <g transform="translate(290, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❷ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#b45309"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="44" y="26" fill="#fde68a" font-size="10" font-weight="bold" font-family="sans-serif">Borehole &amp; Bailer</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Sanitary Pathogen Casing</text>
 
-    <!-- Borehole casing cross section -->
-    <rect x="75" y="50" width="50" height="70" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
-    <rect x="85" y="55" width="30" height="45" fill="#0284c7" opacity="0.4"/>
-    <!-- Dart bailer -->
-    <line x1="100" y1="52" x2="100" y2="95" stroke="#f59e0b" stroke-width="3"/>
-    <circle cx="100" cy="98" r="4" fill="#ef4444"/>
+    <!-- Borehole Cross-Section Detail -->
+    <g transform="translate(20, 52)">
+      <!-- Soil Stratum: Loam (0-2m) -->
+      <rect x="0" y="0" width="200" height="28" fill="#3f2e1e"/>
+      <text x="10" y="18" fill="#a8a29e" font-size="7.5" font-family="monospace">Surface Silt &amp; Loam</text>
 
-    <rect x="15" y="128" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="145" fill="#f8fafc" font-size="9" font-family="monospace">SLURRY EXTRACTION:</text>
-    <text x="25" y="161" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Dart-Valve Bailer Tube</text>
-    <text x="25" y="175" fill="#cbd5e1" font-size="8.5" font-family="monospace">Bottom ball valve scoops mud</text>
+      <!-- Stratum: Heavy Clay (2-6m) -->
+      <rect x="0" y="28" width="200" height="36" fill="#1c1917"/>
+      <text x="10" y="48" fill="#78716c" font-size="7.5" font-family="monospace">Dense Clay Strata</text>
 
-    <rect x="15" y="196" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="213" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">IRON CASING SHOE:</text>
-    <text x="25" y="229" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">Hardened Steel Rim</text>
-    <text x="25" y="242" fill="#cbd5e1" font-size="8.5" font-family="monospace">Driven through upper silt</text>
+      <!-- Stratum: Bedrock / Aquifer (6m+) -->
+      <rect x="0" y="64" width="200" height="75" fill="url(#wellRockGrad)"/>
+      <text x="10" y="85" fill="#94a3b8" font-size="7.5" font-family="monospace">Fractured Limestone Bed</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Bentonite Clay Sanitary Seal</text>
+      <!-- Confined Water Zone -->
+      <rect x="0" y="105" width="200" height="34" fill="url(#wellWaterGrad)"/>
+      <text x="10" y="126" fill="#ffffff" font-size="8" font-weight="bold" font-family="monospace">PRISTINE AQUIFER</text>
+
+      <!-- Central Casing Pipe -->
+      <rect x="90" y="0" width="26" height="105" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+      <!-- Hardened Iron Casing Shoe Cutting Ring -->
+      <rect x="88" y="100" width="30" height="6" fill="#ef4444"/>
+
+      <!-- Bentonite Annular Grout Seal -->
+      <rect x="83" y="0" width="7" height="65" fill="#ca8a04"/>
+      <rect x="116" y="0" width="7" height="65" fill="#ca8a04"/>
+
+      <!-- Dart Bailer Suspended Inside Casing -->
+      <rect x="96" y="35" width="14" height="45" rx="2" fill="#334155" stroke="#f59e0b" stroke-width="1"/>
+      <!-- Dart Spike at bottom of bailer -->
+      <line x1="103" y1="80" x2="103" y2="88" stroke="#ef4444" stroke-width="2"/>
+    </g>
+
+    <!-- Casing & Bailer Rule Box -->
+    <rect x="12" y="200" width="216" height="104" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="218" fill="#fde68a" font-size="9.5" font-weight="bold" font-family="monospace">SANITARY CASING SEAL:</text>
+    <text x="20" y="234" fill="#f8fafc" font-size="9" font-family="monospace">• Heavy 150mm iron casing pipe</text>
+    <text x="20" y="248" fill="#f59e0b" font-size="8.5" font-family="monospace">• Bentonite clay collar (top 6m)</text>
+    <text x="20" y="262" fill="#cbd5e1" font-size="8" font-family="monospace">Blocks septic runoff infiltration</text>
+    <text x="20" y="278" fill="#38bdf8" font-size="8.5" font-family="monospace">Dart-valve bailer clears sludge</text>
+    <text x="20" y="292" fill="#a7f3d0" font-size="8" font-family="monospace">Extracts 15kg wet cuttings/hr</text>
   </g>
 
-  <!-- Module 3: Underground Cistern -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. MASONRY CISTERN</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Hydraulic Lime Reserve</text>
+  <!-- ================= PANEL 3: UNDERGROUND HYDRAULIC CISTERN ================= -->
+  <g transform="translate(555, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#10b981" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❸ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#047857"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="44" y="26" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="sans-serif">Hydraulic Cistern</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">50,000L Vault Engineering</text>
 
-    <!-- Cistern tank graphic -->
-    <path d="M60 65 L60 115 Q100 120 140 115 L140 65 Q100 50 60 65 Z" fill="#18181b" stroke="#10b981" stroke-width="1.5"/>
-    <rect x="65" y="80" width="70" height="30" rx="3" fill="#0284c7" opacity="0.6"/>
-    <!-- Hand pump on top -->
-    <line x1="100" y1="40" x2="100" y2="60" stroke="#cbd5e1" stroke-width="2"/>
+    <!-- Subterranean Domed Cistern Cutaway -->
+    <g transform="translate(25, 50)">
+      <!-- Surface Grade -->
+      <line x1="0" y1="15" x2="190" y2="15" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,2"/>
+      
+      <!-- Surface Pitcher Pump / Manhole Hatch -->
+      <rect x="85" y="8" width="22" height="12" rx="2" fill="#475569" stroke="#94a3b8"/>
+      <line x1="96" y1="20" x2="96" y2="110" stroke="#38bdf8" stroke-width="2"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">WATERPROOF PLASTER:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Roman Hydraulic Lime</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">Lime + Wood Ash Pozzolan</text>
-    <text x="25" y="175" fill="#86efac" font-size="8.5" font-family="monospace">Cures underwater forever</text>
+      <!-- Masonry Vault Arch -->
+      <path d="M 15 50 Q 95 18 175 50 L 175 130 L 15 130 Z" fill="#18181b" stroke="#10b981" stroke-width="2"/>
+      
+      <!-- Multi-Coat Waterproof Hydraulic Lime Render -->
+      <path d="M 20 52 Q 95 24 170 52 L 170 125 L 20 125 Z" fill="#0f172a" stroke="#fde047" stroke-width="1" stroke-dasharray="3,2"/>
+      
+      <!-- Stored Pristine Water Body -->
+      <rect x="22" y="70" width="146" height="54" fill="url(#wellWaterGrad)"/>
+      <text x="95" y="95" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">50,000L RESERVOIR</text>
+      <text x="95" y="108" fill="#a7f3d0" font-size="7.5" font-family="monospace" text-anchor="middle">Subterranean Cold &amp; Dark</text>
+    </g>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">STORAGE CAPACITY:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">20,000 to 50,000 Liters</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Dark, cool subterranean vault</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Zero algae / Zero mosquito larvae</text>
-
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Year-Round Drought Immunity</text>
+    <!-- Cistern Capacity Rule Box -->
+    <rect x="12" y="200" width="216" height="104" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="218" fill="#a7f3d0" font-size="9.5" font-weight="bold" font-family="monospace">CISTERN ARCHITECTURE:</text>
+    <text x="20" y="234" fill="#f8fafc" font-size="9" font-family="monospace">• Roman hydraulic lime plaster</text>
+    <text x="20" y="248" fill="#f8fafc" font-size="9" font-family="monospace">• 1:3 Lime:Sand + 15% Pozzolan</text>
+    <text x="20" y="262" fill="#10b981" font-size="8.5" font-family="monospace">• Dark vault: zero algae growth</text>
+    <text x="20" y="278" fill="#cbd5e1" font-size="8" font-family="monospace">Immune to freezing and evaporation</text>
+    <text x="20" y="292" fill="#7dd3fc" font-size="8" font-family="monospace">Feeds settlement 12-month drought</text>
   </g>
 
-  <!-- Bottom Sanitary Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE SANITARY CASING RULE: Top 6 meters of borehole MUST be sealed with casing &amp; bentonite.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Surface rainwater carrying septic bacteria will seep down the annular ring if unsealed.</text>
+  <!-- ================= BOTTOM SANITARY MANDATE BAR ================= -->
+  <g transform="translate(25, 388)">
+    <rect width="770" height="58" rx="6" fill="#0b1322" stroke="#10b981" stroke-width="1.2"/>
+    <text x="20" y="22" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">CRITICAL SANITARY SEPARATION RULE:</text>
+    <text x="20" y="38" fill="#cbd5e1" font-size="8.5" font-family="monospace">Borehole must maintain minimum 30-meter up-gradient buffer from latrines, livestock pens, and burial trenches.</text>
+    <text x="20" y="50" fill="#fde68a" font-size="8" font-family="monospace">Sanitary bentonite collar prevents surface storm runoff from channeling down outer casing into deep groundwater.</text>
+  </g>
 </svg>
+```
 ```
 
 ---

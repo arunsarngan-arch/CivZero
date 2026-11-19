@@ -71,51 +71,199 @@ Microorganisms require moisture to metabolize and replicate. Lowering the water 
 
 #### 1. The Passive Convective Solar Dryer Blueprint
 
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="360" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="320" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
-  
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">CONVECTIVE SOLAR DRYING CABINET</text>
-  
-  <!-- Angled Solar Collector Box -->
-  <polygon points="100,280 320,170 320,280 100,280" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
-  <line x1="100" y1="280" x2="320" y2="170" stroke="#38bdf8" stroke-width="3"/>
-  <text x="200" y="220" font-family="monospace" font-size="10" fill="#38bdf8" transform="rotate(-26, 200, 220)">Glass Glazing (Solar Collector)</text>
-  <rect x="120" y="260" width="180" height="15" fill="#000000"/>
-  <text x="210" y="272" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">Blackened Metal Heat Absorber</text>
-  
-  <!-- Air Intake -->
-  <path d="M 70 270 L 100 270" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3,3"/>
-  <polygon points="105,270 95,266 95,274" fill="#60a5fa"/>
-  <text x="65" y="290" font-family="monospace" font-size="9" fill="#60a5fa">Cool Fresh Air</text>
-  
-  <!-- Vertical Drying Cabinet -->
-  <rect x="320" y="80" width="180" height="200" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
-  <text x="410" y="105" font-family="monospace" font-size="12" fill="#f8fafc" font-weight="bold" text-anchor="middle">Food Drying Chamber</text>
-  
-  <!-- Trays with Food -->
-  <line x1="335" y1="130" x2="485" y2="130" stroke="#f59e0b" stroke-width="2"/>
-  <circle cx="360" cy="126" r="3" fill="#ef4444"/>
-  <circle cx="390" cy="126" r="3" fill="#ef4444"/>
-  <circle cx="420" cy="126" r="3" fill="#ef4444"/>
-  <circle cx="450" cy="126" r="3" fill="#ef4444"/>
-  
-  <line x1="335" y1="160" x2="485" y2="160" stroke="#f59e0b" stroke-width="2"/>
-  <line x1="335" y1="190" x2="485" y2="190" stroke="#f59e0b" stroke-width="2"/>
-  <line x1="335" y1="220" x2="485" y2="220" stroke="#f59e0b" stroke-width="2"/>
-  <text x="510" y="165" font-family="monospace" font-size="10" fill="#f59e0b">Mesh Food Trays</text>
-  
-  <!-- Top Moist Air Chimney -->
-  <rect x="380" y="55" width="60" height="25" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-  <path d="M 410 70 L 410 40" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
-  <polygon points="410,35 406,45 414,45" fill="#ef4444"/>
-  <text x="480" y="65" font-family="monospace" font-size="9" fill="#ef4444">Warm Moist Air Vent</text>
-  
-  <!-- Hot Air Flow Arrows -->
-  <path d="M 280 230 Q 340 230 350 160" fill="none" stroke="#f97316" stroke-width="2.5"/>
-  <polygon points="350,150 346,160 354,160" fill="#f97316"/>
-  <text x="350" y="250" font-family="monospace" font-size="9" fill="#f97316">Preheated Air (50-60°C)</text>
+```svg
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Grid -->
+    <pattern id="dryGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="drySolarGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="dryHotAir" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="dryArrowAir" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="dryArrowHeat" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f97316"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#dryGrid)"/>
+
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#f59e0b"/>
+  <text x="60" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">CONVECTIVE SOLAR DRYING &amp; HARVEST PRESERVATION CABINET</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">PASSIVE THERMAL BUOYANCY (50°C–60°C) • MOISTURE REDUCTION (aw &lt; 0.60) • ZERO-POWER PRESERVATION</text>
+
+  <!-- Ground Plane -->
+  <line x1="25" y1="365" x2="795" y2="365" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- ================= ❶ ANGLED SOLAR COLLECTOR BOX ================= -->
+  <g id="solarCollectorGroup">
+    <!-- Collector Trough Enclosure -->
+    <polygon points="90,345 340,210 340,345 90,345" fill="url(#drySolarGrad)" stroke="#475569" stroke-width="1.5"/>
+    
+    <!-- Blackened Corrugated Metal Absorber Plate inside Collector -->
+    <line x1="120" y1="330" x2="330" y2="225" stroke="#111827" stroke-width="8"/>
+    <line x1="120" y1="330" x2="330" y2="225" stroke="#000000" stroke-width="4"/>
+    <text x="210" y="315" fill="#94a3b8" font-size="8.5" font-family="monospace" transform="rotate(-26, 210, 315)">Blackened Metal Heat Absorber</text>
+
+    <!-- Glass / Polycarbonate Glazing Top -->
+    <line x1="90" y1="345" x2="340" y2="210" stroke="#38bdf8" stroke-width="3"/>
+    <text x="180" y="260" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="monospace" transform="rotate(-26, 180, 260)">Clear Solar Glazing (30° Angle)</text>
+
+    <!-- Ambient Sun Rays Striking Glazing -->
+    <line x1="140" y1="180" x2="165" y2="225" stroke="#fde047" stroke-width="2" stroke-dasharray="4,2"/>
+    <line x1="190" y1="150" x2="215" y2="195" stroke="#fde047" stroke-width="2" stroke-dasharray="4,2"/>
+    <line x1="240" y1="120" x2="265" y2="165" stroke="#fde047" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="235" y="140" fill="#fde047" font-size="8" font-family="monospace">Solar Radiation</text>
+
+    <!-- Fresh Air Inflow Low Intake -->
+    <line x1="40" y1="330" x2="85" y2="330" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#dryArrowAir)"/>
+    <rect x="85" y="318" width="6" height="24" fill="#64748b"/>
+    <text x="45" y="320" fill="#38bdf8" font-size="8" font-family="monospace">Insect Screen</text>
+  </g>
+
+  <!-- ================= ❹ VERTICAL DRYING CABINET ================= -->
+  <g id="dryingCabinetGroup">
+    <!-- Main Cabinet Housing -->
+    <rect x="340" y="90" width="240" height="255" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+    <text x="460" y="112" fill="#f8fafc" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">FOOD DEHYDRATION CHAMBER</text>
+
+    <!-- Hot Air Convective Plume Entering Chamber -->
+    <path d="M 320 250 Q 370 250 380 180 Q 390 140 430 130" fill="none" stroke="url(#dryHotAir)" stroke-width="26" stroke-linecap="round" stroke-opacity="0.35"/>
+    <line x1="330" y1="260" x2="380" y2="220" stroke="#f97316" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#dryArrowHeat)"/>
+    <line x1="370" y1="200" x2="420" y2="150" stroke="#f97316" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#dryArrowHeat)"/>
+
+    <!-- Mesh Food Drying Trays -->
+    <!-- Tray 1 -->
+    <line x1="360" y1="140" x2="555" y2="140" stroke="#f59e0b" stroke-width="2.5"/>
+    <g transform="translate(375, 134)">
+      <circle cx="15" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="45" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="75" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="105" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="135" cy="0" r="4" fill="#ef4444"/>
+    </g>
+
+    <!-- Tray 2 -->
+    <line x1="360" y1="175" x2="555" y2="175" stroke="#f59e0b" stroke-width="2.5"/>
+    <g transform="translate(375, 169)">
+      <circle cx="25" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="55" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="85" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="115" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="145" cy="0" r="4" fill="#ef4444"/>
+    </g>
+
+    <!-- Tray 3 -->
+    <line x1="360" y1="210" x2="555" y2="210" stroke="#f59e0b" stroke-width="2.5"/>
+    <g transform="translate(375, 204)">
+      <circle cx="15" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="45" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="75" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="105" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="135" cy="0" r="4" fill="#ef4444"/>
+    </g>
+
+    <!-- Tray 4 -->
+    <line x1="360" y1="245" x2="555" y2="245" stroke="#f59e0b" stroke-width="2.5"/>
+    <g transform="translate(375, 239)">
+      <circle cx="25" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="55" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="85" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="115" cy="0" r="4" fill="#ef4444"/>
+      <circle cx="145" cy="0" r="4" fill="#ef4444"/>
+    </g>
+    <text x="460" y="275" fill="#fde68a" font-size="8.5" font-family="monospace" text-anchor="middle">3–5mm Uniform Slices on Stainless Mesh</text>
+
+    <!-- Exhaust Air Damper Chimney -->
+    <rect x="425" y="58" width="70" height="32" rx="3" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5"/>
+    <line x1="460" y1="70" x2="460" y2="40" stroke="#ef4444" stroke-width="3" stroke-dasharray="4,2" marker-end="url(#dryArrowHeat)"/>
+    <text x="460" y="34" fill="#f87171" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">Moist Air Exhaust Vent</text>
+  </g>
+
+  <!-- ================= TACTICAL NUMBERED BADGES ================= -->
+  <!-- ❶ Angled Solar Collector -->
+  <g transform="translate(25, 75)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#0284c7"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="32" y="16" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="sans-serif">Solar Collector Box</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">30° tilted glazing</text>
+    <text x="32" y="39" fill="#38bdf8" font-size="7.5" font-family="monospace">Black metal preheater</text>
+  </g>
+
+  <!-- ❷ Convective Draft -->
+  <g transform="translate(25, 140)">
+    <rect width="145" height="46" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#b45309"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="32" y="16" fill="#fde68a" font-size="9" font-weight="bold" font-family="sans-serif">Convection Engine</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Zero electricity / fan</text>
+    <text x="32" y="39" fill="#f59e0b" font-size="7.5" font-family="monospace">Heats air to 50°C–60°C</text>
+  </g>
+
+  <!-- ❸ Food Dehydration Mesh -->
+  <g transform="translate(605, 75)">
+    <rect width="190" height="46" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#047857"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="32" y="16" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="sans-serif">Food Mesh Trays</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Uniform 3mm–5mm slices</text>
+    <text x="32" y="39" fill="#10b981" font-size="7.5" font-family="monospace">Pre-blanch starchy roots 3m</text>
+  </g>
+
+  <!-- ❹ Exhaust Moisture Chimney -->
+  <g transform="translate(605, 135)">
+    <rect width="190" height="46" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
+    <circle cx="16" cy="16" r="10" fill="#b91c1c"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❹</text>
+    <text x="32" y="16" fill="#fca5a5" font-size="9" font-weight="bold" font-family="sans-serif">Exhaust Baffle</text>
+    <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Vents humid evaporation</text>
+    <text x="32" y="39" fill="#ef4444" font-size="7.5" font-family="monospace">Prevents condensation mold</text>
+  </g>
+
+  <!-- ❺ Geothermal Root Cellaring Card -->
+  <g transform="translate(605, 195)">
+    <rect width="190" height="95" rx="6" fill="#0b1322" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="16" cy="16" r="10" fill="#0369a1"/>
+    <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❺</text>
+    <text x="32" y="16" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="sans-serif">Root Cellar Storage</text>
+    <text x="14" y="38" fill="#f8fafc" font-size="8.5" font-family="monospace">• Subterranean &gt;2m earth</text>
+    <text x="14" y="52" fill="#cbd5e1" font-size="8.5" font-family="monospace">• Temp: 0°C–4°C year-round</text>
+    <text x="14" y="66" fill="#cbd5e1" font-size="8.5" font-family="monospace">• 90% humidity dirt floor</text>
+    <text x="14" y="80" fill="#a7f3d0" font-size="8" font-family="monospace">Potatoes/Carrots store 8 mos</text>
+  </g>
+
+  <!-- ================= BOTTOM TECHNICAL PRESERVATION METRICS ================= -->
+  <g transform="translate(25, 385)">
+    <rect width="770" height="60" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+    <text x="20" y="20" fill="#f59e0b" font-size="9.5" font-weight="bold" font-family="monospace">WATER ACTIVITY THRESHOLD:</text>
+    <text x="20" y="36" fill="#f8fafc" font-size="9" font-family="monospace">• Lower aw below 0.60 completely halts mold &amp; bacteria</text>
+    <text x="20" y="49" fill="#cbd5e1" font-size="8.5" font-family="monospace">• 24h sealed jar test: zero condensation confirms full dehydration</text>
+
+    <line x1="360" y1="8" x2="360" y2="52" stroke="#1e293b" stroke-width="1"/>
+    <text x="380" y="20" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">LACTO-FERMENTATION SALINITY:</text>
+    <text x="380" y="36" fill="#f8fafc" font-size="9" font-family="monospace">• Dry salt: 2.0%–2.5% by weight (cabbage / kimchi)</text>
+    <text x="380" y="49" fill="#86efac" font-size="8.5" font-family="monospace">• Wet brine: 3.5%–5.0% salt solution (pickles / roots)</text>
+  </g>
 </svg>
+```
 
 #### 2. Dehydration Rules
 * **Slice Thickness:** Uniform 3 mm to 5 mm slices. Non-uniform slices lead to damp pockets that harbor mold in sealed storage.

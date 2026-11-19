@@ -82,63 +82,164 @@ Backpropagation is the engine of machine learning. It calculates the exact parti
 
 #### 1. The Gradient Flow Schematic
 
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="380" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="340" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
-  
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#06b6d4" text-anchor="middle">DEEP NEURAL NETWORK: FORWARD INFERENCE & BACKWARD GRADIENT PASS</text>
-  
-  <!-- Input Layer -->
-  <circle cx="100" cy="120" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="100" cy="190" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="100" cy="260" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-  <text x="100" y="90" font-family="monospace" font-size="11" fill="#38bdf8" text-anchor="middle">Input X</text>
-  <text x="100" y="125" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">x₁</text>
-  <text x="100" y="195" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">x₂</text>
-  <text x="100" y="265" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">x₃</text>
-  
-  <!-- Hidden Layer -->
-  <circle cx="300" cy="100" r="18" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <circle cx="300" cy="160" r="18" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <circle cx="300" cy="220" r="18" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <circle cx="300" cy="280" r="18" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
-  <text x="300" y="70" font-family="monospace" font-size="11" fill="#fbbf24" text-anchor="middle">Hidden Layer H</text>
-  
-  <!-- Output Layer -->
-  <circle cx="500" cy="150" r="18" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-  <circle cx="500" cy="230" r="18" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
-  <text x="500" y="120" font-family="monospace" font-size="11" fill="#34d399" text-anchor="middle">Output ŷ</text>
-  <text x="500" y="155" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">ŷ₁</text>
-  <text x="500" y="235" font-family="monospace" font-size="10" fill="#ffffff" text-anchor="middle">ŷ₂</text>
-  
-  <!-- Forward Synaptic Weights (Blue lines) -->
-  <line x1="118" y1="120" x2="282" y2="100" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
-  <line x1="118" y1="120" x2="282" y2="160" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
-  <line x1="118" y1="190" x2="282" y2="160" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
-  <line x1="118" y1="190" x2="282" y2="220" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
-  <line x1="118" y1="260" x2="282" y2="280" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
-  
-  <line x1="318" y1="160" x2="482" y2="150" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
-  <line x1="318" y1="220" x2="482" y2="230" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
-  
-  <!-- Loss Calculation Node -->
-  <rect x="580" y="170" width="75" height="40" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5" rx="4"/>
-  <text x="617" y="188" font-family="monospace" font-size="10" fill="#fca5a5" text-anchor="middle">LOSS L</text>
-  <text x="617" y="202" font-family="monospace" font-size="8" fill="#fca5a5" text-anchor="middle">L(y, ŷ)</text>
-  
-  <line x1="518" y1="150" x2="580" y2="185" stroke="#ef4444" stroke-width="1.5"/>
-  <line x1="518" y1="230" x2="580" y2="195" stroke="#ef4444" stroke-width="1.5"/>
-  
-  <!-- Forward Pass Arrow -->
-  <path d="M 140 330 L 460 330" fill="none" stroke="#38bdf8" stroke-width="2"/>
-  <polygon points="465,330 455,326 455,334" fill="#38bdf8"/>
-  <text x="300" y="322" font-family="monospace" font-size="10" fill="#38bdf8" text-anchor="middle">FORWARD PASS: Z = W·A + B</text>
-  
-  <!-- Backward Gradient Arrow -->
-  <path d="M 460 355 L 140 355" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
-  <polygon points="135,355 145,351 145,359" fill="#ef4444"/>
-  <text x="300" y="350" font-family="monospace" font-size="10" fill="#ef4444" text-anchor="middle">BACKPROPAGATION: dL/dW = δ · A^T</text>
+```svg
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="nnGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#nnGrid)"/>
+
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">DEEP NEURAL NETWORK: FORWARD INFERENCE &amp; BACKPROPAGATION CALCULUS</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">MULTIVARIABLE GRADIENT DESCENT</text>
+
+  <!-- STAGE 1: INPUT LAYER VECTOR X (LEFT) -->
+  <g id="inputLayer" transform="translate(40, 65)">
+    <rect x="0" y="0" width="110" height="280" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
+    <rect x="8" y="10" width="94" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="18" cy="20" r="7" fill="#0284c7"/>
+    <text x="18" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="58" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">INPUT X</text>
+
+    <!-- Neurons x1, x2, x3 -->
+    <circle cx="55" cy="80" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="55" y="84" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">x₁</text>
+    <circle cx="55" cy="150" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="55" y="154" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">x₂</text>
+    <circle cx="55" cy="220" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="55" y="224" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">x₃</text>
+    <text x="55" y="260" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">Features [N×1]</text>
+  </g>
+
+  <!-- FORWARD SYNAPSES W[1] (INPUT TO HIDDEN) -->
+  <g stroke="#38bdf8" stroke-width="1.2" opacity="0.45">
+    <line x1="113" y1="145" x2="225" y2="135"/>
+    <line x1="113" y1="145" x2="225" y2="185"/>
+    <line x1="113" y1="145" x2="225" y2="235"/>
+    <line x1="113" y1="145" x2="225" y2="285"/>
+    <line x1="113" y1="215" x2="225" y2="135"/>
+    <line x1="113" y1="215" x2="225" y2="185"/>
+    <line x1="113" y1="215" x2="225" y2="235"/>
+    <line x1="113" y1="215" x2="225" y2="285"/>
+    <line x1="113" y1="285" x2="225" y2="135"/>
+    <line x1="113" y1="285" x2="225" y2="185"/>
+    <line x1="113" y1="285" x2="225" y2="235"/>
+    <line x1="113" y1="285" x2="225" y2="285"/>
+  </g>
+
+  <!-- STAGE 2: HIDDEN LAYER H (CENTER-LEFT) -->
+  <g id="hiddenLayer" transform="translate(205, 65)">
+    <rect x="0" y="0" width="140" height="280" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
+    <rect x="8" y="10" width="124" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="18" cy="20" r="7" fill="#d97706"/>
+    <text x="18" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="74" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">HIDDEN LAYER H</text>
+
+    <!-- Hidden Neurons h1..h4 -->
+    <circle cx="70" cy="70" r="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="70" y="74" fill="#fde68a" font-size="10" font-family="monospace" text-anchor="middle">h₁</text>
+    <circle cx="70" cy="120" r="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="70" y="124" fill="#fde68a" font-size="10" font-family="monospace" text-anchor="middle">h₂</text>
+    <circle cx="70" cy="170" r="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="70" y="174" fill="#fde68a" font-size="10" font-family="monospace" text-anchor="middle">h₃</text>
+    <circle cx="70" cy="220" r="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="70" y="224" fill="#fde68a" font-size="10" font-family="monospace" text-anchor="middle">h₄</text>
+    <text x="70" y="260" fill="#f59e0b" font-size="8" font-family="monospace" text-anchor="middle">a = ReLU(W₁x + b₁)</text>
+  </g>
+
+  <!-- FORWARD SYNAPSES W[2] (HIDDEN TO OUTPUT) -->
+  <g stroke="#f59e0b" stroke-width="1.2" opacity="0.45">
+    <line x1="345" y1="135" x2="445" y2="165"/>
+    <line x1="345" y1="135" x2="445" y2="245"/>
+    <line x1="345" y1="185" x2="445" y2="165"/>
+    <line x1="345" y1="185" x2="445" y2="245"/>
+    <line x1="345" y1="235" x2="445" y2="165"/>
+    <line x1="345" y1="235" x2="445" y2="245"/>
+    <line x1="345" y1="285" x2="445" y2="165"/>
+    <line x1="345" y1="285" x2="445" y2="245"/>
+  </g>
+
+  <!-- STAGE 3: OUTPUT LAYER ŷ (CENTER-RIGHT) -->
+  <g id="outputLayer" transform="translate(425, 65)">
+    <rect x="0" y="0" width="130" height="280" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
+    <rect x="8" y="10" width="114" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="18" cy="20" r="7" fill="#10b981"/>
+    <text x="18" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="68" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">OUTPUT ŷ</text>
+
+    <!-- Output Neurons y1, y2 -->
+    <circle cx="65" cy="100" r="18" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="65" y="104" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">ŷ₁</text>
+    <circle cx="65" cy="180" r="18" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+    <text x="65" y="184" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">ŷ₂</text>
+    <text x="65" y="240" fill="#10b981" font-size="8" font-family="monospace" text-anchor="middle">Softmax / Sigmoid</text>
+    <text x="65" y="254" fill="#64748b" font-size="7.5" font-family="monospace" text-anchor="middle">Predicted Vector</text>
+  </g>
+
+  <!-- STAGE 4: LOSS FUNCTION & GRADIENT RETROACTION (RIGHT) -->
+  <g id="lossLayer" transform="translate(610, 65)">
+    <rect x="0" y="0" width="170" height="280" rx="8" fill="#0d1526" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="8" y="10" width="154" height="20" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1.2"/>
+    <circle cx="18" cy="20" r="7" fill="#ef4444"/>
+    <text x="18" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">4</text>
+    <text x="88" y="24" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">LOSS &amp; BACKPROP</text>
+
+    <!-- Loss Computation Engine Block -->
+    <rect x="15" y="45" width="140" height="70" rx="4" fill="#290707" stroke="#ef4444" stroke-width="1.2"/>
+    <text x="85" y="65" fill="#fca5a5" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">LOSS FUNCTION ℒ</text>
+    <text x="85" y="80" fill="#cbd5e1" font-size="8" font-family="monospace" text-anchor="middle">MSE = ½Σ(y - ŷ)²</text>
+    <text x="85" y="95" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">CE = -Σ y·ln(ŷ)</text>
+
+    <!-- Ground truth feed into loss -->
+    <text x="85" y="132" fill="#38bdf8" font-size="8.5" font-family="monospace" text-anchor="middle">Ground Truth (y)</text>
+    <path d="M 85 138 L 85 115" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)"/>
+
+    <!-- Chain Rule Derivative Equation -->
+    <rect x="12" y="150" width="146" height="60" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-dasharray="2,2"/>
+    <text x="85" y="168" fill="#f59e0b" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">CHAIN RULE ERROR:</text>
+    <text x="85" y="182" fill="#fde68a" font-size="8.5" font-family="monospace" text-anchor="middle">δ^{[L]} = (ŷ - y) ⊙ f'(z)</text>
+    <text x="85" y="196" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">δ^{[l]} = (W^T δ) ⊙ f'(z)</text>
+
+    <!-- Backward Pass Vector Vector Arrow -->
+    <path d="M 120 220 L 50 220" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowRed)"/>
+    <text x="85" y="240" fill="#ef4444" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">← RETRO-GRADIENT</text>
+    <text x="85" y="254" fill="#cbd5e1" font-size="7.5" font-family="monospace" text-anchor="middle">Updates Weights (W - η·dW)</text>
+  </g>
+
+  <!-- FORWARD & BACKWARD FLOW PROCESS ARROWS -->
+  <g transform="translate(40, 355)">
+    <!-- Forward Vector -->
+    <path d="M 50 10 L 450 10" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)"/>
+    <text x="250" y="5" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">FORWARD PASS: Z = W·A + B ──&gt; A = f(Z)</text>
+
+    <!-- Backward Vector -->
+    <path d="M 450 25 L 50 25" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrowRed)"/>
+    <text x="250" y="36" fill="#fca5a5" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">BACKWARD GRADIENT: dℒ/dW = δ · A^T (CHAIN RULE ACCELERATION)</text>
+  </g>
+
+  <!-- MATHEMATICAL OPTIMIZATION MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">∑</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">SGD PARAMETER UPDATE: W_new = W_old - η · (∂ℒ / ∂W) | B_new = B_old - η · δ</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Learning rate η dictates convergence speed. No magic or external runtime: purely multivariable calculus and matrix inner dot products.</text>
 </svg>
+```
 
 #### 2. The Analytical Gradient Derivation
 Let layer $l$ have pre-activation $z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}$ and activation $a^{[l]} = f(z^{[l]})$.

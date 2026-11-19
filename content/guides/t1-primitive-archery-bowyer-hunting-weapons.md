@@ -42,95 +42,158 @@ When modern ammunition is exhausted, firearms become nothing more than heavy iro
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Coordinate Grid -->
+    <pattern id="archeryGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.4"/>
+    </pattern>
 
-  <!-- Module 1: Anatomy & Tillering -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. WOOD &amp; TILLERING</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Tension vs Compression</text>
+    <!-- Wood Stave Gradient -->
+    <linearGradient id="bowWoodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
 
-    <!-- Bow cross section & curve -->
-    <path d="M100 50 Q130 85 100 120" fill="none" stroke="#f59e0b" stroke-width="4"/>
-    <line x1="100" y1="50" x2="100" y2="120" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,2"/>
-    <text x="135" y="88" fill="#fde68a" font-size="8" font-family="monospace">Belly</text>
-    <text x="80" y="88" fill="#38bdf8" font-size="8" font-family="monospace">Back</text>
+    <!-- Flint Point Gradient -->
+    <linearGradient id="flintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
 
-    <rect x="15" y="122" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="139" fill="#f8fafc" font-size="9" font-family="monospace">WOOD SELECTION:</text>
-    <text x="25" y="155" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Hickory, Ash, Osage, Oak</text>
-    <text x="25" y="169" fill="#cbd5e1" font-size="8.5" font-family="monospace">Dense ring growth</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8" font-family="monospace">Stave length: User height (1.7m)</text>
+  <!-- Deep Obsidian Canvas & Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#archeryGrid)"/>
+  <rect x="10" y="10" width="800" height="440" rx="10" fill="none" stroke="#1e293b" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">THE CARDINAL LAW:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">NEVER Cut the Back</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Follow single growth ring</text>
-    <text x="25" y="247" fill="#fca5a5" font-size="8" font-family="monospace">Scrape wood only from belly</text>
+  <!-- ================= 1. WOOD TILLERING DYNAMICS (PANEL 1) ================= -->
+  <g transform="translate(25, 25)">
+    <!-- Panel Container -->
+    <rect x="0" y="0" width="245" height="365" rx="8" fill="#0b1120" stroke="#38bdf8" stroke-width="1.2"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="12" width="215" height="24" rx="4" fill="#0c1929" stroke="#38bdf8" stroke-width="1"/>
+    <text x="122" y="28" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. TILLERING &amp; WOOD GRAIN</text>
+    <text x="122" y="48" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Tension Back vs Compression Belly</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Even Parabolic Curve</text>
+    <!-- Full Draw Parabolic Arc Graphic -->
+    <g transform="translate(30, 60)">
+      <!-- Unstrung Stave (Straight) -->
+      <line x1="15" y1="10" x2="15" y2="130" stroke="#475569" stroke-width="2.5" stroke-dasharray="3,3"/>
+      <!-- Strung Bow Parabolic Curve -->
+      <path d="M 15 10 Q 75 70 15 130" fill="none" stroke="url(#bowWoodGrad)" stroke-width="7" stroke-linecap="round"/>
+      <!-- Outer Back Layer (Tension - Cyan) -->
+      <path d="M 14 10 Q 77 70 14 130" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+      <!-- Inner Belly Layer (Compression - Amber) -->
+      <path d="M 17 12 Q 72 70 17 128" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+      <!-- Bowstring at Brace Height -->
+      <line x1="15" y1="10" x2="15" y2="130" stroke="#ef4444" stroke-width="2"/>
+      <!-- 6-Inch Fistmele / Brace Height -->
+      <line x1="15" y1="70" x2="68" y2="70" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="42" y="65" fill="#86efac" font-size="8" font-family="monospace" text-anchor="middle">6" BRACE</text>
+    </g>
+
+    <!-- Cardinal Bowyer Law Card -->
+    <rect x="12" y="205" width="221" height="75" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1.2"/>
+    <text x="22" y="223" fill="#ea580c" font-size="10" font-weight="bold" font-family="monospace">THE UNBROKEN BACK LAW:</text>
+    <text x="22" y="240" fill="#fef3c7" font-size="9.5" font-family="monospace">Follow 1 single growth ring</text>
+    <text x="22" y="254" fill="#cbd5e1" font-size="9" font-family="monospace">Never cut fibers on the back</text>
+    <text x="22" y="268" fill="#fca5a5" font-size="9" font-family="monospace">Scrape wood only from belly</text>
+
+    <!-- Limb Anatomy Badge -->
+    <rect x="12" y="290" width="221" height="60" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="22" y="308" fill="#38bdf8" font-size="9.5" font-weight="bold" font-family="monospace">TIMBER SPECIES (50 lb):</text>
+    <text x="22" y="324" fill="#e0f2fe" font-size="9" font-family="monospace">Shagbark Hickory, White Ash,</text>
+    <text x="22" y="338" fill="#7dd3fc" font-size="9" font-family="monospace">Osage Orange, Black Locust</text>
   </g>
 
-  <!-- Module 2: Flemish Twist String -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. FLEMISH CORDAGE</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Reverse-Twist Splice</text>
+  <!-- ================= 2. FLEMISH TWIST STRING (PANEL 2) ================= -->
+  <g transform="translate(285, 25)">
+    <!-- Panel Container -->
+    <rect x="0" y="0" width="245" height="365" rx="8" fill="#0b1120" stroke="#f59e0b" stroke-width="1.2"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="12" width="215" height="24" rx="4" fill="#1c1917" stroke="#f59e0b" stroke-width="1"/>
+    <text x="122" y="28" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. FLEMISH TWIST STRING</text>
+    <text x="122" y="48" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Reverse-Twist Splice &amp; Nock</text>
 
-    <!-- Twisted string graphic -->
-    <path d="M70 65 Q85 55 100 65 Q115 75 130 65" fill="none" stroke="#f59e0b" stroke-width="3"/>
-    <path d="M70 68 Q85 78 100 68 Q115 58 130 68" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
+    <!-- Bow Tip Nock & Loop Graphic -->
+    <g transform="translate(45, 60)">
+      <!-- Carved Timber Bow Tip Nock (45° string groove) -->
+      <path d="M 20 10 L 40 10 L 40 50 L 32 60 L 40 70 L 40 130 L 20 130 Z" fill="url(#bowWoodGrad)" stroke="#78350f" stroke-width="1.5"/>
+      <path d="M 40 50 L 30 60 L 40 70" fill="none" stroke="#451a03" stroke-width="2"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">FIBER SOURCING:</text>
-    <text x="25" y="149" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Linen, Hemp, Dogbane</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Or back sinew fibers</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Wax with pine resin / tallow</text>
+      <!-- Braided Flemish Eye Loop seated in Nock Groove -->
+      <path d="M 30 60 Q 15 35 45 35 Q 75 35 60 70 L 60 130" fill="none" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M 30 60 Q 15 35 45 35 Q 75 35 60 70 L 60 130" fill="none" stroke="#fef08a" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </g>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">STRENGTH CAPACITY:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">200 lb Tensile Test</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">4x safety factor over draw</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Woven loop on upper nock</text>
+    <!-- Reverse Twist Details Card -->
+    <rect x="12" y="205" width="221" height="75" rx="6" fill="#1c1917" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="22" y="223" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace">REVERSE-TWIST BINDING:</text>
+    <text x="22" y="240" fill="#fef3c7" font-size="9.5" font-family="monospace">Twist both strands clockwise,</text>
+    <text x="22" y="254" fill="#cbd5e1" font-size="9" font-family="monospace">Cross counter-clockwise</text>
+    <text x="22" y="268" fill="#fde68a" font-size="9" font-family="monospace">Wax heavily with pine pitch/fat</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Non-Stretch Kinetic Energy</text>
+    <!-- String Strength Card -->
+    <rect x="12" y="290" width="221" height="60" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="22" y="308" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">TENSILE RATING (200 lb):</text>
+    <text x="22" y="324" fill="#e0f2fe" font-size="9" font-family="monospace">4x safety factor over draw weight</text>
+    <text x="22" y="338" fill="#86efac" font-size="9" font-family="monospace">Zero elastic stretch on release</text>
   </g>
 
-  <!-- Module 3: Hunting Arrows & Broadheads -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. LETHAL ARROWS</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Fletching &amp; Broadheads</text>
+  <!-- ================= 3. HUNTING ARROW ARCHITECTURE (PANEL 3) ================= -->
+  <g transform="translate(545, 25)">
+    <!-- Panel Container -->
+    <rect x="0" y="0" width="250" height="365" rx="8" fill="#0b1120" stroke="#10b981" stroke-width="1.2"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="12" width="220" height="24" rx="4" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+    <text x="125" y="28" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. LETHAL HUNTING ARROW</text>
+    <text x="125" y="48" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Fletching, Spine &amp; Broadhead</text>
 
-    <!-- Arrow graphic -->
-    <line x1="45" y1="80" x2="155" y2="80" stroke="#a16207" stroke-width="3"/>
-    <!-- Flint point -->
-    <polygon points="155,75 170,80 155,85" fill="#94a3b8" stroke="#cbd5e1"/>
-    <!-- Feathers -->
-    <path d="M45 74 L60 80 L45 80 Z" fill="#ef4444"/>
-    <path d="M45 86 L60 80 L45 80 Z" fill="#ef4444"/>
+    <!-- Vertical Arrow Blueprint Graphic -->
+    <g transform="translate(60, 60)">
+      <!-- Knapped Stone Broadhead (Top) -->
+      <polygon points="65,10 50,35 60,32 60,45 70,45 70,32 80,35" fill="url(#flintGrad)" stroke="#f1f5f9" stroke-width="1.2"/>
+      
+      <!-- Wet Deer Sinew Wrapping over Pine Pitch Glue -->
+      <rect x="58" y="35" width="14" height="15" rx="2" fill="#78350f" stroke="#ca8a04" stroke-width="1"/>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">SHAFT STRAIGHTENING:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">River Cane / Dogwood</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Heat over coals &amp; bend</text>
-    <text x="25" y="174" fill="#86efac" font-size="8" font-family="monospace">Spine matched to draw weight</text>
+      <!-- Heat-Straightened Shaft (River Cane / Hardwood Shoot) -->
+      <line x1="65" y1="45" x2="65" y2="135" stroke="#d97706" stroke-width="4.5" stroke-linecap="round"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">BROADHEAD POINTS:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Knapped Flint / Steel</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Hafted with pine pitch glue</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Bound tightly with wet sinew</text>
+      <!-- Split Turkey Feather Fletching (120° Spacing) -->
+      <path d="M 65 95 L 45 105 L 45 125 L 65 120 Z" fill="#ef4444" opacity="0.9"/>
+      <path d="M 65 95 L 85 105 L 85 125 L 65 120 Z" fill="#ef4444" opacity="0.9"/>
+      
+      <!-- Nock Groove (Bottom) -->
+      <line x1="65" y1="135" x2="65" y2="140" stroke="#78350f" stroke-width="4.5"/>
+      <polygon points="62,140 68,140 65,136" fill="#0b1120"/>
+    </g>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Pass-Through Penetration</text>
+    <!-- Fletching & Spine Card -->
+    <rect x="12" y="205" width="226" height="75" rx="6" fill="#1c1917" stroke="#10b981" stroke-width="1.2"/>
+    <text x="22" y="223" fill="#10b981" font-size="10" font-weight="bold" font-family="monospace">SHAFT STRAIGHTENING:</text>
+    <text x="22" y="240" fill="#fef3c7" font-size="9.5" font-family="monospace">Rotate over hot coals &amp; bend</text>
+    <text x="22" y="254" fill="#cbd5e1" font-size="9" font-family="monospace">3 split turkey feathers (120°)</text>
+    <text x="22" y="268" fill="#86efac" font-size="9" font-family="monospace">Stabilizes gyroscopic spin</text>
+
+    <!-- Broadhead Terminal Ballistics Card -->
+    <rect x="12" y="290" width="226" height="60" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="22" y="308" fill="#38bdf8" font-size="9.5" font-weight="bold" font-family="monospace">BROADHEAD PENETRATION:</text>
+    <text x="22" y="324" fill="#e0f2fe" font-size="9" font-family="monospace">500-grain arrow @ 160 fps</text>
+    <text x="22" y="338" fill="#7dd3fc" font-size="9" font-family="monospace">Pass-through on deer / boar</text>
   </g>
 
-  <!-- Bottom Bowyer Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE WOOD DYNAMICS LAW: The back of the bow is under tension; the belly is under compression.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">A single nick across the back fibers will snap the limb like glass under full draw.</text>
+  <!-- ================= FOOTER TACTICAL MANDATE ================= -->
+  <rect x="25" y="405" width="770" height="26" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="410" y="422" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">BOWYER CARDINAL LAW: The back is in pure tension; the belly is in compression. A single nick on the back will shatter the bow under full draw.</text>
 </svg>
+```
 ```
 
 ---

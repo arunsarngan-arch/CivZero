@@ -40,88 +40,144 @@ Glass is the universal vessel of scientific inquiry. It withstands concentrated 
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="glassGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </linearGradient>
+    <linearGradient id="glassSphereGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Step 1: The Melt & Gather -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. RAW BATCH &amp; MELT</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">1400°C Refractory Kiln</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#glassGrid)"/>
 
-    <!-- Crucible graphic -->
-    <path d="M60 65 L70 120 L130 120 L140 65 Z" fill="#991b1b" stroke="#f87171" stroke-width="1.5"/>
-    <ellipse cx="100" cy="75" rx="25" ry="10" fill="#f59e0b"/>
-    <!-- Blowpipe rod -->
-    <line x1="20" y1="40" x2="95" y2="75" stroke="#94a3b8" stroke-width="3"/>
-    <circle cx="95" cy="75" r="7" fill="#fbbf24"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">SCIENTIFIC GLASSWARE FABRICATION: BOROSILICATE BLOWING &amp; LEHR ANNEALING</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">LABORATORY AMORPHOUS SILICA</text>
 
-    <rect x="15" y="130" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="148" fill="#f8fafc" font-size="9.5" font-family="monospace">BATCH FORMULATION:</text>
-    <text x="25" y="165" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">70% SiO2 + 15% Na2CO3</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8.5" font-family="monospace">+ 10% Lime + 5% Borax</text>
+  <!-- MODULE 1: RAW BATCH & KILN MELT (LEFT) -->
+  <g id="melt" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="198" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="215" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">VISCOSITY WINDOW:</text>
-    <text x="25" y="231" fill="#cbd5e1" font-size="8.5" font-family="monospace">Workable: 1050°C - 900°C</text>
-    <text x="25" y="244" fill="#fca5a5" font-size="8" font-family="monospace">Freezes stiff &lt; 700°C</text>
+    <!-- Refractory Fireclay Crucible with Liquid Melt (1400°C) -->
+    <path d="M 60 70 L 72 135 L 172 135 L 185 70 Z" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+    <ellipse cx="122" cy="80" rx="45" ry="14" fill="url(#flameGrad)"/>
+    <ellipse cx="122" cy="80" rx="30" ry="8" fill="#ffffff" opacity="0.7"/>
 
-    <text x="100" y="268" fill="#fbbf24" font-size="9" font-family="monospace" text-anchor="middle">Continuous Pipe Rotation</text>
+    <!-- Blowpipe Gather Rod Dip -->
+    <line x1="30" y1="42" x2="115" y2="78" stroke="#cbd5e1" stroke-width="4"/>
+    <circle cx="115" cy="78" r="9" fill="#f59e0b" stroke="#fef08a" stroke-width="1.5"/>
+    <text x="122" y="105" fill="#fef08a" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">Molten Gather 1400°C</text>
+
+    <!-- Batch Formulation Specs Pill -->
+    <rect x="18" y="150" width="210" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="168" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">BATCH FORMULATION:</text>
+    <text x="28" y="183" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">70% SiO₂ + 15% Na₂CO₃ + 10% CaO</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">+ 5% Borax (B₂O₃) for thermal shock</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Borosilicate: Expands 3x less than soda</text>
+
+    <!-- Viscosity Curve Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">WORKING VISCOSITY WINDOW:</text>
+    <text x="28" y="269" fill="#fde68a" font-size="8.5" font-family="monospace">Workable dough: 1050°C–900°C</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8.5" font-family="monospace">Continuous pipe rotation prevents sag</text>
+    <text x="28" y="299" fill="#fca5a5" font-size="8" font-family="monospace">Freezes brittle below 700°C</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">RAW BATCH &amp; MELT</text>
   </g>
 
-  <!-- Step 2: Blowpipe Shaping -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. SHAPING &amp; BLOWING</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Flasks, Tubes &amp; Retorts</text>
+  <!-- MODULE 2: SHAPING, BLOWING & MARVERING (CENTER) -->
+  <g id="blowing" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Florence Flask under inflation -->
-    <line x1="100" y1="45" x2="100" y2="75" stroke="#94a3b8" stroke-width="4"/>
-    <path d="M96 75 L96 90 C96 110, 70 125, 100 125 C130 125, 104 110, 104 90 L104 75 Z" fill="#0284c7" opacity="0.6" stroke="#38bdf8" stroke-width="1.5"/>
-    <ellipse cx="100" cy="108" rx="20" ry="16" fill="#38bdf8" opacity="0.4"/>
+    <!-- Steel Blowpipe Tube -->
+    <line x1="125" y1="40" x2="125" y2="75" stroke="#cbd5e1" stroke-width="5"/>
+    <line x1="125" y1="40" x2="125" y2="75" stroke="#070a0f" stroke-width="2"/>
 
-    <rect x="15" y="130" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="148" fill="#f8fafc" font-size="9.5" font-family="monospace">AIR PRESSURE CONTROL:</text>
-    <text x="25" y="165" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Short, Gentle Puffs</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8.5" font-family="monospace">Never blow hard or fast</text>
+    <!-- Inflated Boiling Flask Body -->
+    <path d="M 120 75 L 120 90 C 120 115, 80 135, 125 135 C 170 135, 130 115, 130 90 L 130 75 Z" fill="url(#glassSphereGrad)" stroke="#38bdf8" stroke-width="2"/>
+    <ellipse cx="125" cy="115" rx="28" ry="18" fill="#38bdf8" opacity="0.3"/>
+    <text x="125" y="120" fill="#ffffff" font-size="8.5" font-family="monospace" text-anchor="middle">Florence Flask</text>
 
-    <rect x="15" y="198" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="215" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">WALL THICKNESS:</text>
-    <text x="25" y="231" fill="#cbd5e1" font-size="8.5" font-family="monospace">1.5 - 2.5 mm Target</text>
-    <text x="25" y="244" fill="#fde047" font-size="8" font-family="monospace">Even walls prevent crack</text>
+    <!-- Air Injection Breath Arrows -->
+    <path d="M 125 30 L 125 50" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="2,2"/>
+    <text x="125" y="25" fill="#38bdf8" font-size="8" font-family="monospace" text-anchor="middle">Gentle Puffs</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Roll on Steel Marver Plate</text>
+    <!-- Shaping Dynamics Pill -->
+    <rect x="18" y="150" width="214" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="168" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">PNEUMATIC INFLATION:</text>
+    <text x="28" y="183" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">Short, rhythmic low-pressure puffs</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Never blow hard (causes thin blowouts)</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Roll on steel/stone marver plate</text>
+
+    <!-- Wall Uniformity Pill -->
+    <rect x="18" y="235" width="214" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">WALL THICKNESS CALIPER:</text>
+    <text x="28" y="269" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">Target: 1.5–2.5 mm Uniform</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">Thick bottoms crack from thermal shock</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Uniform wall resists boiling acids</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="86" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">BLOWPIPE SHAPING</text>
   </g>
 
-  <!-- Step 3: Lehr Annealing -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. LEHR ANNEALING</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Thermal Stress Relief</text>
+  <!-- MODULE 3: LEHR ANNEALING FURNACE (RIGHT) -->
+  <g id="annealing" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Annealing temperature curve -->
-    <rect x="25" y="50" width="150" height="70" rx="3" fill="#1e293b" stroke="#334155"/>
-    <path d="M35 70 L70 70 L110 90 L160 112" fill="none" stroke="#ef4444" stroke-width="2.5"/>
-    <text x="35" y="65" fill="#fca5a5" font-size="8" font-family="monospace">550°C</text>
-    <text x="150" y="110" fill="#86efac" font-size="8" font-family="monospace">25°C</text>
+    <!-- Lehr Annealing Temperature Profile Curve -->
+    <rect x="25" y="50" width="195" height="85" rx="4" fill="#0f172a" stroke="#334155"/>
+    <path d="M 35 75 L 85 75 L 140 100 L 205 125" fill="none" stroke="#ef4444" stroke-width="3"/>
+    <!-- Ticks & annotations -->
+    <text x="35" y="70" fill="#fca5a5" font-size="8" font-family="monospace">550°C Soak</text>
+    <text x="110" y="85" fill="#f59e0b" font-size="7.5" font-family="monospace">1°C/min Ramp</text>
+    <text x="195" y="120" fill="#86efac" font-size="8" font-family="monospace">25°C</text>
 
-    <rect x="15" y="130" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="148" fill="#f8fafc" font-size="9.5" font-family="monospace">SOAK TEMPERATURE:</text>
-    <text x="25" y="165" fill="#34d399" font-size="12" font-weight="bold" font-family="monospace">540°C - 560°C</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8.5" font-family="monospace">Hold for 2 full hours</text>
+    <!-- Soak Temperature Pill -->
+    <rect x="18" y="150" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="168" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">LEHR SOAK TEMPERATURE:</text>
+    <text x="28" y="183" fill="#86efac" font-size="9" font-weight="bold" font-family="monospace">540°C–560°C for 2 Full Hours</text>
+    <text x="28" y="197" fill="#cbd5e1" font-size="8" font-family="monospace">Permits molecular glass relaxation</text>
+    <text x="28" y="210" fill="#94a3b8" font-size="8" font-family="monospace">Relieves internal frozen tensile stress</text>
 
-    <rect x="15" y="198" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="215" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">COOLING RAMP:</text>
-    <text x="25" y="231" fill="#cbd5e1" font-size="8.5" font-family="monospace">1°C per min to 400°C</text>
-    <text x="25" y="244" fill="#a7f3d0" font-size="8" font-family="monospace">Unannealed glass shatters!</text>
+    <!-- Cooling Ramp Pill -->
+    <rect x="18" y="235" width="210" height="75" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="254" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">SLOW CONTROLLED COOLING:</text>
+    <text x="28" y="269" fill="#cbd5e1" font-size="8.5" font-family="monospace">Ramp down: 1°C per minute to 400°C</text>
+    <text x="28" y="283" fill="#cbd5e1" font-size="8.5" font-family="monospace">Inspect under crossed polarizing filters</text>
+    <text x="28" y="299" fill="#38bdf8" font-size="8" font-family="monospace">Zero colored strain birefringence lines</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Polarized Light Strain Check</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="150" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="86" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">LEHR ANNEALING</text>
   </g>
 
-  <!-- Bottom Safety & Failure Mode Warning -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-  <text x="350" y="336" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE CRITICAL ANNEALING MANDATE: Glass cooled in ambient air contains frozen tension.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Even gentle acid heating will trigger catastrophic explosive shattering unless soaked in a lehr.</text>
+  <!-- ANNEALING MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#f59e0b"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">★</text>
+  <text x="65" y="420" fill="#fde68a" font-size="10.5" font-weight="bold" font-family="monospace">THE ANNEALING LAW: UNANNEALED SCIENTIFIC GLASSWARE IS A SHATTER BOMB</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Glass cooled quickly in air traps severe differential tension between outer skin and inner bulk. The first application of heat will trigger violent explosive rupture.</text>
 </svg>
 ```
 

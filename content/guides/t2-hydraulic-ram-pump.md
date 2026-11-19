@@ -32,53 +32,232 @@ The ram pump channels this recurring pressure spike to force water past a non-re
 
 #### 1. The 4-Stage Cyclic Action
 
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="380" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="340" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
-  
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#06b6d4" text-anchor="middle">HYDRAULIC RAM PUMP OPERATIONAL SCHEMATIC</text>
-  
-  <!-- Drive Pipe -->
-  <line x1="60" y1="260" x2="280" y2="260" stroke="#94a3b8" stroke-width="14"/>
-  <line x1="60" y1="260" x2="280" y2="260" stroke="#0284c7" stroke-width="8"/>
-  <text x="140" y="240" font-family="monospace" font-size="11" fill="#7dd3fc">Rigid Steel Drive Pipe (Head: H)</text>
-  <path d="M 120 260 L 220 260" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,4"/>
-  <polygon points="225,260 215,256 215,264" fill="#ffffff"/>
-  
-  <!-- Ram Body Tee -->
-  <rect x="280" y="246" width="120" height="28" fill="#475569" stroke="#64748b" stroke-width="1.5"/>
-  
-  <!-- Waste Valve (Impulse Valve) -->
-  <rect x="295" y="190" width="30" height="56" fill="#334155" stroke="#64748b" stroke-width="1"/>
-  <circle cx="310" cy="180" r="10" fill="#ef4444"/>
-  <path d="M 310 170 L 310 140" fill="none" stroke="#ef4444" stroke-width="3"/>
-  <text x="310" y="130" font-family="monospace" font-size="10" fill="#f87171" text-anchor="middle">Waste Valve (Slams shut)</text>
-  <path d="M 325 180 Q 360 170 380 185" fill="none" stroke="#38bdf8" stroke-width="2"/>
-  <text x="400" y="185" font-family="monospace" font-size="8" fill="#38bdf8">Waste Out</text>
-  
-  <!-- Delivery Check Valve -->
-  <rect x="365" y="246" width="35" height="28" fill="#1e293b" stroke="#eab308" stroke-width="1.5"/>
-  <polygon points="370,250 395,260 370,270" fill="#eab308"/>
-  <text x="382" y="295" font-family="monospace" font-size="9" fill="#eab308" text-anchor="middle">Check Valve</text>
-  
-  <!-- Air Pressure Vessel (Air Chamber) -->
-  <rect x="420" y="120" width="70" height="154" fill="#0f172a" stroke="#38bdf8" stroke-width="2" rx="35"/>
-  <!-- Trapped Air Cushion -->
-  <path d="M 422 155 Q 455 125 488 155 L 488 190 L 422 190 Z" fill="#64748b" opacity="0.4"/>
-  <text x="455" y="165" font-family="monospace" font-size="10" fill="#cbd5e1" font-weight="bold" text-anchor="middle">TRAPPED AIR</text>
-  <text x="455" y="178" font-family="monospace" font-size="8" fill="#94a3b8" text-anchor="middle">CUSHION</text>
-  <!-- Water inside Chamber -->
-  <rect x="422" y="190" width="66" height="84" fill="#0284c7" opacity="0.6"/>
-  
-  <!-- Delivery Pipe Out -->
-  <path d="M 490 250 L 590 250 L 590 100" fill="none" stroke="#10b981" stroke-width="6"/>
-  <polygon points="590,90 586,102 594,102" fill="#10b981"/>
-  <text x="600" y="150" font-family="monospace" font-size="11" fill="#34d399">Delivery Pipe</text>
-  <text x="600" y="165" font-family="monospace" font-size="9" fill="#a7f3d0">To High Tank (Head: h)</text>
-  
-  <!-- Technical annotations -->
-  <text x="350" y="340" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">Cycle Rate: 40-80 Beats per Minute Continuous Operation</text>
+```svg
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Grid -->
+    <pattern id="ramGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="ramSteelPipe" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="35%" stop-color="#94a3b8"/>
+      <stop offset="70%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="ramWaterFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <linearGradient id="ramAirDamp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <linearGradient id="ramPulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="ramArrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ramArrowEmerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#ramGrid)"/>
+
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#38bdf8"/>
+  <text x="60" y="30" fill="#38bdf8" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">HYDRAULIC RAM PUMP: WATER HAMMER KINETIC TRANSLATION</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">CONTINUOUS ZERO-FUEL CYCLIC FLUID HAMMER • INPUT HEAD: 1–5m • DISCHARGE ELEVATION: 10–50m</text>
+
+  <!-- Ground Bed & Stream Floor -->
+  <path d="M 25 330 L 400 330 L 400 350 L 795 350" stroke="#334155" stroke-width="2" stroke-dasharray="6,4" fill="none"/>
+
+  <!-- Concrete Mounting Pad -->
+  <rect x="350" y="320" width="160" height="18" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
+  <text x="430" y="333" fill="#64748b" font-size="8.5" font-family="monospace" text-anchor="middle">CONCRETE REACTION ANCHOR</text>
+
+  <!-- Drive Pipe (Rigid Heavy Steel) -->
+  <g id="drivePipeGroup">
+    <!-- Stream Fall Inlet Box -->
+    <path d="M 35 150 L 110 150 L 110 220 L 35 220 Z" fill="#0c233c" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="72" y="175" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">STREAM</text>
+    <text x="72" y="190" fill="#7dd3fc" font-size="8.5" font-family="monospace" text-anchor="middle">INTAKE</text>
+    <path d="M 45 200 C 65 205, 80 195, 100 200" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+
+    <!-- Sloped Rigid Drive Pipe -->
+    <path d="M 110 195 L 350 285 L 350 315 L 110 225 Z" fill="url(#ramSteelPipe)" stroke="#334155" stroke-width="1.5"/>
+    <!-- Water core inside drive pipe -->
+    <path d="M 110 202 L 350 292 L 350 308 L 110 218 Z" fill="url(#ramWaterFlow)"/>
+    
+    <!-- Flow Vector Arrows -->
+    <line x1="140" y1="210" x2="190" y2="230" stroke="#ffffff" stroke-width="2.5" marker-end="url(#ramArrowSky)" stroke-dasharray="6,3"/>
+    <line x1="220" y1="240" x2="270" y2="260" stroke="#ffffff" stroke-width="2.5" marker-end="url(#ramArrowSky)" stroke-dasharray="6,3"/>
+
+    <!-- Caliper: Drive Head H -->
+    <line x1="25" y1="150" x2="25" y2="330" stroke="#38bdf8" stroke-width="1.2"/>
+    <line x1="20" y1="150" x2="30" y2="150" stroke="#38bdf8" stroke-width="1.2"/>
+    <line x1="20" y1="330" x2="30" y2="330" stroke="#38bdf8" stroke-width="1.2"/>
+    <rect x="8" y="230" width="34" height="20" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="25" y="244" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">H: 1-5m</text>
+
+    <!-- Label Drive Pipe -->
+    <rect x="150" y="270" width="165" height="30" rx="5" fill="#0f172a" stroke="#1e293b" stroke-width="1.2"/>
+    <text x="160" y="284" fill="#f8fafc" font-size="9.5" font-weight="bold" font-family="sans-serif">Rigid Steel Drive Pipe</text>
+    <text x="160" y="295" fill="#94a3b8" font-size="8" font-family="monospace">1.5" Sch 40 Steel (L = 5 × H)</text>
+  </g>
+
+  <!-- Malleable Iron Cross / Tee Manifold -->
+  <rect x="350" y="280" width="70" height="40" rx="3" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="385" cy="300" r="14" fill="#1e293b" stroke="#64748b" stroke-width="1.2"/>
+
+  <!-- ❶ Waste Valve (Impulse Valve) Upright Assembly -->
+  <g id="wasteValveGroup">
+    <rect x="372" y="215" width="26" height="65" fill="#475569" stroke="#64748b" stroke-width="1.2"/>
+    <!-- Waste Valve Flapper / Orifice -->
+    <rect x="365" y="200" width="40" height="15" rx="3" fill="#b91c1c" stroke="#ef4444" stroke-width="1.5"/>
+    <circle cx="385" cy="192" r="6" fill="#f59e0b"/>
+    <!-- Water Hammer Shockwaves -->
+    <path d="M 355 185 Q 385 170 415 185" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+    <path d="M 350 177 Q 385 160 420 177" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,2"/>
+    <!-- Waste Water Effluent Vector -->
+    <path d="M 405 205 Q 435 195 445 220" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#ramArrowSky)"/>
+    <text x="450" y="235" fill="#7dd3fc" font-size="8" font-family="monospace">Waste Spill</text>
+
+    <!-- Badge ❶ -->
+    <g transform="translate(340, 140)">
+      <rect width="135" height="44" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="10" fill="#b91c1c"/>
+      <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+      <text x="32" y="16" fill="#fca5a5" font-size="9" font-weight="bold" font-family="sans-serif">Waste Flapper Valve</text>
+      <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Slams shut abruptly</text>
+      <text x="32" y="38" fill="#f59e0b" font-size="7.5" font-family="monospace">P = ρ · c · Δv spike!</text>
+    </g>
+  </g>
+
+  <!-- ❷ Delivery Check Valve (Between Cross and Air Chamber) -->
+  <g id="checkValveGroup">
+    <rect x="420" y="285" width="30" height="30" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <!-- Internal Check Valve Arrow -->
+    <polygon points="426,290 444,300 426,310" fill="#f59e0b"/>
+
+    <!-- Badge ❷ -->
+    <g transform="translate(415, 332)">
+      <rect width="125" height="34" rx="5" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2"/>
+      <circle cx="14" cy="17" r="9" fill="#b45309"/>
+      <text x="14" y="21" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+      <text x="28" y="16" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="sans-serif">Delivery Check Valve</text>
+      <text x="28" y="27" fill="#94a3b8" font-size="7.5" font-family="monospace">One-way high-P surge</text>
+    </g>
+  </g>
+
+  <!-- ❸ Snifter Hole Air Re-injection Pin -->
+  <g id="snifterGroup">
+    <circle cx="435" cy="275" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1"/>
+    <line x1="435" y1="260" x2="435" y2="271" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#ramArrowSky)"/>
+    
+    <!-- Badge ❸ -->
+    <g transform="translate(450, 245)">
+      <rect width="120" height="34" rx="5" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
+      <circle cx="14" cy="17" r="9" fill="#0284c7"/>
+      <text x="14" y="21" fill="#ffffff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+      <text x="28" y="16" fill="#7dd3fc" font-size="8.5" font-weight="bold" font-family="sans-serif">Snifter Air Pinhole</text>
+      <text x="28" y="27" fill="#94a3b8" font-size="7.5" font-family="monospace">Recharges air cushion</text>
+    </g>
+  </g>
+
+  <!-- ❹ Air Pressure Vessel (Air Chamber) -->
+  <g id="airChamberGroup">
+    <!-- Air Vessel Outer Shell (Scuba / Steel Cylinder) -->
+    <rect x="475" y="100" width="80" height="185" rx="40" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+    <!-- Compressed Air Cushion Fill -->
+    <path d="M 477 140 Q 515 102 553 140 L 553 175 L 477 175 Z" fill="#38bdf8" fill-opacity="0.25"/>
+    <text x="515" y="142" fill="#e2e8f0" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">COMPRESSED</text>
+    <text x="515" y="154" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">AIR DOME</text>
+    
+    <!-- Water Cushion in Lower Half of Vessel -->
+    <rect x="477" y="175" width="76" height="90" fill="url(#ramAirDamp)"/>
+    <line x1="477" y1="175" x2="553" y2="175" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+    <!-- Pulse Damping Vector Arrows Inside Chamber -->
+    <line x1="500" y1="165" x2="500" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#ramArrowSky)"/>
+    <line x1="530" y1="165" x2="530" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#ramArrowSky)"/>
+
+    <!-- Badge ❹ -->
+    <g transform="translate(565, 95)">
+      <rect width="135" height="44" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="10" fill="#0284c7"/>
+      <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❹</text>
+      <text x="32" y="16" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="sans-serif">Air Pressure Vessel</text>
+      <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">Absorbs shock spikes</text>
+      <text x="32" y="38" fill="#38bdf8" font-size="7.5" font-family="monospace">Smooths output stream</text>
+    </g>
+  </g>
+
+  <!-- ❺ High-Head Delivery Pipe Discharge -->
+  <g id="deliveryPipeGroup">
+    <path d="M 535 285 L 535 300 L 720 300 L 720 100" fill="none" stroke="#10b981" stroke-width="6"/>
+    <line x1="720" y1="130" x2="720" y2="90" stroke="#10b981" stroke-width="3" marker-end="url(#ramArrowEmerald)"/>
+
+    <!-- Cistern / Storage Tank at Hilltop -->
+    <rect x="670" y="45" width="100" height="50" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="720" y="68" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">HIGH CISTERN</text>
+    <text x="720" y="82" fill="#6ee7b7" font-size="8" font-family="monospace" text-anchor="middle">ELEVATION (h)</text>
+
+    <!-- Caliper: Delivery Head h -->
+    <line x1="785" y1="50" x2="785" y2="350" stroke="#10b981" stroke-width="1.2"/>
+    <line x1="780" y1="50" x2="790" y2="50" stroke="#10b981" stroke-width="1.2"/>
+    <line x1="780" y1="350" x2="790" y2="350" stroke="#10b981" stroke-width="1.2"/>
+    <rect x="755" y="190" width="38" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="774" y="204" fill="#34d399" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">h: 50m</text>
+
+    <!-- Badge ❺ -->
+    <g transform="translate(605, 230)">
+      <rect width="115" height="44" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="10" fill="#047857"/>
+      <text x="16" y="20" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❺</text>
+      <text x="32" y="16" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="sans-serif">Delivery Outlet</text>
+      <text x="32" y="28" fill="#94a3b8" font-size="7.5" font-family="monospace">0.5"–0.75" Line</text>
+      <text x="32" y="38" fill="#34d399" font-size="7.5" font-family="monospace">Continuous head lift</text>
+    </g>
+  </g>
+
+  <!-- Technical Summary Card: Bottom Footer -->
+  <g transform="translate(25, 380)">
+    <rect width="770" height="66" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+    <!-- Col 1: Formula -->
+    <text x="20" y="22" fill="#38bdf8" font-size="9.5" font-weight="bold" font-family="monospace">RANKINE HYDRAULIC RULE:</text>
+    <text x="20" y="42" fill="#f8fafc" font-size="11" font-weight="bold" font-family="monospace">q = (Q × H × η) / h</text>
+    <text x="20" y="55" fill="#64748b" font-size="8" font-family="monospace">η = 0.60–0.75 field efficiency</text>
+
+    <!-- Col 2: Cadence Tuning -->
+    <line x1="260" y1="10" x2="260" y2="56" stroke="#1e293b" stroke-width="1"/>
+    <text x="280" y="22" fill="#f59e0b" font-size="9.5" font-weight="bold" font-family="monospace">PUMP CYCLE CADENCE:</text>
+    <text x="280" y="38" fill="#e2e8f0" font-size="9" font-family="monospace">• 40–80 BPM steady cycle</text>
+    <text x="280" y="52" fill="#94a3b8" font-size="8" font-family="monospace">• Heavier flapper = higher head lift</text>
+
+    <!-- Col 3: Key Material Rule -->
+    <line x1="520" y1="10" x2="520" y2="56" stroke="#1e293b" stroke-width="1"/>
+    <text x="540" y="22" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">PIPE RIGIDITY MANDATE:</text>
+    <text x="540" y="38" fill="#e2e8f0" font-size="9" font-family="monospace">• Drive pipe MUST be rigid metal (steel)</text>
+    <text x="540" y="52" fill="#fca5a5" font-size="8" font-family="monospace">• PVC flex dampens shockwave by 80%</text>
+  </g>
 </svg>
+```
 
 1. **Acceleration:** Water flows down the drive pipe from the stream intake and vents freely through the open **Waste Valve**. Flow velocity increases.
 2. **The Slam (Water Hammer Spike):** As drag force overcomes gravity and spring tension, the waste valve abruptly slams shut. The moving water column stops instantly. Pressure surges to 10–30 times static pressure.

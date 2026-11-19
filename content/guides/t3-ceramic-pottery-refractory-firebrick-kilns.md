@@ -42,92 +42,176 @@ Refractory ceramics are non-metallic structural materials that maintain high com
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Grid -->
+    <pattern id="kilnGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
 
-  <!-- Module 1: Clay Chemistry -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. KAOLIN &amp; GROG</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Mineral Formulation</text>
+    <!-- Gradients -->
+    <linearGradient id="kilnFlameLoop" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="80%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
 
-    <!-- Clay brick icon -->
-    <polygon points="60,65 110,50 150,65 100,80" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-    <polygon points="60,65 100,80 100,110 60,95" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
-    <polygon points="100,80 150,65 150,95 100,110" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1.5"/>
+    <!-- Markers -->
+    <marker id="kilnArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
 
-    <rect x="15" y="122" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="139" fill="#f8fafc" font-size="9" font-family="monospace">BRICK BATCH RATIO:</text>
-    <text x="25" y="155" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">50% Kaolin (China Clay)</text>
-    <text x="25" y="169" fill="#cbd5e1" font-size="8.5" font-family="monospace">+ 30% Grog (Pre-fired dust)</text>
-    <text x="25" y="179" fill="#94a3b8" font-size="8" font-family="monospace">+ 20% Clean Quartz Sand</text>
+  <!-- Background -->
+  <rect width="820" height="460" fill="#070a0f"/>
+  <rect width="820" height="460" fill="url(#kilnGrid)"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">THE ROLE OF GROG:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Zero Shrinkage Skeleton</text>
-    <text x="25" y="236" fill="#cbd5e1" font-size="8.5" font-family="monospace">Stops drying cracks completely</text>
-    <text x="25" y="247" fill="#fca5a5" font-size="8" font-family="monospace">Resists thermal spalling</text>
+  <!-- Tactical Header -->
+  <rect x="25" y="14" width="770" height="38" rx="6" fill="#0b1322" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="45" cy="33" r="5" fill="#f59e0b"/>
+  <text x="60" y="30" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">HIGH-ALUMINA REFRACTORY FIREBRICKS &amp; 1400°C DOWNDRAFT KILN</text>
+  <text x="60" y="44" fill="#64748b" font-size="9" font-family="monospace">KAOLIN + GROG MATRIX (1450°C SPALLING IMMUNITY) • INVERTED BAGWALL CONVECTION • VITRIFIED ACID STONEWARE</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Alumina-Silicate Matrix</text>
+  <!-- Inter-Panel Connectors -->
+  <line x1="265" y1="210" x2="285" y2="210" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#kilnArrow)"/>
+  <line x1="535" y1="210" x2="555" y2="210" stroke="#10b981" stroke-width="2.5" marker-end="url(#kilnArrow)"/>
+
+  <!-- ================= PANEL 1: KAOLIN & GROG FIREBRICKS ================= -->
+  <g transform="translate(25, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#38bdf8" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❶ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#0284c7"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❶</text>
+    <text x="44" y="26" fill="#7dd3fc" font-size="10" font-weight="bold" font-family="sans-serif">Kaolin &amp; Grog Matrix</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">1450°C Thermal Barrier</text>
+
+    <!-- Isometric Firebrick Graphic -->
+    <g transform="translate(45, 55)">
+      <!-- Top Face -->
+      <polygon points="65,20 135,5 155,25 85,40" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <!-- Left Face -->
+      <polygon points="65,20 85,40 85,75 65,55" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.2"/>
+      <!-- Front Face -->
+      <polygon points="85,40 155,25 155,60 85,75" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.2"/>
+      <text x="115" y="55" fill="#0f172a" font-size="8" font-weight="bold" font-family="monospace">HIGH-ALUMINA</text>
+    </g>
+
+    <!-- Firebrick Batch Formula Box -->
+    <rect x="15" y="140" width="210" height="72" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="156" fill="#7dd3fc" font-size="9" font-weight="bold" font-family="monospace">REFRACTORY BATCH FORMULA:</text>
+    <text x="25" y="172" fill="#f8fafc" font-size="8.5" font-family="monospace">• 50% Pure White Kaolin Clay</text>
+    <text x="25" y="186" fill="#fde68a" font-size="8.5" font-family="monospace">• 30% Calcined Grog (0.5–2mm)</text>
+    <text x="25" y="200" fill="#cbd5e1" font-size="8.5" font-family="monospace">• 20% Washed Sharp Quartz Sand</text>
+
+    <!-- Grog Function Card -->
+    <rect x="15" y="220" width="210" height="84" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="20" y="238" fill="#38bdf8" font-size="9" font-weight="bold" font-family="monospace">THE GROG (CHAMOTTE) RULE:</text>
+    <text x="20" y="254" fill="#f8fafc" font-size="8.5" font-family="monospace">Pre-fired ceramic dust eliminates</text>
+    <text x="20" y="268" fill="#86efac" font-size="8.5" font-family="monospace">15% firing shrinkage shear stresses.</text>
+    <text x="20" y="282" fill="#cbd5e1" font-size="8" font-family="monospace">Zero cracking • Extreme spall resistance</text>
   </g>
 
-  <!-- Module 2: The Downdraft Kiln Architecture -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. DOWNDRAFT KILN</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Convective Heat Trap</text>
+  <!-- ================= PANEL 2: 1400°C DOWNDRAFT KILN ================= -->
+  <g transform="translate(290, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❷ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#b45309"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❷</text>
+    <text x="44" y="26" fill="#fde68a" font-size="10" font-weight="bold" font-family="sans-serif">Downdraft Convection</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Inverted Flame Circulation</text>
 
-    <!-- Kiln cross section -->
-    <path d="M50 115 L50 65 Q100 40 150 65 L150 115 Z" fill="#78350f" stroke="#b45309" stroke-width="1.5"/>
-    <rect x="65" y="80" width="10" height="35" fill="#f59e0b"/>
-    <!-- Bagwall -->
-    <line x1="85" y1="85" x2="85" y2="115" stroke="#cbd5e1" stroke-width="3"/>
-    <!-- Flame path arrow -->
-    <path d="M72 85 Q85 60 110 75 Q125 90 125 115" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/>
+    <!-- Kiln Arch Cross-Section Graphic -->
+    <g transform="translate(30, 52)">
+      <!-- Kiln Arch Shell -->
+      <path d="M 15 80 L 15 35 Q 90 5 165 35 L 165 80 Z" fill="#18181b" stroke="#d97706" stroke-width="2"/>
+      
+      <!-- Firebox on left -->
+      <rect x="20" y="55" width="22" height="25" fill="#dc2626"/>
+      <text x="31" y="70" fill="#ffffff" font-size="6.5" font-family="monospace" text-anchor="middle">FIRE</text>
 
-    <rect x="15" y="128" width="170" height="60" rx="4" fill="#1e293b"/>
-    <text x="25" y="145" fill="#f8fafc" font-size="9" font-family="monospace">HEAT CIRCULATION:</text>
-    <text x="25" y="161" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Flame Rises Over Bagwall</text>
-    <text x="25" y="175" fill="#cbd5e1" font-size="8.5" font-family="monospace">Drawn down through floor</text>
+      <!-- Refractory Bagwall deflecting flames UP -->
+      <rect x="45" y="35" width="10" height="45" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+      <text x="50" y="28" fill="#cbd5e1" font-size="6.5" font-family="monospace" text-anchor="middle">Bagwall</text>
 
-    <rect x="15" y="196" width="170" height="58" rx="4" fill="#1e293b"/>
-    <text x="25" y="213" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">CHIMNEY DRAUGHT:</text>
-    <text x="25" y="229" fill="#f59e0b" font-size="12" font-weight="bold" font-family="monospace">3m Tall Chimney</text>
-    <text x="25" y="242" fill="#cbd5e1" font-size="8" font-family="monospace">Continuous negative pressure</text>
+      <!-- Ware Pottery on kiln floor -->
+      <rect x="75" y="52" width="20" height="28" rx="2" fill="#64748b"/>
+      <rect x="105" y="46" width="24" height="34" rx="2" fill="#64748b"/>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Even Temperature Field</text>
+      <!-- Perforated Floor Flue Grate -->
+      <line x1="60" y1="80" x2="140" y2="80" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3,2"/>
+
+      <!-- Inverted Convective Flame Loop Arrow -->
+      <path d="M 31 55 Q 35 15 85 18 Q 140 22 140 55 Q 140 78 105 82" fill="none" stroke="url(#kilnFlameLoop)" stroke-width="3" stroke-linecap="round"/>
+      
+      <!-- Under-floor Flue to Chimney -->
+      <path d="M 105 82 L 105 92 L 180 92 L 180 0" fill="none" stroke="#64748b" stroke-width="3"/>
+      <text x="180" y="-5" fill="#38bdf8" font-size="7.5" font-family="monospace" text-anchor="middle">Chimney</text>
+    </g>
+
+    <!-- Convection Specs Box -->
+    <rect x="15" y="160" width="210" height="66" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="178" fill="#fde68a" font-size="9" font-weight="bold" font-family="monospace">BAGWALL INVERSION:</text>
+    <text x="25" y="194" fill="#f8fafc" font-size="8.5" font-family="monospace">• Flames deflect over wall to crown</text>
+    <text x="25" y="208" fill="#cbd5e1" font-size="8.5" font-family="monospace">• Drawn DOWN through slotted floor</text>
+    <text x="25" y="222" fill="#86efac" font-size="8.5" font-family="monospace">Uniform 1400°C without cold spots</text>
+
+    <!-- Chimney Draft Box -->
+    <rect x="15" y="235" width="210" height="69" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="20" y="253" fill="#f59e0b" font-size="9" font-weight="bold" font-family="monospace">3-METER CHIMNEY STACK:</text>
+    <text x="20" y="269" fill="#f8fafc" font-size="8.5" font-family="monospace">Continuous negative pressure draws</text>
+    <text x="20" y="283" fill="#cbd5e1" font-size="8" font-family="monospace">combustion gases evenly across wares</text>
   </g>
 
-  <!-- Module 3: Stoneware Chemical Glazes -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. CHEMICAL GLAZES</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Vitrified Acid-Proof Seals</text>
+  <!-- ================= PANEL 3: VITRIFIED STONEWARE CHEMICAL GLAZES ================= -->
+  <g transform="translate(555, 62)">
+    <rect width="240" height="315" rx="8" fill="#0b1322" stroke="#10b981" stroke-width="1.5"/>
+    
+    <!-- Step Badge ❸ -->
+    <rect x="12" y="12" width="216" height="32" rx="5" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="28" cy="28" r="10" fill="#047857"/>
+    <text x="28" y="32" fill="#ffffff" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">❸</text>
+    <text x="44" y="26" fill="#a7f3d0" font-size="10" font-weight="bold" font-family="sans-serif">Vitrified Stoneware</text>
+    <text x="44" y="38" fill="#94a3b8" font-size="8" font-family="monospace">Acid-Proof Chemical Carboys</text>
 
-    <!-- Glazed jar graphic -->
-    <ellipse cx="100" cy="55" rx="16" ry="6" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
-    <path d="M84 55 Q75 75 80 105 Q100 115 120 105 Q125 75 116 55 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Chemical Stoneware Jar Graphic -->
+    <g transform="translate(90, 50)">
+      <ellipse cx="30" cy="12" rx="20" ry="7" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+      <path d="M 10 12 Q 0 35 6 70 Q 30 82 54 70 Q 60 35 50 12 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+      <!-- Glassy Glaze Sheen -->
+      <path d="M 18 22 Q 12 45 16 65" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+      <text x="30" y="46" fill="#ffffff" font-size="7.5" font-weight="bold" font-family="monospace" text-anchor="middle">ACID</text>
+      <text x="30" y="56" fill="#a7f3d0" font-size="7" font-family="monospace" text-anchor="middle">PROOF</text>
+    </g>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="135" fill="#f8fafc" font-size="9" font-family="monospace">NATURAL ASH FORMULA:</text>
-    <text x="25" y="150" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">2 Parts Washed Wood Ash</text>
-    <text x="25" y="164" fill="#cbd5e1" font-size="8.5" font-family="monospace">+ 2 Parts Crushed Feldspar</text>
-    <text x="25" y="175" fill="#86efac" font-size="8.5" font-family="monospace">+ 1 Part Pure Kaolin Slip</text>
+    <!-- Natural Ash Glaze Recipe Box -->
+    <rect x="15" y="145" width="210" height="72" rx="4" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="163" fill="#a7f3d0" font-size="9" font-weight="bold" font-family="monospace">FELDSPATHIC ASH GLAZE:</text>
+    <text x="25" y="179" fill="#f8fafc" font-size="8.5" font-family="monospace">• 2 Vol: Washed Wood Ash</text>
+    <text x="25" y="193" fill="#f8fafc" font-size="8.5" font-family="monospace">• 2 Vol: Crushed Feldspar Sand</text>
+    <text x="25" y="207" fill="#fde68a" font-size="8.5" font-family="monospace">• 1 Vol: Kaolin Slip (Clay)</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">VITRIFICATION POINT:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Fires to Glass @ 1280°C</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Impervious to all acids</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Stores acids without glass</text>
-
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Non-Porous Chemical Ware</text>
+    <!-- Vitrification Metric Box -->
+    <rect x="15" y="225" width="210" height="79" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="20" y="243" fill="#10b981" font-size="9" font-weight="bold" font-family="monospace">1280°C VITRIFICATION POINT:</text>
+    <text x="20" y="259" fill="#f8fafc" font-size="8.5" font-family="monospace">Melts into impermeable glass</text>
+    <text x="20" y="273" fill="#a7f3d0" font-size="8" font-family="monospace">Withstands boiling sulfuric &amp; nitric</text>
+    <text x="20" y="287" fill="#cbd5e1" font-size="8" font-family="monospace">Stores chemical acids without glass</text>
   </g>
 
-  <!-- Bottom Refractory Rule -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE GROG MANDATE: Pure raw clay shrinks 12-15% upon firing, causing fatal cracking.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Always incorporate 30% pre-fired, pulverized ceramic grog to lock dimensions stable.</text>
+  <!-- ================= BOTTOM REFRACTORY SAFETY MANDATE ================= -->
+  <g transform="translate(25, 388)">
+    <rect width="770" height="58" rx="6" fill="#0b1322" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="20" y="22" fill="#f59e0b" font-size="9.5" font-weight="bold" font-family="monospace">THE WATER-SMOKING PROTOCOL (STEAM EXPLOSION PREVENTION):</text>
+    <text x="20" y="38" fill="#cbd5e1" font-size="8.5" font-family="monospace">Green firebricks contain chemically bound moisture. Fire below 100°C for initial 24 hours.</text>
+    <text x="20" y="50" fill="#fde68a" font-size="8" font-family="monospace">Heating too rapidly converts internal moisture into superheated steam, causing explosive brick fragmentation.</text>
+  </g>
 </svg>
+```
 ```
 
 ---

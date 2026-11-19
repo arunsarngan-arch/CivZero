@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-11-19T17:53:03.806Z",
+  "generated_at": "2026-11-19T19:04:00.442Z",
   "total_guides": 56,
   "master_pack": {
     "filename": "civilization_master.db",
-    "size_bytes": 1961984,
-    "size_formatted": "1916.0 KB"
+    "size_bytes": 2379776,
+    "size_formatted": "2324.0 KB"
   },
   "tiers": [
     {
@@ -13,48 +13,48 @@
       "name": "Tier 1: Immediate Survival & Triage",
       "filename": "tier_1_pack.db",
       "guide_count": 14,
-      "size_bytes": 532480,
-      "size_formatted": "520.0 KB"
+      "size_bytes": 622592,
+      "size_formatted": "608.0 KB"
     },
     {
       "tier": 2,
       "name": "Tier 2: The Homestead & Agrarian Settlement",
       "filename": "tier_2_pack.db",
       "guide_count": 8,
-      "size_bytes": 315392,
-      "size_formatted": "308.0 KB"
+      "size_bytes": 417792,
+      "size_formatted": "408.0 KB"
     },
     {
       "tier": 3,
       "name": "Tier 3: Pre-Industrial Forge, Kiln & Masonry",
       "filename": "tier_3_pack.db",
       "guide_count": 8,
-      "size_bytes": 299008,
-      "size_formatted": "292.0 KB"
+      "size_bytes": 434176,
+      "size_formatted": "424.0 KB"
     },
     {
       "tier": 4,
       "name": "Tier 4: Mechanical Power & Kinetic Engines",
       "filename": "tier_4_pack.db",
       "guide_count": 7,
-      "size_bytes": 278528,
-      "size_formatted": "272.0 KB"
+      "size_bytes": 380928,
+      "size_formatted": "372.0 KB"
     },
     {
       "tier": 5,
       "name": "Tier 5: Industrial Chemistry & Applied Electricity",
       "filename": "tier_5_pack.db",
       "guide_count": 7,
-      "size_bytes": 335872,
-      "size_formatted": "328.0 KB"
+      "size_bytes": 380928,
+      "size_formatted": "372.0 KB"
     },
     {
       "tier": 6,
       "name": "Tier 6: Telecommunications, Law & Heritage",
       "filename": "tier_6_pack.db",
       "guide_count": 12,
-      "size_bytes": 491520,
-      "size_formatted": "480.0 KB"
+      "size_bytes": 548864,
+      "size_formatted": "536.0 KB"
     }
   ]
 }

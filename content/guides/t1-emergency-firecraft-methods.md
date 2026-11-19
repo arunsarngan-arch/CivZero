@@ -39,37 +39,169 @@ The bow drill is the most reliable primitive method worldwide. It converts mecha
 
 #### 2. Mechanical Blueprint & Setup
 
-<svg viewBox="0 0 700 360" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="360" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="320" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
-  
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#f59e0b" text-anchor="middle">BOW DRILL FRICTION ARCHITECTURE</text>
-  
-  <!-- Bearing Block -->
-  <path d="M 310 70 L 390 70 L 375 105 L 325 105 Z" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
-  <text x="405" y="90" font-family="monospace" font-size="11" fill="#cbd5e1">Bearing Block (Greased)</text>
-  
-  <!-- Spindle -->
-  <rect x="340" y="105" width="20" height="150" fill="#b45309" stroke="#f59e0b" stroke-width="1.5" rx="3"/>
-  <text x="250" y="175" font-family="monospace" font-size="11" fill="#cbd5e1">Spindle (2cm dia)</text>
-  <line x1="330" y1="170" x2="340" y2="170" stroke="#f59e0b" stroke-width="1"/>
-  
-  <!-- Bow & Cord -->
-  <path d="M 120 220 Q 300 80 500 200" fill="none" stroke="#92400e" stroke-width="6"/>
-  <path d="M 130 215 L 340 185 L 360 185 L 490 195" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3,3"/>
-  <text x="130" y="245" font-family="monospace" font-size="11" fill="#ef4444">Cord wrap (1 twist)</text>
-  
-  <!-- Hearth Board -->
-  <rect x="240" y="255" width="220" height="30" fill="#78350f" stroke="#d97706" stroke-width="1.5" rx="2"/>
-  <text x="480" y="275" font-family="monospace" font-size="11" fill="#cbd5e1">Hearth Board (Softwood)</text>
-  
-  <!-- Notch & Dust Collector -->
-  <polygon points="340,255 360,255 350,285" fill="#0d1117"/>
-  <rect x="330" y="285" width="40" height="8" fill="#1c1917" stroke="#78716c" stroke-width="1"/>
-  <ellipse cx="350" cy="289" rx="8" ry="4" fill="#ef4444" opacity="0.8"/>
-  <text x="350" y="315" font-family="monospace" font-size="11" fill="#ef4444" text-anchor="middle">Smoldering Coal (400°C)</text>
-  <text x="350" y="330" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">V-Notch cut 1/8th pie slice into burn circle</text>
+```svg
+<svg viewBox="0 0 820 450" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Coordinate Grid -->
+    <pattern id="firecraftGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.4"/>
+    </pattern>
+
+    <!-- Wood Timber Gradient -->
+    <linearGradient id="spindleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <!-- Bearing Block Gradient -->
+    <linearGradient id="blockGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Hearth Board Gradient -->
+    <linearGradient id="hearthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <!-- Glowing Ember Coal Gradient -->
+    <radialGradient id="emberGlowFirecraft" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#ea580c"/>
+      <stop offset="85%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Deep Obsidian Canvas & Grid -->
+  <rect x="0" y="0" width="820" height="450" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="450" fill="url(#firecraftGrid)"/>
+  <rect x="10" y="10" width="800" height="430" rx="10" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ================= 1. BEARING BLOCK (HANDHOLD) ================= -->
+  <!-- Handhold Block (Hardwood, Stone, or Bone Socket) -->
+  <path d="M 340 50 L 480 50 L 460 95 Q 410 100 360 95 Z" fill="url(#blockGrad)" stroke="#64748b" stroke-width="2"/>
+  <!-- Lubricated Socket Depression -->
+  <path d="M 395 95 Q 410 80 425 95 Z" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+  <!-- Green leaf / grease lubricant film -->
+  <ellipse cx="410" cy="92" rx="10" ry="3" fill="#22c55e" opacity="0.8"/>
+
+  <!-- Downward Pressure Force Vector -->
+  <g stroke="#f59e0b" stroke-width="2.5" fill="none">
+    <line x1="410" y1="20" x2="410" y2="45"/>
+    <polygon points="410,48 405,38 415,38" fill="#f59e0b"/>
+  </g>
+  <text x="410" y="16" fill="#f59e0b" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">DOWNWARD PRESSURE (5-8 kg)</text>
+
+  <!-- Bearing Block Callout Badge -->
+  <rect x="520" y="60" width="260" height="38" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="1.2"/>
+  <circle cx="535" cy="79" r="7" fill="#64748b"/>
+  <text x="535" y="83" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+  <text x="645" y="73" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">GREASED BEARING BLOCK</text>
+  <text x="645" y="87" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Lubricated with pine oil / facial sebum</text>
+  <line x1="520" y1="79" x2="480" y2="79" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 2. SPINDLE (VERTICAL DRILL) ================= -->
+  <!-- 20cm Spindle Shaft -->
+  <rect x="398" y="94" width="24" height="200" rx="4" fill="url(#spindleGrad)" stroke="#d97706" stroke-width="2"/>
+  <!-- Top Pointed Low-Friction Tip -->
+  <polygon points="398,95 410,75 422,95" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
+  <!-- Bottom Blunt 45° Friction Tip -->
+  <polygon points="398,294 410,305 422,294" fill="#78350f" stroke="#451a03" stroke-width="1.5"/>
+
+  <!-- Bi-Directional High-Speed Rotation Vectors -->
+  <g stroke="#38bdf8" stroke-width="2" fill="none">
+    <path d="M 370 140 A 30 15 0 1 1 450 140" stroke-dasharray="4,3"/>
+    <polygon points="368,143 365,133 375,137" fill="#38bdf8"/>
+    <polygon points="452,137 455,147 445,143" fill="#38bdf8"/>
+  </g>
+  <text x="360" y="125" fill="#38bdf8" font-size="10" font-family="monospace" text-anchor="end">400+ RPM</text>
+
+  <!-- Spindle Callout Badge -->
+  <rect x="140" y="140" width="230" height="38" rx="6" fill="#1c1917" stroke="#f59e0b" stroke-width="1.2"/>
+  <circle cx="155" cy="159" r="7" fill="#f59e0b"/>
+  <text x="155" y="163" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+  <text x="250" y="153" fill="#fef3c7" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">SPINDLE (2cm × 20cm)</text>
+  <text x="250" y="167" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Straight, dead dry hardwood</text>
+  <line x1="370" y1="159" x2="398" y2="159" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 3. BOW & TENSIONED CORD WRAP ================= -->
+  <!-- Flexible Curved Bow Stave (60-75cm) -->
+  <path d="M 120 280 Q 280 80 580 230" fill="none" stroke="#78350f" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 120 280 Q 280 80 580 230" fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Tightly Tensioned 550 Paracord (Single Loop Wrap) -->
+  <path d="M 130 275 L 398 200" stroke="#ef4444" stroke-width="3"/>
+  <!-- Wrap around spindle body -->
+  <ellipse cx="410" cy="200" rx="14" ry="7" fill="none" stroke="#ef4444" stroke-width="3.5"/>
+  <path d="M 422 200 L 570 225" stroke="#ef4444" stroke-width="3"/>
+
+  <!-- Bow Callout Badge -->
+  <rect x="520" y="150" width="260" height="38" rx="6" fill="#1c1917" stroke="#dc2626" stroke-width="1.2"/>
+  <circle cx="535" cy="169" r="7" fill="#dc2626"/>
+  <text x="535" y="173" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+  <text x="645" y="163" fill="#fecaca" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">BOW &amp; 550 PARACORD WRAP</text>
+  <text x="645" y="177" fill="#f87171" font-size="9" font-family="monospace" text-anchor="middle">Single wrap grips spindle without slipping</text>
+
+  <!-- Reciprocal Arm Sawing Arrow -->
+  <g stroke="#f59e0b" stroke-width="2" fill="none">
+    <path d="M 460 250 L 560 250" stroke-dasharray="4,4"/>
+    <polygon points="455,250 465,245 465,255" fill="#f59e0b"/>
+    <polygon points="565,250 555,245 555,255" fill="#f59e0b"/>
+    <text x="510" y="244" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">FULL BOW STROKES</text>
+  </g>
+
+  <!-- ================= 4. HEARTH BOARD & V-NOTCH ARCHITECTURE ================= -->
+  <!-- Softwood Hearth Board (1.5cm thick) -->
+  <rect x="260" y="300" width="300" height="35" rx="4" fill="url(#hearthGrad)" stroke="#d97706" stroke-width="2"/>
+
+  <!-- Char Burn Socket -->
+  <ellipse cx="410" cy="301" rx="14" ry="4" fill="#0f172a" stroke="#451a03" stroke-width="1.5"/>
+
+  <!-- 45-degree Pie-Slice V-Notch carved into side of socket -->
+  <polygon points="410,301 390,335 430,335" fill="#070a0f" stroke="#ea580c" stroke-width="1.5"/>
+
+  <!-- Hearth Board Callout Badge -->
+  <rect x="25" y="295" width="220" height="38" rx="6" fill="#1c1917" stroke="#d97706" stroke-width="1.2"/>
+  <circle cx="40" cy="314" r="7" fill="#d97706"/>
+  <text x="40" y="318" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">4</text>
+  <text x="130" y="308" fill="#fef3c7" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">SOFTWOOD HEARTH BOARD</text>
+  <text x="130" y="322" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Cedar, Basswood, or Willow</text>
+  <line x1="245" y1="314" x2="260" y2="314" stroke="#d97706" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- V-Notch Callout Badge -->
+  <rect x="520" y="295" width="260" height="38" rx="6" fill="#1c1917" stroke="#ea580c" stroke-width="1.2"/>
+  <circle cx="535" cy="314" r="7" fill="#ea580c"/>
+  <text x="535" y="318" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">5</text>
+  <text x="645" y="308" fill="#fed7aa" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">45° V-NOTCH CHIMNEY</text>
+  <text x="645" y="322" fill="#fdba74" font-size="9" font-family="monospace" text-anchor="middle">Cut to center of burn ring to channel coal</text>
+
+  <!-- ================= 5. EMBER CATCH LEAF & 400°C COAL ================= -->
+  <!-- Dry Leaf or Bark Slice beneath notch -->
+  <ellipse cx="410" cy="342" rx="35" ry="8" fill="#854d0e" stroke="#ca8a04" stroke-width="1.5"/>
+
+  <!-- Accumulating Black Wood Dust & Glowing Center Coal -->
+  <polygon points="400,342 410,332 420,342" fill="#18181b"/>
+  <ellipse cx="410" cy="340" rx="9" ry="5" fill="url(#emberGlowFirecraft)"/>
+
+  <!-- Thin Smoke Wisps Rising from Ember -->
+  <path d="M 408 335 Q 402 320 408 305 Q 414 290 408 275" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.8"/>
+  <path d="M 412 335 Q 418 320 412 305 Q 406 290 412 275" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <!-- Coal Callout Badge -->
+  <rect x="280" y="375" width="260" height="38" rx="6" fill="#1c1917" stroke="#dc2626" stroke-width="1.2"/>
+  <circle cx="295" cy="394" r="7" fill="#dc2626"/>
+  <text x="295" y="398" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">6</text>
+  <text x="410" y="388" fill="#fecaca" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">400°C SMOLDERING COAL</text>
+  <text x="410" y="402" fill="#f87171" font-size="9" font-family="monospace" text-anchor="middle">Transfer gently into dry tinder nest</text>
+
+  <!-- Foot Pinning Instruction -->
+  <rect x="25" y="375" width="220" height="26" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="135" y="392" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="middle">FOOT ANCHORS HEARTH FIRMLY</text>
 </svg>
+```
 
 #### 3. Execution Protocol
 1. **Burn-in:** Carve a small dimple 1 cm from the edge of the hearth board. Loop spindle into bow cord (single twist). Place left foot firmly on the hearth board. Lock left wrist against left shin to hold bearing block vertical. Drill with slow, steady strokes until spindle tip burns a black depression.

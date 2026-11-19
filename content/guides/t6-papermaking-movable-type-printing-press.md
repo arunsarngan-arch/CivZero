@@ -42,91 +42,136 @@ The ultimate physical medium of human memory is **acid-free rag paper** impresse
 ---
 
 ```svg
-<svg viewBox="0 0 700 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="700" height="380" fill="#090d16" rx="8"/>
+<svg viewBox="0 0 820 460" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="pressGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
 
-  <!-- Module 1: The Paper Vat & Deckle -->
-  <g transform="translate(30, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#38bdf8" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">1. RAG PAPERMAKING</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Cellulose Fibril Molds</text>
+  <!-- Obsidian Background & Tactical Grid -->
+  <rect x="0" y="0" width="820" height="460" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="460" fill="url(#pressGrid)"/>
 
-    <!-- Vat & mold graphic -->
-    <rect x="50" y="55" width="100" height="40" rx="3" fill="#0284c7" opacity="0.5" stroke="#38bdf8" stroke-width="1.5"/>
-    <line x1="40" y1="95" x2="160" y2="95" stroke="#a16207" stroke-width="4"/>
-    <rect x="70" y="65" width="60" height="20" fill="none" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Blueprint Header Title -->
+  <rect x="25" y="15" width="770" height="32" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="36" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace" letter-spacing="1.5">GUTENBERG PRINTING ENGINE: ARCHIVAL RAG PAPER, IRON GALL INK &amp; MOVABLE TYPE</text>
+  <text x="770" y="36" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">KNOWLEDGE MULTIPLICATION MATRIX</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">PULP PREPARATION:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">Cotton / Linen Rags</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Boil in wood-ash lye (pH 11)</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">Beat 8 hours into fine pulp</text>
+  <!-- MODULE 1: ARCHIVAL RAG PAPERMAKING (LEFT) -->
+  <g id="papermaking" transform="translate(25, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">DECKLE SCREEN PULL:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Brass Wire Screen</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Couch sheet onto wet wool felt</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">Screw press expels 80% water</text>
+    <!-- Slurry Vat & Deckle Wire Mold -->
+    <rect x="35" y="55" width="175" height="55" rx="4" fill="#082f49" stroke="#0284c7" stroke-width="1.8"/>
+    <rect x="50" y="65" width="145" height="25" fill="#f8fafc" opacity="0.3"/>
+    <line x1="45" y1="95" x2="200" y2="95" stroke="#a16207" stroke-width="4"/>
+    <text x="122" y="80" fill="#bae6fd" font-size="8" font-family="monospace" text-anchor="middle">Cellulose Fibril Slurry</text>
+    <text x="122" y="125" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">Brass Screen Deckle Mold</text>
 
-    <text x="100" y="268" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="middle">Acid-Free 1000-Year Paper</text>
+    <!-- Pulp Preparation Specs Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="28" y="163" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">PULP DIGESTION (PH 11):</text>
+    <text x="28" y="178" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace">Cotton &amp; Linen Rags / Hemp</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">Boil in wood-ash potassium lye</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">Beat 8 hours into hydrated fibrils</text>
+
+    <!-- Sheet Formation & Press Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">COUCHING &amp; PRESSING:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">Couch wet sheet onto wool felt</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Screw press expels 80% free water</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Acid-Free 1000-Year Lifespan</text>
+
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#0284c7"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+    <text x="83" y="24" fill="#bae6fd" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">RAG PAPERMAKING</text>
   </g>
 
-  <!-- Module 2: Iron Gall Ink Formula -->
-  <g transform="translate(250, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#f59e0b" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">2. IRON GALL INK</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Indelible Chemical Bond</text>
+  <!-- MODULE 2: INDELIBLE IRON GALL INK (CENTER) -->
+  <g id="ink" transform="translate(285, 60)">
+    <rect x="0" y="0" width="250" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Inkwell & quill graphic -->
-    <rect x="80" y="60" width="40" height="35" rx="3" fill="#090d16" stroke="#f59e0b" stroke-width="1.5"/>
-    <line x1="90" y1="90" x2="135" y2="45" stroke="#f8fafc" stroke-width="2"/>
-    <polygon points="88,92 93,87 90,85" fill="#f59e0b"/>
+    <!-- Ceramic Inkwell & Gall Extract -->
+    <rect x="75" y="60" width="60" height="50" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1.8"/>
+    <ellipse cx="105" cy="70" rx="20" ry="6" fill="#070a0f"/>
+    <!-- Dipped Quill / Inking Dauber -->
+    <line x1="105" y1="70" x2="165" y2="40" stroke="#f8fafc" stroke-width="3"/>
+    <circle cx="105" cy="70" r="5" fill="#000000"/>
+    <text x="105" y="125" fill="#fde68a" font-size="8" font-family="monospace" text-anchor="middle">Iron Gall Ink (Ferric Tannate)</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">RAW INGREDIENTS:</text>
-    <text x="25" y="149" fill="#fde68a" font-size="11" font-weight="bold" font-family="monospace">Oak Galls + Vitriol</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Gallotannic acid (crushed galls)</text>
-    <text x="25" y="174" fill="#94a3b8" font-size="8" font-family="monospace">+ Ferrous sulfate (FeSO4)</text>
+    <!-- Reagent Mixture Specs Pill -->
+    <rect x="18" y="145" width="214" height="75" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1"/>
+    <text x="28" y="163" fill="#f59e0b" font-size="8.5" font-weight="bold" font-family="monospace">CHEMICAL FORMULATION:</text>
+    <text x="28" y="178" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">Oak Galls + Green Vitriol (FeSO₄)</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">Crushed gallotannic acid extract</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">+ Gum Arabic binder &amp; viscosity regulator</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">OXIDATION MECHANISM:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">Ferric Pyrogallate</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Penetrates deep into fibers</text>
-    <text x="25" y="248" fill="#86efac" font-size="8" font-family="monospace">Turns jet-black &amp; waterproof</text>
+    <!-- Oxidation Mechanism Pill -->
+    <rect x="18" y="230" width="214" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">OXIDATION REACTION:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">Ferrous tannate penetrates fiber matrix</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Atmospheric O₂ converts to Ferric salt</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Permanently waterproof &amp; indelible</text>
 
-    <text x="100" y="268" fill="#f59e0b" font-size="9" font-family="monospace" text-anchor="middle">Non-Fading Century Ink</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="145" height="20" rx="4" fill="#0f172a" stroke="#d97706" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#d97706"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+    <text x="83" y="24" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">IRON GALL INK</text>
   </g>
 
-  <!-- Module 3: Movable Type & The Press -->
-  <g transform="translate(470, 25)">
-    <rect x="0" y="0" width="200" height="275" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-    <text x="100" y="24" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">3. MOVABLE TYPE PRESS</text>
-    <text x="100" y="38" fill="#94a3b8" font-size="8.5" font-family="monospace" text-anchor="middle">Gutenberg Screw Mechanism</text>
+  <!-- MODULE 3: MOVABLE TYPE & SCREW PRESS (RIGHT) -->
+  <g id="press" transform="translate(550, 60)">
+    <rect x="0" y="0" width="245" height="325" rx="8" fill="#0d1526" stroke="#475569" stroke-width="1.5"/>
 
-    <!-- Printing press screw graphic -->
-    <rect x="70" y="45" width="60" height="15" fill="#a16207"/>
-    <line x1="100" y1="60" x2="100" y2="95" stroke="#cbd5e1" stroke-width="6"/>
-    <rect x="75" y="95" width="50" height="15" fill="#475569" stroke="#94a3b8"/>
+    <!-- Gutenberg Screw Press & Metal Type Bed -->
+    <rect x="65" y="45" width="115" height="15" fill="#78350f" stroke="#a16207"/>
+    <line x1="122" y1="60" x2="122" y2="95" stroke="#cbd5e1" stroke-width="7"/>
+    <!-- Platen block -->
+    <rect x="80" y="95" width="85" height="15" fill="#334155" stroke="#94a3b8"/>
+    <!-- Type chase bed -->
+    <rect x="70" y="118" width="105" height="12" fill="#070a0f" stroke="#f59e0b"/>
+    <text x="122" y="127" fill="#fde68a" font-size="7" font-family="monospace" text-anchor="middle">Cast Type Bed [ Pb-Sb-Sn ]</text>
 
-    <rect x="15" y="118" width="170" height="66" rx="4" fill="#1e293b"/>
-    <text x="25" y="134" fill="#f8fafc" font-size="9" font-family="monospace">TYPE METAL ALLOY:</text>
-    <text x="25" y="149" fill="#7dd3fc" font-size="11" font-weight="bold" font-family="monospace">70% Lead + 15% Sb + 15% Sn</text>
-    <text x="25" y="163" fill="#cbd5e1" font-size="8.5" font-family="monospace">Antimony expands on cooling!</text>
-    <text x="25" y="174" fill="#86efac" font-size="8" font-family="monospace">Casts razor-sharp micro serifs</text>
+    <!-- Type Alloy Specs Pill -->
+    <rect x="18" y="145" width="210" height="75" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="28" y="163" fill="#10b981" font-size="8.5" font-weight="bold" font-family="monospace">GUTENBERG TYPE ALLOY:</text>
+    <text x="28" y="178" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace">70% Lead + 15% Antimony + 15% Tin</text>
+    <text x="28" y="192" fill="#cbd5e1" font-size="8" font-family="monospace">Antimony expands on solidification!</text>
+    <text x="28" y="206" fill="#94a3b8" font-size="8" font-family="monospace">Fills microscopic brass punch serifs</text>
 
-    <rect x="15" y="190" width="170" height="64" rx="4" fill="#1e293b"/>
-    <text x="25" y="206" fill="#86efac" font-size="9.5" font-weight="bold" font-family="monospace">WOODEN SCREW PLATEN:</text>
-    <text x="25" y="222" fill="#34d399" font-size="11" font-weight="bold" font-family="monospace">2000 kg Platen Force</text>
-    <text x="25" y="237" fill="#cbd5e1" font-size="8.5" font-family="monospace">Oil ink evenly transferred</text>
-    <text x="25" y="248" fill="#fef08a" font-size="8" font-family="monospace">250 printed pages per hour</text>
+    <!-- Press Kinetics Pill -->
+    <rect x="18" y="230" width="210" height="80" rx="4" fill="#0f172a" stroke="#334155"/>
+    <text x="28" y="249" fill="#fde68a" font-size="8.5" font-weight="bold" font-family="monospace">WOODEN SCREW PLATEN:</text>
+    <text x="28" y="265" fill="#cbd5e1" font-size="8" font-family="monospace">2000 kg Uniform Platen Force</text>
+    <text x="28" y="279" fill="#cbd5e1" font-size="8" font-family="monospace">Linseed oil ink transfers cleanly</text>
+    <text x="28" y="295" fill="#38bdf8" font-size="8" font-family="monospace">Speed: 250 printed impressions / hour</text>
 
-    <text x="100" y="268" fill="#10b981" font-size="9" font-family="monospace" text-anchor="middle">Democratized Knowledge Engine</text>
+    <!-- Callout Pill Badges -->
+    <rect x="12" y="10" width="160" height="20" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+    <circle cx="22" cy="20" r="7" fill="#10b981"/>
+    <text x="22" y="23" fill="#ffffff" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+    <text x="91" y="24" fill="#86efac" font-size="8.5" font-weight="bold" font-family="monospace" text-anchor="middle">MOVABLE TYPE PRESS</text>
   </g>
 
-  <!-- Bottom Archival Mandate -->
-  <rect x="25" y="318" width="650" height="46" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-  <text x="350" y="336" fill="#86efac" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle">THE WOOD-PULP WARNING: Never make paper with raw, unwashed acidic ground wood pulp.</text>
-  <text x="350" y="352" fill="#cbd5e1" font-size="10" font-family="monospace" text-anchor="middle">Wood lignins oxidize into acid within 40 years, turning brown and crumbling. Use rag linen or pure bast fiber.</text>
+  <!-- ARCHIVAL RAG PAPER MANDATE FOOTER -->
+  <rect x="25" y="402" width="770" height="42" rx="5" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="45" cy="423" r="10" fill="#10b981"/>
+  <text x="45" y="427" fill="#0f172a" font-size="12" font-weight="bold" font-family="monospace" text-anchor="middle">¶</text>
+  <text x="65" y="420" fill="#86efac" font-size="10.5" font-weight="bold" font-family="monospace">THE ARCHIVAL LAW: ACIDIC UNWASHED WOOD-PULP PAPER DESTROYS CIVILIZATION</text>
+  <text x="65" y="434" fill="#cbd5e1" font-size="8.5" font-family="monospace">Modern wood-pulp paper oxidizes into acid, crumbling to yellow dust within 50 years. Pure cellulose rag linen and indelible iron gall ink preserve knowledge across millennia.</text>
 </svg>
 ```
 

@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import {
+  Compass,
   Droplet,
   Radio,
   Apple,
   HelpCircle,
   Wrench,
-  Compass,
+  MapPin,
   Sun,
   FlaskConical,
   Zap,
   HeartPulse,
   Wifi,
 } from 'lucide-react';
+import { TacticalCompassTool } from '../components/tools/TacticalCompassTool';
 import { WaterDosingCalculator } from '../components/tools/WaterDosingCalculator';
 import { MorseCodeFlasher } from '../components/tools/MorseCodeFlasher';
 import { CalorieRationPlanner } from '../components/tools/CalorieRationPlanner';
@@ -28,6 +30,7 @@ interface ToolsScreenProps {
 }
 
 type ActiveTool =
+  | 'compass'
   | 'water'
   | 'morse'
   | 'calories'
@@ -40,14 +43,15 @@ type ActiveTool =
   | 'antenna';
 
 export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
-  const [activeTool, setActiveTool] = useState<ActiveTool>('water');
+  const [activeTool, setActiveTool] = useState<ActiveTool>('compass');
 
   const tools = [
+    { id: 'compass' as ActiveTool, label: 'Field Compass', icon: Compass, desc: 'Live magnetometer azimuth & mils' },
     { id: 'water' as ActiveTool, label: 'Water Dosing', icon: Droplet, desc: 'Chemical titration & disinfection' },
     { id: 'morse' as ActiveTool, label: 'Morse Beacon', icon: Radio, desc: 'Optical strobe + 800Hz beeper' },
     { id: 'calories' as ActiveTool, label: 'Calorie Planner', icon: Apple, desc: 'Burn rate & stockpile runway' },
     { id: 'edibility' as ActiveTool, label: 'Edibility Test', icon: HelpCircle, desc: '8-stage plant toxicity triage' },
-    { id: 'settlement' as ActiveTool, label: 'Settlement Wizard', icon: Compass, desc: 'Biome & terrain colonization' },
+    { id: 'settlement' as ActiveTool, label: 'Settlement Wizard', icon: MapPin, desc: 'Biome & terrain colonization' },
     { id: 'celestial' as ActiveTool, label: 'Celestial Nav', icon: Sun, desc: 'Gnomon & Polaris latitude' },
     { id: 'chemistry' as ActiveTool, label: 'Chem Titration', icon: FlaskConical, desc: 'Black powder, acid & mortar' },
     { id: 'kinetic' as ActiveTool, label: 'Kinetic Power', icon: Zap, desc: 'Hydro, wind & solar/battery' },
@@ -72,17 +76,17 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
           <div>
             <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities</h2>
             <p className="text-xs text-zinc-400 font-mono">
-              10 Offline computational calculators, optical beacons &amp; diagnostic wizards
+              11 Offline computational calculators, optical beacons &amp; diagnostic wizards
             </p>
           </div>
         </div>
         <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-          Real-time mathematical and diagnostic utilities designed to run with zero cellular connectivity, helping you make accurate life-or-death decisions in the field.
+          Real-time mathematical, sensor, and diagnostic utilities designed to run with zero cellular connectivity, helping you make accurate life-or-death decisions in the field.
         </p>
       </div>
 
       {/* Tool Selector Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {tools.map(tool => {
           const Icon = tool.icon;
           const isActive = activeTool === tool.id;
@@ -111,6 +115,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
 
       {/* Active Tool View */}
       <div className="pt-2">
+        {activeTool === 'compass' && <TacticalCompassTool nightVision={nightVision} />}
         {activeTool === 'water' && <WaterDosingCalculator nightVision={nightVision} />}
         {activeTool === 'morse' && <MorseCodeFlasher nightVision={nightVision} />}
         {activeTool === 'calories' && <CalorieRationPlanner nightVision={nightVision} />}

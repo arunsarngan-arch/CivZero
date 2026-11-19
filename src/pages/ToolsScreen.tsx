@@ -1,16 +1,43 @@
 import React, { useState } from 'react';
-import { Droplet, Radio, Apple, HelpCircle, Wrench, Compass } from 'lucide-react';
+import {
+  Droplet,
+  Radio,
+  Apple,
+  HelpCircle,
+  Wrench,
+  Compass,
+  Sun,
+  FlaskConical,
+  Zap,
+  HeartPulse,
+  Wifi,
+} from 'lucide-react';
 import { WaterDosingCalculator } from '../components/tools/WaterDosingCalculator';
 import { MorseCodeFlasher } from '../components/tools/MorseCodeFlasher';
 import { CalorieRationPlanner } from '../components/tools/CalorieRationPlanner';
 import { UniversalEdibilityWizard } from '../components/tools/UniversalEdibilityWizard';
 import { BiomeSettlementWizard } from '../components/tools/BiomeSettlementWizard';
+import { CelestialLatitudeTool } from '../components/tools/CelestialLatitudeTool';
+import { ChemistryTitrationCalculator } from '../components/tools/ChemistryTitrationCalculator';
+import { KineticPowerCalculator } from '../components/tools/KineticPowerCalculator';
+import { TraumaTriageCalculator } from '../components/tools/TraumaTriageCalculator';
+import { AntennaCalculator } from '../components/tools/AntennaCalculator';
 
 interface ToolsScreenProps {
   nightVision: boolean;
 }
 
-type ActiveTool = 'water' | 'morse' | 'calories' | 'edibility' | 'settlement';
+type ActiveTool =
+  | 'water'
+  | 'morse'
+  | 'calories'
+  | 'edibility'
+  | 'settlement'
+  | 'celestial'
+  | 'chemistry'
+  | 'kinetic'
+  | 'trauma'
+  | 'antenna';
 
 export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('water');
@@ -21,6 +48,11 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
     { id: 'calories' as ActiveTool, label: 'Calorie Planner', icon: Apple, desc: 'Burn rate & stockpile runway' },
     { id: 'edibility' as ActiveTool, label: 'Edibility Test', icon: HelpCircle, desc: '8-stage plant toxicity triage' },
     { id: 'settlement' as ActiveTool, label: 'Settlement Wizard', icon: Compass, desc: 'Biome & terrain colonization' },
+    { id: 'celestial' as ActiveTool, label: 'Celestial Nav', icon: Sun, desc: 'Gnomon & Polaris latitude' },
+    { id: 'chemistry' as ActiveTool, label: 'Chem Titration', icon: FlaskConical, desc: 'Black powder, acid & mortar' },
+    { id: 'kinetic' as ActiveTool, label: 'Kinetic Power', icon: Zap, desc: 'Hydro, wind & solar/battery' },
+    { id: 'trauma' as ActiveTool, label: 'Trauma Triage', icon: HeartPulse, desc: 'Parkland burns & Shock Index' },
+    { id: 'antenna' as ActiveTool, label: 'RF & Antenna', icon: Wifi, desc: 'Wire dipole & radio horizon' },
   ];
 
   return (
@@ -40,7 +72,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
           <div>
             <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities</h2>
             <p className="text-xs text-zinc-400 font-mono">
-              Offline computational calculators, optical beacons &amp; diagnostic wizards
+              10 Offline computational calculators, optical beacons &amp; diagnostic wizards
             </p>
           </div>
         </div>
@@ -69,7 +101,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
             >
               <div className="flex items-center gap-2 mb-1">
                 <Icon className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-zinc-500'}`} />
-                <span className="text-xs font-bold font-mono">{tool.label}</span>
+                <span className="text-xs font-bold font-mono truncate">{tool.label}</span>
               </div>
               <p className="text-[10px] text-zinc-500 font-mono truncate">{tool.desc}</p>
             </button>
@@ -84,6 +116,11 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
         {activeTool === 'calories' && <CalorieRationPlanner nightVision={nightVision} />}
         {activeTool === 'edibility' && <UniversalEdibilityWizard nightVision={nightVision} />}
         {activeTool === 'settlement' && <BiomeSettlementWizard nightVision={nightVision} />}
+        {activeTool === 'celestial' && <CelestialLatitudeTool nightVision={nightVision} />}
+        {activeTool === 'chemistry' && <ChemistryTitrationCalculator nightVision={nightVision} />}
+        {activeTool === 'kinetic' && <KineticPowerCalculator nightVision={nightVision} />}
+        {activeTool === 'trauma' && <TraumaTriageCalculator nightVision={nightVision} />}
+        {activeTool === 'antenna' && <AntennaCalculator nightVision={nightVision} />}
       </div>
     </div>
   );

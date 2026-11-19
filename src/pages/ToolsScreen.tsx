@@ -12,6 +12,7 @@ import {
   Zap,
   HeartPulse,
   Wifi,
+  Gamepad2,
 } from 'lucide-react';
 import { TacticalCompassTool } from '../components/tools/TacticalCompassTool';
 import { WaterDosingCalculator } from '../components/tools/WaterDosingCalculator';
@@ -24,6 +25,7 @@ import { ChemistryTitrationCalculator } from '../components/tools/ChemistryTitra
 import { KineticPowerCalculator } from '../components/tools/KineticPowerCalculator';
 import { TraumaTriageCalculator } from '../components/tools/TraumaTriageCalculator';
 import { AntennaCalculator } from '../components/tools/AntennaCalculator';
+import { RetroArcadeTool } from '../components/tools/RetroArcadeTool';
 
 interface ToolsScreenProps {
   nightVision: boolean;
@@ -40,7 +42,8 @@ type ActiveTool =
   | 'chemistry'
   | 'kinetic'
   | 'trauma'
-  | 'antenna';
+  | 'antenna'
+  | 'arcade';
 
 export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('compass');
@@ -57,6 +60,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
     { id: 'kinetic' as ActiveTool, label: 'Kinetic Power', icon: Zap, desc: 'Hydro, wind & solar/battery' },
     { id: 'trauma' as ActiveTool, label: 'Trauma Triage', icon: HeartPulse, desc: 'Parkland burns & Shock Index' },
     { id: 'antenna' as ActiveTool, label: 'RF & Antenna', icon: Wifi, desc: 'Wire dipole & radio horizon' },
+    { id: 'arcade' as ActiveTool, label: 'Field Arcade', icon: Gamepad2, desc: '4 Retro Nokia games & high scores' },
   ];
 
   return (
@@ -76,7 +80,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
           <div>
             <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities</h2>
             <p className="text-xs text-zinc-400 font-mono">
-              11 Offline computational calculators, optical beacons &amp; diagnostic wizards
+              12 Offline computational calculators, optical beacons &amp; retro field simulators
             </p>
           </div>
         </div>
@@ -126,6 +130,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
         {activeTool === 'kinetic' && <KineticPowerCalculator nightVision={nightVision} />}
         {activeTool === 'trauma' && <TraumaTriageCalculator nightVision={nightVision} />}
         {activeTool === 'antenna' && <AntennaCalculator nightVision={nightVision} />}
+        {activeTool === 'arcade' && <RetroArcadeTool nightVision={nightVision} />}
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import {
   Headphones,
   X,
   Gauge,
-  User,
 } from 'lucide-react';
 
 interface Props {
@@ -443,22 +442,24 @@ export const AudioGuidePlayer: React.FC<Props> = ({
               <span>{speechRate}x</span>
             </button>
 
-            {/* Voice Gender Toggle (Female / Male) */}
+            {/* Voice Gender Toggle (Symbol Only: ♀ / ♂) */}
             <button
               onClick={handleToggleVoiceGender}
               aria-label={`Current voice: ${voiceGender}. Click to switch voice gender.`}
-              className={`px-2.5 py-1 text-xs font-mono rounded-lg border transition-all flex items-center gap-1.5 ${
+              title={`Voice: ${voiceGender === 'female' ? 'Female (♀)' : 'Male (♂)'}`}
+              className={`w-7 h-7 rounded-lg border transition-all flex items-center justify-center ${
                 voiceGender === 'female'
                   ? nightVision
                     ? 'bg-rose-950/60 border-rose-800 text-rose-300 font-bold'
-                    : 'bg-rose-950/40 border-rose-500/50 text-rose-300 font-bold hover:bg-rose-900/40'
+                    : 'bg-rose-950/40 border-rose-500/50 text-rose-300 font-bold hover:bg-rose-900/40 shadow-sm shadow-rose-950/30'
                   : nightVision
                   ? 'bg-sky-950/60 border-sky-800 text-sky-300 font-bold'
-                  : 'bg-sky-950/40 border-sky-500/50 text-sky-300 font-bold hover:bg-sky-900/40'
+                  : 'bg-sky-950/40 border-sky-500/50 text-sky-300 font-bold hover:bg-sky-900/40 shadow-sm shadow-sky-950/30'
               }`}
             >
-              <User className="w-3.5 h-3.5" />
-              <span>{voiceGender === 'female' ? '♀ Female' : '♂ Male'}</span>
+              <span className="leading-none text-sm select-none">
+                {voiceGender === 'female' ? '♀' : '♂'}
+              </span>
             </button>
           </div>
 

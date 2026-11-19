@@ -104,4 +104,4 @@ export interface StorageDestination {
   isMounted: boolean;
 }
 
-export type ViewTab = 'guides' | 'search' | 'tools' | 'techtree' | 'packs' | 'share' | 'bookmarks';
+export type ViewTab = 'guides' | 'holybooks' | 'search' | 'tools' | 'techtree' | 'packs' | 'share' | 'bookmarks';

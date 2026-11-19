@@ -17,6 +17,8 @@ import {
   Zap,
   Target,
   Shield,
+  Activity,
+  Boxes,
 } from 'lucide-react';
 
 interface RetroArcadeToolProps {
@@ -366,7 +368,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
         text: '#f8fafc',
       };
     }
-    // Authentic Nokia 3310 LCD Green Monochrome
+    // Authentic Dot-Matrix LCD Green Monochrome
     return {
       bg: '#9bbc0f',
       grid: '#8bac0f',
@@ -1214,17 +1216,18 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
       {/* Game Selector Tabs */}
       <div className="grid grid-cols-4 gap-1.5 p-1.5 rounded-xl bg-zinc-950/80 border border-zinc-800">
         {[
-          { id: 'viper' as GameType, name: 'Viper 97', glyph: '🐍' },
-          { id: 'civblocks' as GameType, name: 'CivBlocks', glyph: '🧱' },
-          { id: 'brickbreaker' as GameType, name: 'Breaker', glyph: '🏓' },
-          { id: 'starimpact' as GameType, name: 'Star Impact', glyph: '🚀' },
+          { id: 'viper' as GameType, name: 'Viper 97', icon: Activity, color: 'text-emerald-400' },
+          { id: 'civblocks' as GameType, name: 'CivBlocks', icon: Boxes, color: 'text-sky-400' },
+          { id: 'brickbreaker' as GameType, name: 'Breaker', icon: Shield, color: 'text-amber-400' },
+          { id: 'starimpact' as GameType, name: 'Star Impact', icon: Zap, color: 'text-violet-400' },
         ].map((tab) => {
+          const IconComp = tab.icon;
           const isCurrent = selectedGame === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => switchGame(tab.id)}
-              className={`py-2 px-1 rounded-lg text-center transition-all flex flex-col items-center gap-0.5 ${
+              className={`py-2 px-1 rounded-lg text-center transition-all flex flex-col items-center gap-1 ${
                 isCurrent
                   ? nightVision
                     ? 'bg-red-950 border border-red-600 text-red-200'
@@ -1232,7 +1235,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
                   : 'bg-zinc-900/60 border border-transparent text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              <span className="text-base">{tab.glyph}</span>
+              <IconComp className={`w-4 h-4 ${isCurrent ? 'text-amber-300' : tab.color}`} />
               <span className="text-[10px] font-bold font-mono tracking-tight leading-tight">{tab.name}</span>
             </button>
           );
@@ -1258,7 +1261,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
                 theme === 'lcd' ? 'text-[#0f380f]' : 'text-zinc-400'
               }`}
             >
-              NOKIA 3310 FIELD COMM // {selectedGame.toUpperCase()}
+              RETRO FIELD COMM // {selectedGame.toUpperCase()}
             </span>
           </div>
 
@@ -1315,7 +1318,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
           <div className="flex items-center gap-1">
             <button
               onClick={() => setTheme('lcd')}
-              title="Classic Nokia 3310 Dot-Matrix Green LCD"
+              title="Classic Dot-Matrix Green LCD"
               className={`px-2 py-1 rounded text-[10px] font-mono font-bold border ${
                 theme === 'lcd'
                   ? 'bg-[#9bbc0f] text-[#0f380f] border-[#8bac0f]'

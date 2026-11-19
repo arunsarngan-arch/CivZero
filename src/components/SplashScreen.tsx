@@ -66,7 +66,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, nightVis
         <div className="relative group">
           <div className="absolute -inset-3 rounded-3xl bg-amber-500/20 blur-xl opacity-75 animate-pulse" />
           <img
-            src="/logo.svg"
+            src="/logo.webp"
             alt="CivZero Emblem"
             className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl shadow-2xl border border-amber-500/30 object-contain transform transition-transform duration-700 ease-out scale-100"
           />

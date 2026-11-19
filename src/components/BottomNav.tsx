@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Search, Wrench, GitBranch, HardDrive, Share2, Bookmark } from 'lucide-react';
+import { BookOpen, Search, Wrench, GitBranch, HardDrive, Share2, Bookmark, Scroll } from 'lucide-react';
 import type { ViewTab } from '../types';
 
 interface BottomNavProps {
@@ -17,8 +17,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({
 }) => {
   const tabs = [
     { id: 'guides' as ViewTab, label: 'Guides', icon: BookOpen },
-    { id: 'search' as ViewTab, label: 'Search', icon: Search },
+    { id: 'holybooks' as ViewTab, label: 'Holy Books', icon: Scroll },
     { id: 'tools' as ViewTab, label: 'Tools', icon: Wrench },
+    { id: 'search' as ViewTab, label: 'Search', icon: Search },
     { id: 'techtree' as ViewTab, label: 'Tech Tree', icon: GitBranch },
     { id: 'share' as ViewTab, label: 'P2P Beam', icon: Share2 },
     { id: 'packs' as ViewTab, label: 'Storage', icon: HardDrive },

@@ -4,6 +4,7 @@ import { DatabaseService } from './services/databaseService';
 import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { GuidesExplorer } from './pages/GuidesExplorer';
+import { HolyBooksScreen } from './pages/HolyBooksScreen';
 import { SearchScreen } from './pages/SearchScreen';
 import { ToolsScreen } from './pages/ToolsScreen';
 import { TechTreeVisualizer } from './components/techtree/TechTreeVisualizer';
@@ -112,6 +113,14 @@ export const App: React.FC = () => {
             nightVision={nightVision}
             fontSize={fontSize}
             onBookmarkChange={refreshStats}
+            onNavigateTab={(tab) => setCurrentTab(tab)}
+          />
+        )}
+
+        {currentTab === 'holybooks' && (
+          <HolyBooksScreen
+            nightVision={nightVision}
+            fontSize={fontSize}
           />
         )}
 

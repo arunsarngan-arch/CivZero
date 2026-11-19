@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* App Title & Offline Status */}
         <div className="flex items-center gap-2.5 min-w-0">
           <img
-            src="/logo.svg"
+            src="/logo.webp"
             alt="CivZero Logo"
             className="w-8 h-8 rounded-lg flex-shrink-0 object-contain shadow-sm border border-amber-500/30"
           />

@@ -13,6 +13,7 @@ import {
   HeartPulse,
   Wifi,
   Gamepad2,
+  Route,
 } from 'lucide-react';
 import { TacticalCompassTool } from '../components/tools/TacticalCompassTool';
 import { WaterDosingCalculator } from '../components/tools/WaterDosingCalculator';
@@ -26,6 +27,7 @@ import { KineticPowerCalculator } from '../components/tools/KineticPowerCalculat
 import { TraumaTriageCalculator } from '../components/tools/TraumaTriageCalculator';
 import { AntennaCalculator } from '../components/tools/AntennaCalculator';
 import { RetroArcadeTool } from '../components/tools/RetroArcadeTool';
+import { TrailBacktrackMapper } from '../components/tools/TrailBacktrackMapper';
 
 interface ToolsScreenProps {
   nightVision: boolean;
@@ -43,12 +45,14 @@ type ActiveTool =
   | 'kinetic'
   | 'trauma'
   | 'antenna'
-  | 'arcade';
+  | 'arcade'
+  | 'trail';
 
 export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
   const [activeTool, setActiveTool] = useState<ActiveTool>('compass');
 
   const tools = [
+    { id: 'trail' as ActiveTool, label: 'Trail & Backtrack', icon: Route, desc: 'GPS breadcrumb map & return HUD' },
     { id: 'compass' as ActiveTool, label: 'Field Compass', icon: Compass, desc: 'Live magnetometer azimuth & mils' },
     { id: 'water' as ActiveTool, label: 'Water Dosing', icon: Droplet, desc: 'Chemical titration & disinfection' },
     { id: 'morse' as ActiveTool, label: 'Morse Beacon', icon: Radio, desc: 'Optical strobe + 800Hz beeper' },
@@ -60,7 +64,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
     { id: 'kinetic' as ActiveTool, label: 'Kinetic Power', icon: Zap, desc: 'Hydro, wind & solar/battery' },
     { id: 'trauma' as ActiveTool, label: 'Trauma Triage', icon: HeartPulse, desc: 'Parkland burns & Shock Index' },
     { id: 'antenna' as ActiveTool, label: 'RF & Antenna', icon: Wifi, desc: 'Wire dipole & radio horizon' },
-    { id: 'arcade' as ActiveTool, label: 'Field Arcade', icon: Gamepad2, desc: '4 Retro Nokia games & high scores' },
+    { id: 'arcade' as ActiveTool, label: 'Field Arcade', icon: Gamepad2, desc: '4 Retro chiptune arcade games & scores' },
   ];
 
   return (
@@ -80,7 +84,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
           <div>
             <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities</h2>
             <p className="text-xs text-zinc-400 font-mono">
-              12 Offline computational calculators, optical beacons &amp; retro field simulators
+              13 Offline computational calculators, breadcrumb mappers &amp; retro field simulators
             </p>
           </div>
         </div>
@@ -119,6 +123,7 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
 
       {/* Active Tool View */}
       <div className="pt-2">
+        {activeTool === 'trail' && <TrailBacktrackMapper nightVision={nightVision} />}
         {activeTool === 'compass' && <TacticalCompassTool nightVision={nightVision} />}
         {activeTool === 'water' && <WaterDosingCalculator nightVision={nightVision} />}
         {activeTool === 'morse' && <MorseCodeFlasher nightVision={nightVision} />}

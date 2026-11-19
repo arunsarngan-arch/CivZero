@@ -42,56 +42,180 @@ A tall, narrow container (5-gallon bucket, 10-liter water container, or section 
 
 #### 2. Technical Blueprint
 
-<svg viewBox="0 0 700 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <rect width="700" height="400" fill="#0d1117" rx="12"/>
-  <rect x="20" y="20" width="660" height="360" fill="#161b22" rx="8" stroke="#30363d" stroke-width="1"/>
-  
-  <text x="350" y="45" font-family="monospace" font-size="14" font-weight="bold" fill="#06b6d4" text-anchor="middle">MULTI-STAGE GRAVITY BIOSAND FILTER COLUMN</text>
-  
-  <!-- Outer Column Vessel -->
-  <rect x="260" y="70" width="180" height="280" fill="#1e293b" stroke="#64748b" stroke-width="2" rx="4"/>
-  
-  <!-- Water Reservoir Head -->
-  <rect x="265" y="75" width="170" height="35" fill="#0284c7" opacity="0.4"/>
-  <text x="350" y="98" font-family="monospace" font-size="10" fill="#7dd3fc" text-anchor="middle">Water Reservoir (5-8 cm)</text>
-  
-  <!-- Schmutzdecke Bio-layer -->
-  <line x1="265" y1="110" x2="435" y2="110" stroke="#10b981" stroke-width="4"/>
-  <text x="450" y="113" font-family="monospace" font-size="10" fill="#34d399">Schmutzdecke (Bio-layer)</text>
-  <line x1="435" y1="110" x2="445" y2="110" stroke="#34d399" stroke-width="1"/>
-  
-  <!-- Layer 4: Fine Sand -->
-  <rect x="265" y="112" width="170" height="110" fill="#fef08a" opacity="0.3"/>
-  <text x="350" y="170" font-family="monospace" font-size="11" fill="#fef08a" font-weight="bold" text-anchor="middle">Fine Silica Sand (25 cm)</text>
-  <text x="350" y="185" font-family="monospace" font-size="9" fill="#e2e8f0" text-anchor="middle">Pore size: 10-30 microns</text>
-  
-  <!-- Layer 3: Activated Charcoal -->
-  <rect x="265" y="222" width="170" height="50" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-  <text x="350" y="248" font-family="monospace" font-size="11" fill="#94a3b8" font-weight="bold" text-anchor="middle">Crushed Biochar (10 cm)</text>
-  <text x="350" y="262" font-family="monospace" font-size="9" fill="#64748b" text-anchor="middle">Chemical & Toxin Adsorption</text>
-  
-  <!-- Layer 2: Coarse Sand -->
-  <rect x="265" y="272" width="170" height="30" fill="#d97706" opacity="0.4"/>
-  <text x="350" y="292" font-family="monospace" font-size="10" fill="#fbbf24" text-anchor="middle">Coarse Sand Barrier (5 cm)</text>
-  
-  <!-- Layer 1: Pea Gravel -->
-  <rect x="265" y="302" width="170" height="43" fill="#64748b" opacity="0.6"/>
-  <circle cx="280" cy="325" r="5" fill="#475569"/>
-  <circle cx="300" cy="335" r="6" fill="#475569"/>
-  <circle cx="330" cy="320" r="7" fill="#475569"/>
-  <circle cx="370" cy="330" r="6" fill="#475569"/>
-  <circle cx="410" cy="325" r="5" fill="#475569"/>
-  <text x="350" y="315" font-family="monospace" font-size="10" fill="#e2e8f0" text-anchor="middle">Washed Pea Gravel</text>
-  
-  <!-- Perforated Spigot & Tube -->
-  <path d="M 440 335 L 500 335 L 500 365" fill="none" stroke="#38bdf8" stroke-width="3"/>
-  <text x="510" y="355" font-family="monospace" font-size="11" fill="#38bdf8">Clean Water Effluent</text>
-  
-  <!-- Flow Indicators -->
-  <path d="M 230 110 L 230 330" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
-  <polygon points="230,335 226,325 234,325" fill="#38bdf8"/>
-  <text x="180" y="225" font-family="monospace" font-size="10" fill="#38bdf8" text-anchor="middle">Slow Gravity Flow (0.5 L/hr)</text>
+```svg
+<svg viewBox="0 0 820 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Blueprint Coordinate Grid -->
+    <pattern id="filterGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.4"/>
+    </pattern>
+
+    <!-- Biofilm Active Layer Glow -->
+    <linearGradient id="biofilmGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Fine Sand Texture Gradient -->
+    <linearGradient id="fineSandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.25"/>
+    </linearGradient>
+
+    <!-- Activated Biochar Gradient -->
+    <linearGradient id="biocharGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Purified Effluent Water Gradient -->
+    <linearGradient id="effluentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Canvas & Grid -->
+  <rect x="0" y="0" width="820" height="480" fill="#070a0f"/>
+  <rect x="0" y="0" width="820" height="480" fill="url(#filterGrid)"/>
+  <rect x="10" y="10" width="800" height="460" rx="10" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ================= 1. VESSEL CYLINDER COLUMN ================= -->
+  <!-- Main Filter Column Body (5-Gallon Bucket / PVC Pipe) -->
+  <rect x="310" y="60" width="200" height="340" rx="6" fill="#0b1120" stroke="#475569" stroke-width="2.5"/>
+
+  <!-- ================= 2. DIFFUSER PLATE & RAW WATER HEAD ================= -->
+  <!-- Perforated Diffuser Plate (Prevents jet erosion of sand bed) -->
+  <rect x="316" y="80" width="188" height="6" rx="2" fill="#334155" stroke="#64748b" stroke-width="1"/>
+  <!-- Perforation holes -->
+  <circle cx="340" cy="83" r="1.5" fill="#070a0f"/>
+  <circle cx="370" cy="83" r="1.5" fill="#070a0f"/>
+  <circle cx="410" cy="83" r="1.5" fill="#070a0f"/>
+  <circle cx="450" cy="83" r="1.5" fill="#070a0f"/>
+  <circle cx="480" cy="83" r="1.5" fill="#070a0f"/>
+
+  <!-- Water Drops Sprinkling through Diffuser -->
+  <circle cx="340" cy="94" r="2" fill="#38bdf8"/>
+  <circle cx="370" cy="98" r="2" fill="#38bdf8"/>
+  <circle cx="410" cy="92" r="2" fill="#38bdf8"/>
+  <circle cx="450" cy="96" r="2" fill="#38bdf8"/>
+  <circle cx="480" cy="93" r="2" fill="#38bdf8"/>
+
+  <!-- Standing Water Head (5-8cm) maintaining gravity head pressure -->
+  <rect x="314" y="102" width="192" height="30" fill="#0284c7" opacity="0.4"/>
+  <text x="410" y="122" fill="#7dd3fc" font-size="10" font-family="monospace" text-anchor="middle">5-8 cm Water Head (Pressure)</text>
+
+  <!-- Diffuser Callout Badge -->
+  <rect x="25" y="60" width="260" height="38" rx="6" fill="#0c1929" stroke="#38bdf8" stroke-width="1.2"/>
+  <circle cx="40" cy="79" r="7" fill="#0284c7"/>
+  <text x="40" y="83" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">1</text>
+  <text x="150" y="73" fill="#e0f2fe" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">PERFORATED DIFFUSER</text>
+  <text x="150" y="87" fill="#7dd3fc" font-size="9" font-family="monospace" text-anchor="middle">Prevents sand bed turbulence</text>
+
+  <!-- ================= 3. SCHMUTZDECKE BIOLAYER ================= -->
+  <!-- Biologically active predation layer (1-2 cm) -->
+  <rect x="314" y="132" width="192" height="8" fill="url(#biofilmGrad)"/>
+  <circle cx="330" cy="136" r="2" fill="#a7f3d0"/>
+  <circle cx="360" cy="136" r="2.5" fill="#a7f3d0"/>
+  <circle cx="400" cy="136" r="2" fill="#a7f3d0"/>
+  <circle cx="440" cy="136" r="2.5" fill="#a7f3d0"/>
+  <circle cx="480" cy="136" r="2" fill="#a7f3d0"/>
+
+  <!-- Schmutzdecke Callout Badge -->
+  <rect x="535" y="115" width="265" height="38" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.2"/>
+  <circle cx="550" cy="134" r="7" fill="#10b981"/>
+  <text x="550" y="138" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">2</text>
+  <text x="660" y="128" fill="#86efac" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">SCHMUTZDECKE BIOLAYER</text>
+  <text x="660" y="142" fill="#4ade80" font-size="9" font-family="monospace" text-anchor="middle">Consumes 99% of bacteria biologically</text>
+  <line x1="535" y1="134" x2="506" y2="136" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2"/>
+
+  <!-- ================= 4. LAYER 4: FINE SILICA SAND ================= -->
+  <rect x="314" y="140" width="192" height="120" fill="url(#fineSandGrad)"/>
+  <!-- Micro-pore stippling -->
+  <path d="M 330 160 Q 360 155 390 160 T 450 160 M 340 190 Q 380 185 420 190 T 480 190 M 330 220 Q 370 215 410 220 T 470 220" stroke="#ca8a04" stroke-width="0.8" opacity="0.3" fill="none"/>
+
+  <!-- Fine Sand Callout Badge -->
+  <rect x="25" y="170" width="260" height="38" rx="6" fill="#1c1917" stroke="#eab308" stroke-width="1.2"/>
+  <circle cx="40" cy="189" r="7" fill="#ca8a04"/>
+  <text x="40" y="193" fill="#000" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">3</text>
+  <text x="150" y="183" fill="#fef08a" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">FINE SILICA SAND (25 cm)</text>
+  <text x="150" y="197" fill="#fde68a" font-size="9" font-family="monospace" text-anchor="middle">Pore size: 10-30 micron mechanical trap</text>
+  <line x1="285" y1="189" x2="314" y2="189" stroke="#eab308" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 5. LAYER 3: ACTIVATED BIOCHAR ================= -->
+  <rect x="314" y="260" width="192" height="55" fill="url(#biocharGrad)" stroke="#334155" stroke-width="1"/>
+  <!-- Charcoal Granules -->
+  <rect x="330" y="272" width="6" height="5" rx="1" fill="#475569"/>
+  <rect x="360" y="280" width="7" height="6" rx="1" fill="#475569"/>
+  <rect x="400" y="270" width="8" height="5" rx="1" fill="#475569"/>
+  <rect x="445" y="282" width="6" height="6" rx="1" fill="#475569"/>
+  <rect x="480" y="274" width="7" height="5" rx="1" fill="#475569"/>
+
+  <!-- Biochar Callout Badge -->
+  <rect x="535" y="255" width="265" height="38" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="1.2"/>
+  <circle cx="550" cy="274" r="7" fill="#475569"/>
+  <text x="550" y="278" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">4</text>
+  <text x="660" y="268" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">CRUSHED BIOCHAR (10 cm)</text>
+  <text x="660" y="282" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Adsorbs pesticides, heavy metals, VOCs</text>
+  <line x1="535" y1="274" x2="506" y2="280" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- ================= 6. LAYER 2: COARSE SAND BARRIER ================= -->
+  <rect x="314" y="315" width="192" height="30" fill="#d97706" opacity="0.35"/>
+  <text x="410" y="333" fill="#fbbf24" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">Coarse Sand Grit Barrier (5 cm)</text>
+
+  <!-- ================= 7. LAYER 1: WASHED PEA GRAVEL & UNDERDRAIN ================= -->
+  <rect x="314" y="345" width="192" height="53" fill="#1e293b"/>
+  <!-- Smooth Pea Gravel Pebbles -->
+  <g fill="#475569" stroke="#64748b" stroke-width="1">
+    <ellipse cx="330" cy="365" rx="9" ry="7"/>
+    <ellipse cx="355" cy="360" rx="8" ry="6"/>
+    <ellipse cx="380" cy="370" rx="10" ry="7"/>
+    <ellipse cx="410" cy="362" rx="9" ry="6"/>
+    <ellipse cx="440" cy="368" rx="8" ry="7"/>
+    <ellipse cx="470" cy="362" rx="9" ry="7"/>
+    <ellipse cx="495" cy="368" rx="8" ry="6"/>
+    <ellipse cx="340" cy="385" rx="8" ry="6"/>
+    <ellipse cx="370" cy="388" rx="9" ry="7"/>
+    <ellipse cx="400" cy="386" rx="8" ry="6"/>
+    <ellipse cx="430" cy="388" rx="9" ry="7"/>
+    <ellipse cx="460" cy="385" rx="8" ry="6"/>
+    <ellipse cx="485" cy="386" rx="7" ry="5"/>
+  </g>
+
+  <!-- Perforated Spigot / Underdrain Pipe -->
+  <rect x="470" y="375" width="55" height="12" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+  <path d="M 525 381 L 560 381 L 560 415" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Pure Effluent Container -->
+  <rect x="540" y="415" width="60" height="40" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="543" y="428" width="54" height="24" rx="2" fill="url(#effluentGrad)"/>
+  <text x="570" y="443" fill="#ffffff" font-size="8" font-weight="bold" font-family="monospace" text-anchor="middle">CLEAN H2O</text>
+
+  <!-- Underdrain Callout Badge -->
+  <rect x="25" y="355" width="260" height="38" rx="6" fill="#0f172a" stroke="#64748b" stroke-width="1.2"/>
+  <circle cx="40" cy="374" r="7" fill="#64748b"/>
+  <text x="40" y="378" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">5</text>
+  <text x="150" y="368" fill="#f1f5f9" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">WASHED PEA GRAVEL</text>
+  <text x="150" y="382" fill="#94a3b8" font-size="9" font-family="monospace" text-anchor="middle">Protects perforated spigot drainage</text>
+  <line x1="285" y1="374" x2="314" y2="374" stroke="#64748b" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+  <!-- Effluent Output Callout Badge -->
+  <rect x="620" y="405" width="180" height="38" rx="6" fill="#0c1929" stroke="#38bdf8" stroke-width="1.2"/>
+  <circle cx="635" cy="424" r="7" fill="#0284c7"/>
+  <text x="635" y="428" fill="#fff" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">6</text>
+  <text x="710" y="418" fill="#e0f2fe" font-size="10" font-weight="bold" font-family="monospace" text-anchor="middle">PURIFIED EFFLUENT</text>
+  <text x="710" y="432" fill="#7dd3fc" font-size="9" font-family="monospace" text-anchor="middle">0.5 to 1.0 Liters/Hour</text>
+
+  <!-- Flow Direction Indicator -->
+  <g transform="translate(285, 200)" stroke="#38bdf8" stroke-width="2" fill="none">
+    <line x1="0" y1="0" x2="0" y2="60" stroke-dasharray="4,4"/>
+    <polygon points="0,65 -4,55 4,55" fill="#38bdf8"/>
+    <text x="-10" y="35" fill="#38bdf8" font-size="9" font-family="monospace" text-anchor="end">GRAVITY FLOW</text>
+  </g>
 </svg>
+```
 
 #### 3. Assembly & Sand Preparation
 1. **Sand Washing (Critical):** Never use unwashed beach sand (excess salt) or builders' sand with chemical plasticizers. Gather quartz or river sand. Rinse in clean water 10+ times until wash water is crystal clear. Boil sand in iron pot to eliminate pathogens.

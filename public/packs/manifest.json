@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-11-19T17:41:31.268Z",
+  "generated_at": "2026-11-19T17:53:03.806Z",
   "total_guides": 56,
   "master_pack": {
     "filename": "civilization_master.db",
-    "size_bytes": 1884160,
-    "size_formatted": "1840.0 KB"
+    "size_bytes": 1961984,
+    "size_formatted": "1916.0 KB"
   },
   "tiers": [
     {
@@ -13,8 +13,8 @@
       "name": "Tier 1: Immediate Survival & Triage",
       "filename": "tier_1_pack.db",
       "guide_count": 14,
-      "size_bytes": 471040,
-      "size_formatted": "460.0 KB"
+      "size_bytes": 532480,
+      "size_formatted": "520.0 KB"
     },
     {
       "tier": 2,

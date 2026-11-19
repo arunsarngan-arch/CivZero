@@ -10,8 +10,7 @@ import {
   Headphones,
   X,
   Gauge,
-  Sparkles,
-  Info,
+  User,
 } from 'lucide-react';
 
 interface Props {
@@ -108,7 +107,7 @@ export const cleanMarkdownForSpeech = (rawContent: string, title: string, summar
 
     currentParagraph += (currentParagraph ? ' ' : '') + cleanLine;
 
-    // Keep chunks to manageable lengths (~250 chars) for reliable TTS utterance playback
+    // Keep chunks to manageable lengths (~200 chars) for reliable TTS utterance playback
     if (currentParagraph.length > 200 && /[.!?]$/.test(currentParagraph)) {
       chunks.push(currentParagraph.trim());
       currentParagraph = '';
@@ -136,8 +135,15 @@ export const AudioGuidePlayer: React.FC<Props> = ({
   const [isSupported, setIsSupported] = useState<boolean>(true);
   const [chunks, setChunks] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [speechRate, setSpeechRate] = useState<number>(1.0); // 0.8x, 1.0x, 1.2x, 1.5x
-  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [speechRate, setSpeechRate] = useState<number>(1.0); // 0.85x, 1.0x, 1.25x, 1.5x
+
+  // Voice Gender: 'female' | 'male'
+  const [voiceGender, setVoiceGender] = useState<'female' | 'male'>(() => {
+    return (localStorage.getItem('civzero_tts_gender') as 'female' | 'male') || 'female';
+  });
+
+  const [femaleVoice, setFemaleVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [maleVoice, setMaleVoice] = useState<SpeechSynthesisVoice | null>(null);
 
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const isPlayingRef = useRef<boolean>(false);
@@ -149,7 +155,16 @@ export const AudioGuidePlayer: React.FC<Props> = ({
   const chunksRef = useRef<string[]>([]);
   chunksRef.current = chunks;
 
-  // Prepare text chunks on mount
+  const femaleVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
+  femaleVoiceRef.current = femaleVoice;
+
+  const maleVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
+  maleVoiceRef.current = maleVoice;
+
+  const voiceGenderRef = useRef<'female' | 'male'>(voiceGender);
+  voiceGenderRef.current = voiceGender;
+
+  // Prepare text chunks and discover male & female system voices
   useEffect(() => {
     if (!('speechSynthesis' in window)) {
       setIsSupported(false);
@@ -159,15 +174,45 @@ export const AudioGuidePlayer: React.FC<Props> = ({
     const parsedChunks = cleanMarkdownForSpeech(content, title, summary);
     setChunks(parsedChunks);
 
-    // Find best English voice
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        const preferred = voices.find(
-          v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Enhanced'))
-        ) || voices.find(v => v.lang.startsWith('en')) || voices[0];
-        setSelectedVoice(preferred || null);
+      if (voices.length === 0) return;
+
+      const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+      const candidatePool = englishVoices.length > 0 ? englishVoices : voices;
+
+      const femaleKeywords = [
+        'female', 'zira', 'jenny', 'aria', 'samantha', 'victoria', 'karen', 'serena',
+        'susan', 'hazel', 'catherine', 'moira', 'tessa', 'fiona', 'ava', 'heera', 'eva', 'woman'
+      ];
+      const maleKeywords = [
+        'male', 'david', 'mark', 'george', 'guy', 'james', 'richard', 'daniel',
+        'oliver', 'alex', 'fred', 'tom', 'arthur', 'gordon', 'aaron', 'ravi', 'man'
+      ];
+
+      // 1. Look for explicit female voice
+      let foundFemale = candidatePool.find(v => {
+        const name = v.name.toLowerCase();
+        return femaleKeywords.some(kw => name.includes(kw));
+      });
+
+      // 2. Look for explicit male voice
+      let foundMale = candidatePool.find(v => {
+        const name = v.name.toLowerCase();
+        return maleKeywords.some(kw => name.includes(kw));
+      });
+
+      // Fallback heuristics if specific named matches aren't found
+      if (!foundFemale) {
+        foundFemale = candidatePool[0] || null;
       }
+      if (!foundMale) {
+        // Pick a second voice if available to ensure distinct timbre
+        foundMale = candidatePool.length > 1 ? candidatePool[1] : candidatePool[0] || null;
+      }
+
+      setFemaleVoice(foundFemale);
+      setMaleVoice(foundMale);
     };
 
     loadVoices();
@@ -180,8 +225,8 @@ export const AudioGuidePlayer: React.FC<Props> = ({
     };
   }, [content, title, summary]);
 
-  // Play a specific chunk
-  const playChunk = (index: number) => {
+  // Play a specific chunk with voice gender & pitch settings
+  const playChunk = (index: number, overrideGender?: 'female' | 'male') => {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
 
@@ -191,14 +236,19 @@ export const AudioGuidePlayer: React.FC<Props> = ({
       return;
     }
 
+    const currentGender = overrideGender || voiceGenderRef.current;
     const textToSpeak = chunksRef.current[index];
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
 
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
+    // Apply voice and distinct acoustic pitch for female / male
+    const targetVoice = currentGender === 'female' ? femaleVoiceRef.current : maleVoiceRef.current;
+    if (targetVoice) {
+      utterance.voice = targetVoice;
     }
+
     utterance.rate = speechRate;
-    utterance.pitch = 1.0;
+    // Acoustic tuning: Female pitch 1.15 (bright & clear); Male pitch 0.88 (resonant & authoritative)
+    utterance.pitch = currentGender === 'female' ? 1.15 : 0.88;
 
     utterance.onend = () => {
       if (isPlayingRef.current) {
@@ -269,9 +319,18 @@ export const AudioGuidePlayer: React.FC<Props> = ({
     const newSpeed = speeds[nextIndex];
     setSpeechRate(newSpeed);
 
-    // If currently playing, restart current chunk with new rate
     if (isPlaying) {
       setTimeout(() => playChunk(currentIndex), 50);
+    }
+  };
+
+  const handleToggleVoiceGender = () => {
+    const nextGender = voiceGender === 'female' ? 'male' : 'female';
+    setVoiceGender(nextGender);
+    localStorage.setItem('civzero_tts_gender', nextGender);
+
+    if (isPlaying) {
+      setTimeout(() => playChunk(currentIndex, nextGender), 50);
     }
   };
 
@@ -369,18 +428,39 @@ export const AudioGuidePlayer: React.FC<Props> = ({
 
         {/* Player Controls Bar */}
         <div className="flex items-center justify-between gap-2 pt-0.5">
-          {/* Speed Selector */}
-          <button
-            onClick={handleSpeedCycle}
-            className={`px-2.5 py-1 text-xs font-mono rounded-lg border transition-all flex items-center gap-1 ${
-              nightVision
-                ? 'bg-red-950/50 border-red-900/60 text-red-300 hover:bg-red-900/40'
-                : 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800'
-            }`}
-          >
-            <Gauge className="w-3.5 h-3.5 text-amber-400" />
-            <span>{speechRate}x</span>
-          </button>
+          {/* Left Controls: Speed Selector & Voice Gender Toggle */}
+          <div className="flex items-center gap-1.5">
+            {/* Speed Selector */}
+            <button
+              onClick={handleSpeedCycle}
+              className={`px-2.5 py-1 text-xs font-mono rounded-lg border transition-all flex items-center gap-1 ${
+                nightVision
+                  ? 'bg-red-950/50 border-red-900/60 text-red-300 hover:bg-red-900/40'
+                  : 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800'
+              }`}
+            >
+              <Gauge className="w-3.5 h-3.5 text-amber-400" />
+              <span>{speechRate}x</span>
+            </button>
+
+            {/* Voice Gender Toggle (Female / Male) */}
+            <button
+              onClick={handleToggleVoiceGender}
+              aria-label={`Current voice: ${voiceGender}. Click to switch voice gender.`}
+              className={`px-2.5 py-1 text-xs font-mono rounded-lg border transition-all flex items-center gap-1.5 ${
+                voiceGender === 'female'
+                  ? nightVision
+                    ? 'bg-rose-950/60 border-rose-800 text-rose-300 font-bold'
+                    : 'bg-rose-950/40 border-rose-500/50 text-rose-300 font-bold hover:bg-rose-900/40'
+                  : nightVision
+                  ? 'bg-sky-950/60 border-sky-800 text-sky-300 font-bold'
+                  : 'bg-sky-950/40 border-sky-500/50 text-sky-300 font-bold hover:bg-sky-900/40'
+              }`}
+            >
+              <User className="w-3.5 h-3.5" />
+              <span>{voiceGender === 'female' ? '♀ Female' : '♂ Male'}</span>
+            </button>
+          </div>
 
           {/* Core Transport Controls (Rewind, Play/Pause, Next, Stop) */}
           <div className="flex items-center gap-2">
@@ -435,7 +515,7 @@ export const AudioGuidePlayer: React.FC<Props> = ({
           {/* Quick status badge */}
           <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-zinc-500">
             <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>100% OFFLINE TTS</span>
+            <span>100% OFFLINE</span>
           </div>
         </div>
       </div>

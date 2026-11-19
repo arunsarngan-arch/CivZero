@@ -54,8 +54,9 @@ try {
   fs.mkdirSync(releasesDir, { recursive: true });
 
   const possibleApkPaths = [
+    path.resolve('android/app/build/outputs/apk/release/CivZero-v1.1-Offline-Rebuilder.apk'),
     path.resolve('android/app/build/outputs/apk/release/CivZero-v1.0-Offline-Rebuilder.apk'),
-    path.resolve('android/app/release/CivZero-v1.0-Offline-Rebuilder.apk'),
+    path.resolve('android/app/release/CivZero-v1.1-Offline-Rebuilder.apk'),
     path.resolve('android/app/build/outputs/apk/release/app-release.apk')
   ];
 
@@ -68,7 +69,7 @@ try {
   }
 
   if (foundApk) {
-    const destApk = path.join(releasesDir, 'CivZero-v1.0-Offline-Rebuilder.apk');
+    const destApk = path.join(releasesDir, 'CivZero-v1.1-Offline-Rebuilder.apk');
     fs.copyFileSync(foundApk, destApk);
     const stats = fs.statSync(destApk);
     const mbSize = (stats.size / (1024 * 1024)).toFixed(2);

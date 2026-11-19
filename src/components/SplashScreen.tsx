@@ -56,7 +56,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, nightVis
           AIR-GAPPED OFFLINE
         </span>
         <span className="text-[10px] font-mono tracking-wider text-amber-400/80">
-          v1.0.0
+          v1.1.0
         </span>
       </div>
 

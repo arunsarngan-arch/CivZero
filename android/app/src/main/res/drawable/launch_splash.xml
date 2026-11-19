@@ -3,10 +3,10 @@
     <!-- Deep Obsidian Background -->
     <item android:drawable="@color/splash_background" />
 
-    <!-- Centered Spark of Science Emblem -->
+    <!-- Centered Brand Emblem -->
     <item
         android:width="170dp"
         android:height="170dp"
         android:gravity="center"
-        android:drawable="@drawable/ic_launcher_foreground" />
+        android:drawable="@drawable/splash" />
 </layer-list>

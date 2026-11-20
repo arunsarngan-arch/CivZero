@@ -10,13 +10,19 @@ import {
   ShieldCheck,
   Check,
   Headphones,
-  Volume2
+  Volume2,
+  Sparkles,
+  Lightbulb,
+  AlertTriangle,
+  Layers,
+  Wrench
 } from 'lucide-react';
 import type { Guide } from '../types';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { DatabaseService } from '../services/databaseService';
 import { ScrollToTop } from './ScrollToTop';
 import { AudioGuidePlayer } from './AudioGuidePlayer';
+import { getKidFriendlyExplanation } from '../data/kidFriendlyGuideSummaries';
 
 interface GuideDetailModalProps {
   guide: Guide;
@@ -37,6 +43,9 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
   const [copied, setCopied] = useState(false);
   const [modalContainerEl, setModalContainerEl] = useState<HTMLDivElement | null>(null);
   const [showAudioPlayer, setShowAudioPlayer] = useState<boolean>(false);
+  const [kidFriendlyMode, setKidFriendlyMode] = useState<boolean>(false);
+
+  const kidExplanation = getKidFriendlyExplanation(guide.id, guide.title, guide.category, guide.summary);
 
   useEffect(() => {
     setIsBookmarked(!!guide.is_bookmarked);
@@ -200,7 +209,7 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
                     borderColor: `${getTierColor(guide.tier)}60`,
                     color: getTierColor(guide.tier)
                   }}
-                  className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold border tracking-wider uppercase"
+                  className="inline-flex items-center justify-center whitespace-nowrap leading-none px-3 py-1 rounded-full text-xs font-mono font-bold border tracking-wider uppercase"
                 >
                   TIER {guide.tier} • {guide.category}
                 </span>
@@ -228,33 +237,169 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
                 {guide.title}
               </h1>
 
-              {/* Executive Summary Box */}
-              <div
-                className={`p-4 rounded-xl border leading-relaxed ${
-                  fontSize === 'huge' ? 'text-base' : fontSize === 'large' ? 'text-sm' : 'text-xs'
-                } ${
-                  nightVision
-                    ? 'bg-red-950/20 border-red-900/40 text-red-300'
-                    : 'bg-zinc-900/70 border-zinc-800 text-zinc-300'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <div className="text-xs font-mono uppercase tracking-wider text-amber-400/90 flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    Operational Summary
-                  </div>
-                  {!showAudioPlayer && (
-                    <button
-                      onClick={() => setShowAudioPlayer(true)}
-                      className="text-[11px] font-mono text-amber-400 hover:text-amber-300 flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20"
-                    >
-                      <Volume2 className="w-3 h-3" />
-                      <span>Hear Guide</span>
-                    </button>
-                  )}
+              {/* Mode Switcher: Technical Blueprint vs. 10-Yr Old Simple Explanation */}
+              <div className={`p-1.5 rounded-xl border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 ${
+                nightVision ? 'bg-red-950/40 border-red-900/40' : 'bg-zinc-900/90 border-zinc-800'
+              }`}>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => setKidFriendlyMode(false)}
+                    className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all flex items-center justify-center gap-1.5 ${
+                      !kidFriendlyMode
+                        ? nightVision
+                          ? 'bg-red-900/70 text-red-100 border border-red-700 shadow-sm'
+                          : 'bg-zinc-800 text-zinc-100 border border-zinc-700 shadow-sm'
+                        : 'text-zinc-400 hover:text-zinc-200'
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Technical Manual</span>
+                  </button>
+                  <button
+                    onClick={() => setKidFriendlyMode(true)}
+                    className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all flex items-center justify-center gap-1.5 ${
+                      kidFriendlyMode
+                        ? nightVision
+                          ? 'bg-red-900 text-white border border-red-500 shadow-md font-bold'
+                          : 'bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold border border-amber-400 shadow-md'
+                        : 'text-zinc-400 hover:text-amber-400'
+                    }`}
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Explain Like I'm 10</span>
+                  </button>
                 </div>
-                <p>{guide.summary}</p>
+
+                <span className="text-[10px] font-mono text-zinc-500 text-center sm:text-right px-2">
+                  {kidFriendlyMode ? 'Simple words & clear analogies' : 'Standard engineering blueprints'}
+                </span>
               </div>
+
+              {/* Kid-Friendly 10-Yr Old Mode Display */}
+              {kidFriendlyMode ? (
+                <div className={`p-4 sm:p-5 rounded-2xl border space-y-4 animate-fadeIn ${
+                  nightVision
+                    ? 'bg-red-950/20 border-red-900/50 text-red-200'
+                    : 'bg-gradient-to-br from-amber-500/10 via-zinc-900/90 to-zinc-950 border-amber-500/30 text-zinc-100'
+                }`}>
+                  {/* Header */}
+                  <div className="flex items-center justify-between border-b border-amber-500/20 pb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                        <Sparkles className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-bold font-mono tracking-wide text-amber-400 uppercase">
+                          Simple 10-Year-Old Explanation
+                        </h3>
+                        <p className="text-[11px] text-zinc-400">Easy to understand without complex technical jargon</p>
+                      </div>
+                    </div>
+                    {!showAudioPlayer && (
+                      <button
+                        onClick={() => setShowAudioPlayer(true)}
+                        className="text-[11px] font-mono text-amber-400 hover:text-amber-300 flex items-center gap-1 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30"
+                      >
+                        <Volume2 className="w-3.5 h-3.5" />
+                        <span>Hear Simple Guide</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Fun Analogy ("Think of it like...") */}
+                  <div className="p-3.5 rounded-xl bg-black/40 border border-amber-500/20 space-y-1.5">
+                    <div className="text-xs font-mono uppercase font-bold text-amber-400 flex items-center gap-1.5">
+                      <Lightbulb className="w-3.5 h-3.5 text-amber-400" />
+                      Think Of It Like This:
+                    </div>
+                    <p className="text-sm leading-relaxed text-zinc-200 italic font-medium">
+                      "{kidExplanation.analogy}"
+                    </p>
+                  </div>
+
+                  {/* What it is in plain words */}
+                  <div className="space-y-1">
+                    <div className="text-xs font-mono uppercase font-semibold text-zinc-400">
+                      What It Does:
+                    </div>
+                    <p className="text-sm text-zinc-200 leading-relaxed font-sans">
+                      {kidExplanation.simpleWhatItIs}
+                    </p>
+                  </div>
+
+                  {/* Simple Materials */}
+                  <div className="space-y-2">
+                    <div className="text-xs font-mono uppercase font-semibold text-zinc-400 flex items-center gap-1.5">
+                      <Wrench className="w-3.5 h-3.5 text-amber-400" />
+                      Things You Need (Simple Items):
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {kidExplanation.simpleMaterials.map((mat, i) => (
+                        <div key={i} className="p-2 rounded-lg bg-zinc-900/80 border border-zinc-800 text-xs flex items-center gap-2 text-zinc-300">
+                          <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <span>{mat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Easy 1-2-3 Steps */}
+                  <div className="space-y-2.5">
+                    <div className="text-xs font-mono uppercase font-semibold text-zinc-400">
+                      Easy 1-2-3 Steps to Build or Do It:
+                    </div>
+                    <div className="space-y-2">
+                      {kidExplanation.easySteps.map((step, idx) => (
+                        <div key={idx} className="p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start gap-3">
+                          <div className="w-6 h-6 rounded-full bg-amber-500 text-black font-bold font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">
+                            {idx + 1}
+                          </div>
+                          <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                            {step}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Safety Golden Rule */}
+                  <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 text-red-200 flex items-start gap-3">
+                    <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                    <div className="text-xs space-y-0.5">
+                      <span className="font-bold font-mono tracking-wider text-red-300 uppercase block">Safety Golden Rule</span>
+                      <p>{kidExplanation.safetyRule}</p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* Executive Summary Box */
+                <div
+                  className={`p-4 rounded-xl border leading-relaxed ${
+                    fontSize === 'huge' ? 'text-base' : fontSize === 'large' ? 'text-sm' : 'text-xs'
+                  } ${
+                    nightVision
+                      ? 'bg-red-950/20 border-red-900/40 text-red-300'
+                      : 'bg-zinc-900/70 border-zinc-800 text-zinc-300'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="text-xs font-mono uppercase tracking-wider text-amber-400/90 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      Operational Summary
+                    </div>
+                    {!showAudioPlayer && (
+                      <button
+                        onClick={() => setShowAudioPlayer(true)}
+                        className="text-[11px] font-mono text-amber-400 hover:text-amber-300 flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20"
+                      >
+                        <Volume2 className="w-3 h-3" />
+                        <span>Hear Guide</span>
+                      </button>
+                    )}
+                  </div>
+                  <p>{guide.summary}</p>
+                </div>
+              )}
 
               {/* Tags */}
               {guide.tags && (
@@ -262,7 +407,7 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
                   {guide.tags.split(',').map((t, idx) => (
                     <span
                       key={idx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900/80 border border-zinc-800 text-zinc-400 flex items-center gap-1"
+                      className="inline-flex items-center justify-center whitespace-nowrap leading-none text-[10px] font-mono px-2.5 py-1 rounded-md bg-zinc-900/80 border border-zinc-800 text-zinc-400 flex items-center gap-1"
                     >
                       <Tag className="w-2.5 h-2.5 text-zinc-600" />
                       {t.trim()}
@@ -298,11 +443,15 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
       {/* Floating Hands-Free Field Audio Player */}
       {showAudioPlayer && (
         <AudioGuidePlayer
-          title={guide.title}
+          title={kidFriendlyMode ? `${guide.title} (Simple Explanation)` : guide.title}
           category={guide.category}
           tier={guide.tier}
-          content={guide.content}
-          summary={guide.summary}
+          content={
+            kidFriendlyMode
+              ? `${kidExplanation.analogy}. ${kidExplanation.simpleWhatItIs}. Things you need: ${kidExplanation.simpleMaterials.join(', ')}. Steps: ${kidExplanation.easySteps.join('. ')}. Remember the safety rule: ${kidExplanation.safetyRule}`
+              : guide.content
+          }
+          summary={kidFriendlyMode ? kidExplanation.simpleWhatItIs : guide.summary}
           nightVision={nightVision}
           onClose={() => setShowAudioPlayer(false)}
         />

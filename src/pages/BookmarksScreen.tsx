@@ -97,7 +97,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
                           backgroundColor: `${tierColor}15`,
                           borderColor: `${tierColor}40`
                         }}
-                        className="px-2 py-0.5 rounded text-xs font-mono font-bold border tracking-wider uppercase"
+                        className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-xs font-mono font-bold border tracking-wider uppercase"
                       >
                         TIER {guide.tier} • {guide.category}
                       </span>

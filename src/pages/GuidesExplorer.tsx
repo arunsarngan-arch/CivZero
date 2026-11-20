@@ -13,8 +13,7 @@ import {
   ChevronRight,
   Filter,
   CheckCircle2,
-  AlertTriangle,
-  Scroll
+  AlertTriangle
 } from 'lucide-react';
 import type { Guide, Tier, ViewTab } from '../types';
 import { DatabaseService } from '../services/databaseService';
@@ -102,38 +101,6 @@ export const GuidesExplorer: React.FC<GuidesExplorerProps> = ({
 
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
-      {/* Holy Books & Sacred Wisdom Dedicated Sanctuary Banner */}
-      {onNavigateTab && (
-        <div
-          onClick={() => onNavigateTab('holybooks')}
-          className={`p-4 rounded-2xl border transition-all cursor-pointer group shadow-lg flex items-center justify-between ${
-            nightVision
-              ? 'bg-[#140202] border-red-900/60 hover:border-red-600 text-red-200'
-              : 'bg-gradient-to-r from-[#0d1424] via-[#111c33] to-[#151c2e] border-amber-500/30 hover:border-amber-400 text-zinc-100'
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 group-hover:scale-105 transition-transform">
-              <Scroll className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold tracking-tight text-amber-300">
-                  SACRED TEXTS &amp; SCRIPTURES
-                </span>
-                <span className="text-[9px] font-mono font-black px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/40">
-                  NEW SECTION
-                </span>
-              </div>
-              <p className="text-xs text-zinc-300 font-sans mt-0.5">
-                Explore the Holy Books: Bible, Quran, Bhagavad Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib &amp; Moral Law.
-              </p>
-            </div>
-          </div>
-          <ChevronRight className="w-5 h-5 text-zinc-400 group-hover:text-amber-400 group-hover:translate-x-1 transition-all flex-shrink-0 ml-2" />
-        </div>
-      )}
-
       {/* Tier Selection Carousel / Tabs */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
@@ -267,7 +234,7 @@ export const GuidesExplorer: React.FC<GuidesExplorerProps> = ({
                           backgroundColor: `${tierColor}15`,
                           borderColor: `${tierColor}40`
                         }}
-                        className="px-2 py-0.5 rounded text-xs font-mono font-bold border tracking-wider uppercase"
+                        className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-xs font-mono font-bold border tracking-wider uppercase"
                       >
                         TIER {guide.tier} • {guide.category}
                       </span>
@@ -316,7 +283,7 @@ export const GuidesExplorer: React.FC<GuidesExplorerProps> = ({
                     {guide.tags.split(',').slice(0, 4).map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-xs font-mono px-2 py-0.5 rounded bg-zinc-900/90 text-zinc-400 border border-zinc-800"
+                        className="inline-flex items-center justify-center whitespace-nowrap leading-none text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900/90 text-zinc-400 border border-zinc-800"
                       >
                         #{tag.trim()}
                       </span>

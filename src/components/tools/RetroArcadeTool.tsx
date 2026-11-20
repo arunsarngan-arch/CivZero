@@ -555,12 +555,13 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
         const b = blocksState.current;
         const p = b.currentPiece;
 
-        const collides = (offsetX: number, offsetY: number, shape: number[][]) => {
+        const checkCollision = (targetPiece: typeof p, offsetX: number, offsetY: number, shapeOverride?: number[][]) => {
+          const shape = shapeOverride || targetPiece.shape;
           for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
               if (shape[r][c]) {
-                const newX = p.x + c + offsetX;
-                const newY = p.y + r + offsetY;
+                const newX = targetPiece.x + c + offsetX;
+                const newY = targetPiece.y + r + offsetY;
                 if (newX < 0 || newX >= 10 || newY >= 20) return true;
                 if (newY >= 0 && b.grid[newY][newX] !== 0) return true;
               }
@@ -569,14 +570,14 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
           return false;
         };
 
-        if (action === 'left' && !collides(-1, 0, p.shape)) {
+        if (action === 'left' && !checkCollision(p, -1, 0)) {
           p.x -= 1;
           soundSynth.move();
-        } else if (action === 'right' && !collides(1, 0, p.shape)) {
+        } else if (action === 'right' && !checkCollision(p, 1, 0)) {
           p.x += 1;
           soundSynth.move();
         } else if (action === 'down') {
-          if (!collides(0, 1, p.shape)) {
+          if (!checkCollision(p, 0, 1)) {
             p.y += 1;
             soundSynth.move();
           }
@@ -585,12 +586,12 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
           const rotated = Array.from({ length: N }, (_, r) =>
             Array.from({ length: N }, (_, c) => p.shape[N - 1 - c][r])
           );
-          if (!collides(0, 0, rotated)) {
+          if (!checkCollision(p, 0, 0, rotated)) {
             p.shape = rotated;
             soundSynth.hit();
           }
         } else if (action === 'drop') {
-          while (!collides(0, 1, p.shape)) {
+          while (!checkCollision(p, 0, 1)) {
             p.y += 1;
           }
           soundSynth.hit();
@@ -628,6 +629,39 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
     },
     [gameOver, restartCurrentGame, selectedGame, triggerHaptic]
   );
+
+  // Hold-to-repeat continuous controls for smooth mobile play
+  const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const holdTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const stopContinuousDirection = useCallback(() => {
+    if (holdTimeoutRef.current) {
+      clearTimeout(holdTimeoutRef.current);
+      holdTimeoutRef.current = null;
+    }
+    if (holdIntervalRef.current) {
+      clearInterval(holdIntervalRef.current);
+      holdIntervalRef.current = null;
+    }
+  }, []);
+
+  const startContinuousDirection = useCallback(
+    (action: 'up' | 'down' | 'left' | 'right' | 'action' | 'drop') => {
+      handleDirection(action);
+      stopContinuousDirection();
+
+      holdTimeoutRef.current = setTimeout(() => {
+        holdIntervalRef.current = setInterval(() => {
+          handleDirection(action);
+        }, 90);
+      }, 200);
+    },
+    [handleDirection, stopContinuousDirection]
+  );
+
+  useEffect(() => {
+    return () => stopContinuousDirection();
+  }, [stopContinuousDirection]);
 
   // Keyboard controls listener
   useEffect(() => {
@@ -779,12 +813,13 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
         const cellSize = 16;
         const startX = 80;
 
-        const collides = (offsetX: number, offsetY: number, shape: number[][]) => {
+        const checkCollision = (targetPiece: typeof p, offsetX: number, offsetY: number, shapeOverride?: number[][]) => {
+          const shape = shapeOverride || targetPiece.shape;
           for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
               if (shape[r][c]) {
-                const newX = p.x + c + offsetX;
-                const newY = p.y + r + offsetY;
+                const newX = targetPiece.x + c + offsetX;
+                const newY = targetPiece.y + r + offsetY;
                 if (newX < 0 || newX >= 10 || newY >= 20) return true;
                 if (newY >= 0 && b.grid[newY][newX] !== 0) return true;
               }
@@ -796,7 +831,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
         if (!isPaused && !gameOver) {
           if (time - b.lastDrop > b.dropInterval) {
             b.lastDrop = time;
-            if (!collides(0, 1, p.shape)) {
+            if (!checkCollision(p, 0, 1)) {
               p.y += 1;
             } else {
               for (let r = 0; r < p.shape.length; r++) {
@@ -835,8 +870,9 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
                 soundSynth.hit();
               }
 
+              // Spawn next block at top and verify game over only if top entry is blocked
               b.currentPiece = spawnRandomPiece();
-              if (collides(0, 0, b.currentPiece.shape)) {
+              if (checkCollision(b.currentPiece, 0, 0)) {
                 setGameOver(true);
                 soundSynth.gameOver();
                 return;
@@ -865,7 +901,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
 
         // Draw Ghost Piece Shadow
         let ghostY = p.y;
-        while (!collides(0, ghostY - p.y + 1, p.shape)) {
+        while (!checkCollision(p, 0, ghostY - p.y + 1)) {
           ghostY++;
         }
         for (let r = 0; r < p.shape.length; r++) {
@@ -1401,64 +1437,88 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
 
         {/* Tactical Touch Controller Pad (Touchscreen Mobile First) */}
         <div className="w-full mt-4 pt-3 border-t border-zinc-800/80 grid grid-cols-2 gap-4">
-          {/* LEFT THUMB: 4-Way D-Pad */}
-          <div className="flex flex-col items-center justify-center">
-            <div className="relative w-36 h-36 flex items-center justify-center">
-              {/* Center Hub */}
-              <div className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-700 shadow-inner flex items-center justify-center z-0">
-                <div className="w-4 h-4 rounded-full bg-zinc-800" />
+          {/* LEFT THUMB: Ergonomic Cross D-Pad */}
+          <div className="flex flex-col items-center justify-center select-none">
+            <div className="relative w-44 h-44 flex items-center justify-center select-none touch-none">
+              {/* D-Pad Tactile Cross Background Silhouettes */}
+              <div className="absolute w-40 h-14 bg-zinc-950/90 rounded-2xl border border-zinc-800 shadow-inner pointer-events-none" />
+              <div className="absolute w-14 h-40 bg-zinc-950/90 rounded-2xl border border-zinc-800 shadow-inner pointer-events-none" />
+
+              {/* Center Hub Pivot */}
+              <div className="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-700 shadow-inner flex items-center justify-center z-10 pointer-events-none">
+                <div className="w-4 h-4 rounded-full bg-zinc-800 border border-zinc-700/60" />
               </div>
 
-              {/* UP */}
+              {/* UP BUTTON */}
               <button
                 type="button"
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  handleDirection('up');
+                  startContinuousDirection('up');
                 }}
-                className="absolute top-0 w-12 h-12 rounded-t-xl bg-zinc-800/90 border border-zinc-600 text-zinc-200 flex items-center justify-center shadow-lg active:bg-amber-500 active:text-black active:scale-95 touch-none"
+                onPointerUp={stopContinuousDirection}
+                onPointerCancel={stopContinuousDirection}
+                onPointerLeave={stopContinuousDirection}
+                onContextMenu={(e) => e.preventDefault()}
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-14 h-14 rounded-t-2xl bg-zinc-800/95 hover:bg-zinc-700 border-2 border-zinc-600 text-zinc-100 flex items-center justify-center shadow-xl active:bg-amber-500 active:border-amber-400 active:text-black active:scale-95 transition-all touch-none select-none z-20 cursor-pointer"
+                aria-label="Up"
               >
-                <ChevronUp className="w-6 h-6" />
+                <ChevronUp className="w-7 h-7" />
               </button>
 
-              {/* DOWN */}
+              {/* DOWN BUTTON */}
               <button
                 type="button"
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  handleDirection('down');
+                  startContinuousDirection('down');
                 }}
-                className="absolute bottom-0 w-12 h-12 rounded-b-xl bg-zinc-800/90 border border-zinc-600 text-zinc-200 flex items-center justify-center shadow-lg active:bg-amber-500 active:text-black active:scale-95 touch-none"
+                onPointerUp={stopContinuousDirection}
+                onPointerCancel={stopContinuousDirection}
+                onPointerLeave={stopContinuousDirection}
+                onContextMenu={(e) => e.preventDefault()}
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 h-14 rounded-b-2xl bg-zinc-800/95 hover:bg-zinc-700 border-2 border-zinc-600 text-zinc-100 flex items-center justify-center shadow-xl active:bg-amber-500 active:border-amber-400 active:text-black active:scale-95 transition-all touch-none select-none z-20 cursor-pointer"
+                aria-label="Down"
               >
-                <ChevronDown className="w-6 h-6" />
+                <ChevronDown className="w-7 h-7" />
               </button>
 
-              {/* LEFT */}
+              {/* LEFT BUTTON */}
               <button
                 type="button"
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  handleDirection('left');
+                  startContinuousDirection('left');
                 }}
-                className="absolute left-0 w-12 h-12 rounded-l-xl bg-zinc-800/90 border border-zinc-600 text-zinc-200 flex items-center justify-center shadow-lg active:bg-amber-500 active:text-black active:scale-95 touch-none"
+                onPointerUp={stopContinuousDirection}
+                onPointerCancel={stopContinuousDirection}
+                onPointerLeave={stopContinuousDirection}
+                onContextMenu={(e) => e.preventDefault()}
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-l-2xl bg-zinc-800/95 hover:bg-zinc-700 border-2 border-zinc-600 text-zinc-100 flex items-center justify-center shadow-xl active:bg-amber-500 active:border-amber-400 active:text-black active:scale-95 transition-all touch-none select-none z-20 cursor-pointer"
+                aria-label="Left"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-7 h-7" />
               </button>
 
-              {/* RIGHT */}
+              {/* RIGHT BUTTON */}
               <button
                 type="button"
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  handleDirection('right');
+                  startContinuousDirection('right');
                 }}
-                className="absolute right-0 w-12 h-12 rounded-r-xl bg-zinc-800/90 border border-zinc-600 text-zinc-200 flex items-center justify-center shadow-lg active:bg-amber-500 active:text-black active:scale-95 touch-none"
+                onPointerUp={stopContinuousDirection}
+                onPointerCancel={stopContinuousDirection}
+                onPointerLeave={stopContinuousDirection}
+                onContextMenu={(e) => e.preventDefault()}
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-14 h-14 rounded-r-2xl bg-zinc-800/95 hover:bg-zinc-700 border-2 border-zinc-600 text-zinc-100 flex items-center justify-center shadow-xl active:bg-amber-500 active:border-amber-400 active:text-black active:scale-95 transition-all touch-none select-none z-20 cursor-pointer"
+                aria-label="Right"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-7 h-7" />
               </button>
             </div>
-            <span className="text-[10px] font-mono text-zinc-500 mt-1 uppercase font-bold tracking-wider">
-              D-PAD / STEER
+            <span className="text-[10px] font-mono text-zinc-500 mt-2 uppercase font-bold tracking-wider">
+              TACTILE D-PAD (HOLD TO GLIDE)
             </span>
           </div>
 
@@ -1485,9 +1545,17 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
                 type="button"
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  handleDirection('action');
+                  if (selectedGame === 'starimpact') {
+                    startContinuousDirection('action');
+                  } else {
+                    handleDirection('action');
+                  }
                 }}
-                className="w-20 h-20 p-3 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 border-2 border-amber-300 text-black font-black flex flex-col items-center justify-center shadow-2xl active:scale-95 active:brightness-90 touch-none"
+                onPointerUp={stopContinuousDirection}
+                onPointerCancel={stopContinuousDirection}
+                onPointerLeave={stopContinuousDirection}
+                onContextMenu={(e) => e.preventDefault()}
+                className="w-20 h-20 p-3 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 border-2 border-amber-300 text-black font-black flex flex-col items-center justify-center shadow-2xl active:scale-95 active:brightness-90 touch-none select-none cursor-pointer"
               >
                 {selectedGame === 'starimpact' ? (
                   <Zap className="w-7 h-7 text-black" />

@@ -67,7 +67,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({ updateInfo, onClose, n
           <div className="flex items-center justify-between p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs font-mono">
             <div className="flex items-center gap-2">
               <span className="text-zinc-500">CURRENT:</span>
-              <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-bold">
+              <span className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-300 font-bold">
                 v{CURRENT_APP_VERSION}
               </span>
             </div>
@@ -76,7 +76,7 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({ updateInfo, onClose, n
 
             <div className="flex items-center gap-2">
               <span className="text-zinc-500">NEW:</span>
-              <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
+              <span className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
                 v{updateInfo.version}
               </span>
             </div>

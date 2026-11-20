@@ -11,6 +11,7 @@ import {
   X,
   Gauge,
 } from 'lucide-react';
+import { getBestAmericanVoices } from '../utils/speechUtils';
 
 interface Props {
   title: string;
@@ -174,44 +175,9 @@ export const AudioGuidePlayer: React.FC<Props> = ({
     setChunks(parsedChunks);
 
     const loadVoices = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length === 0) return;
-
-      const englishVoices = voices.filter(v => v.lang.startsWith('en'));
-      const candidatePool = englishVoices.length > 0 ? englishVoices : voices;
-
-      const femaleKeywords = [
-        'female', 'zira', 'jenny', 'aria', 'samantha', 'victoria', 'karen', 'serena',
-        'susan', 'hazel', 'catherine', 'moira', 'tessa', 'fiona', 'ava', 'heera', 'eva', 'woman'
-      ];
-      const maleKeywords = [
-        'male', 'david', 'mark', 'george', 'guy', 'james', 'richard', 'daniel',
-        'oliver', 'alex', 'fred', 'tom', 'arthur', 'gordon', 'aaron', 'ravi', 'man'
-      ];
-
-      // 1. Look for explicit female voice
-      let foundFemale = candidatePool.find(v => {
-        const name = v.name.toLowerCase();
-        return femaleKeywords.some(kw => name.includes(kw));
-      });
-
-      // 2. Look for explicit male voice
-      let foundMale = candidatePool.find(v => {
-        const name = v.name.toLowerCase();
-        return maleKeywords.some(kw => name.includes(kw));
-      });
-
-      // Fallback heuristics if specific named matches aren't found
-      if (!foundFemale) {
-        foundFemale = candidatePool[0] || null;
-      }
-      if (!foundMale) {
-        // Pick a second voice if available to ensure distinct timbre
-        foundMale = candidatePool.length > 1 ? candidatePool[1] : candidatePool[0] || null;
-      }
-
-      setFemaleVoice(foundFemale);
-      setMaleVoice(foundMale);
+      const selected = getBestAmericanVoices();
+      setFemaleVoice(selected.female);
+      setMaleVoice(selected.male);
     };
 
     loadVoices();
@@ -245,9 +211,10 @@ export const AudioGuidePlayer: React.FC<Props> = ({
       utterance.voice = targetVoice;
     }
 
-    utterance.rate = speechRate;
-    // Acoustic tuning: Female pitch 1.15 (bright & clear); Male pitch 0.88 (resonant & authoritative)
-    utterance.pitch = currentGender === 'female' ? 1.15 : 0.88;
+    // Humanized American English acoustic tuning:
+    // Natural unmodified human formants with relaxed documentary cadence
+    utterance.rate = speechRate * (currentGender === 'female' ? 0.96 : 0.94);
+    utterance.pitch = currentGender === 'female' ? 1.0 : 0.95;
 
     utterance.onend = () => {
       if (isPlayingRef.current) {

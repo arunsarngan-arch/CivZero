@@ -456,7 +456,7 @@ export const PackManagerScreen: React.FC<PackManagerScreenProps> = ({
                               backgroundColor: `${tierColor}15`,
                               borderColor: `${tierColor}50`
                             }}
-                            className="px-2 py-0.5 rounded text-[10px] font-mono font-bold border tracking-wider uppercase"
+                            className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-[10px] font-mono font-bold border tracking-wider uppercase"
                           >
                             TIER {tier.id} PACK
                           </span>
@@ -540,7 +540,7 @@ export const PackManagerScreen: React.FC<PackManagerScreenProps> = ({
                 <div>
                   <h2 className="text-lg font-bold font-mono tracking-tight flex items-center gap-2">
                     Online Civilization Knowledge Cloud
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 font-mono">
+                    <span className="inline-flex items-center justify-center whitespace-nowrap leading-none text-[10px] px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 font-mono font-bold">
                       v{catalogMeta.version}
                     </span>
                   </h2>
@@ -705,12 +705,12 @@ export const PackManagerScreen: React.FC<PackManagerScreenProps> = ({
                             backgroundColor: `${tierColor}15`,
                             borderColor: `${tierColor}50`
                           }}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono font-bold border tracking-wider uppercase"
+                          className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-[10px] font-mono font-bold border tracking-wider uppercase"
                         >
                           TIER {vol.tier}
                         </span>
 
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-300">
+                        <span className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-[10px] font-mono bg-zinc-900 border border-zinc-800 text-zinc-300">
                           {vol.category}
                         </span>
 
@@ -721,7 +721,7 @@ export const PackManagerScreen: React.FC<PackManagerScreenProps> = ({
                         </span>
 
                         {isMounted && (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                          <span className="inline-flex items-center justify-center whitespace-nowrap leading-none px-2.5 py-1 rounded-md text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 gap-1">
                             <CheckCircle2 className="w-3 h-3" />
                             MOUNTED & READY
                           </span>

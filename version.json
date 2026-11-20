@@ -1,13 +1,14 @@
 {
   "version": "1.1.0",
   "versionCode": 2,
-  "releaseDate": "2026-11-19",
+  "releaseDate": "2026-11-20",
   "minAndroidVersion": 22,
   "changelog": [
-    "Dedicated 'Holy Books' Section: Bible, Quran, Bhagavad Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib & Universal Moral Law with offline TTS voice narration",
-    "Offline Trail & Backtrack GPS Mapper: 100% offline breadcrumb trek recording, backtrack steering HUD, and 8 tactical vector markers matching Knowledge Tier badges",
-    "Retro Survival Arcade: 4 touchscreen old-school mobile games (Snake, Block Fall, Missile Defense, Grid Dodger) with on-screen D-pad and high score saving",
-    "Modernized Brand Identity: High-performance 18.8 KB WebP tactical gear emblem, Android adaptive home screen icons, and waste asset elimination"
+    "Holy Books Canon: Complete 66-book Bible (KJV & Geneva), Quran (114 Surahs), Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib & Universal Moral Law with verse drill-down and TTS narration",
+    "Explain Like I'm 10 (ELI10): Kid-friendly, simplified summaries added to survival and engineering guides",
+    "Field Arcade & CivBlocks Overhaul: Fixed collision bugs and upgraded on-screen D-pad ergonomics with auto-repeat",
+    "Humanized American Voices: Natural male and female offline speech synthesis",
+    "Perfected Tag Alignment: Polished badge layout and middle typography across all screens"
   ],
   "downloadUrl": "https://github.com/arunsarngan-arch/CivZero/releases/latest/download/CivZero-v1.1-Offline-Rebuilder.apk",
   "githubRepo": "https://github.com/arunsarngan-arch/CivZero"

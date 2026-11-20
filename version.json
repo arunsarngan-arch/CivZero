@@ -1,10 +1,10 @@
 {
-  "version": "1.1.0",
-  "versionCode": 2,
+  "version": "1.1.1",
+  "versionCode": 3,
   "releaseDate": "2026-11-20",
   "minAndroidVersion": 22,
   "changelog": [
-    "Holy Books Canon: Complete 66-book Bible (KJV & Geneva), Quran (114 Surahs), Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib & Universal Moral Law with verse drill-down and TTS narration",
+    "Holy Books Canon: Complete 66-book Bible (KJV 1611 & Geneva 1599), Quran (114 Surahs), Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib & Universal Moral Law with verse drill-down and TTS narration",
     "Explain Like I'm 10 (ELI10): Kid-friendly, simplified summaries added to survival and engineering guides",
     "Field Arcade & CivBlocks Overhaul: Fixed collision bugs and upgraded on-screen D-pad ergonomics with auto-repeat",
     "Humanized American Voices: Natural male and female offline speech synthesis",

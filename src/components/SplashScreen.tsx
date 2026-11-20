@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, HardDrive, Cpu, WifiOff } from 'lucide-react';
+import { CURRENT_APP_VERSION } from '../services/updateService';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -56,7 +57,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, nightVis
           AIR-GAPPED OFFLINE
         </span>
         <span className="text-[10px] font-mono tracking-wider text-amber-400/80">
-          v1.1.0
+          v{CURRENT_APP_VERSION}
         </span>
       </div>
 

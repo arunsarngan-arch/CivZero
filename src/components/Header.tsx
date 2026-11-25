@@ -5,9 +5,10 @@ import {
   Sun,
   Eye,
   Type,
-  WifiOff,
   HardDrive,
-  Sparkles
+  Sparkles,
+  BookText,
+  BookA
 } from 'lucide-react';
 import type { StorageStats } from '../types';
 import type { UpdateInfo } from '../services/updateService';
@@ -20,6 +21,9 @@ interface HeaderProps {
   setFontSize: (v: 'normal' | 'large' | 'huge') => void;
   availableUpdate?: UpdateInfo | null;
   onOpenUpdateModal?: () => void;
+  onOpenJournal?: () => void;
+  onOpenDictionary?: () => void;
+  onOpenSos?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -29,7 +33,10 @@ export const Header: React.FC<HeaderProps> = ({
   fontSize,
   setFontSize,
   availableUpdate,
-  onOpenUpdateModal
+  onOpenUpdateModal,
+  onOpenJournal,
+  onOpenDictionary,
+  onOpenSos
 }) => {
   const cycleFontSize = () => {
     if (fontSize === 'normal') setFontSize('large');
@@ -61,16 +68,6 @@ export const Header: React.FC<HeaderProps> = ({
             <h1 className="text-sm font-bold font-mono tracking-tight leading-tight truncate">
               CIVZERO
             </h1>
-            <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <WifiOff className="w-2.5 h-2.5" />
-                100% OFFLINE
-              </span>
-              <span className="text-zinc-600">•</span>
-              <span className="text-amber-400 font-semibold">
-                ARCHIVE READY
-              </span>
-            </div>
           </div>
         </div>
 
@@ -102,6 +99,49 @@ export const Header: React.FC<HeaderProps> = ({
               ARCHIVES: {storageStats?.installedTiers || 6}/{storageStats?.totalTiers || 6} TIERS
             </span>
           </div>
+
+          {/* Emergency SOS Quick Triage Button */}
+          {onOpenSos && (
+            <button
+              onClick={onOpenSos}
+              title="Immediate Emergency SOS Protocols (Arterial Bleeding, CPR 110 BPM, Burns, Choking)"
+              className="px-2.5 py-1 rounded-md text-xs font-mono font-black border transition-all flex items-center gap-1.5 bg-red-600 hover:bg-red-500 text-white border-red-500 shadow-md shadow-red-950 active:scale-95 animate-pulse cursor-pointer"
+            >
+              <ShieldAlert className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-mono font-black tracking-wider">SOS</span>
+            </button>
+          )}
+
+          {/* Quick Diary & Dictionary Shortcuts */}
+          {onOpenJournal && (
+            <button
+              onClick={onOpenJournal}
+              title="Open My Diary & Field Journal"
+              className={`px-2 py-1 rounded-md text-xs font-mono border transition-colors flex items-center gap-1.5 ${
+                nightVision
+                  ? 'bg-red-950/60 border-red-900/60 text-red-300 hover:bg-red-900/40'
+                  : 'bg-zinc-900 border-zinc-700/80 text-zinc-300 hover:text-amber-400 hover:bg-zinc-800'
+              }`}
+            >
+              <BookText className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline text-[10px] font-mono font-bold">DIARY</span>
+            </button>
+          )}
+
+          {onOpenDictionary && (
+            <button
+              onClick={onOpenDictionary}
+              title="Open Civilization Lexicon & Dictionary"
+              className={`px-2 py-1 rounded-md text-xs font-mono border transition-colors flex items-center gap-1.5 ${
+                nightVision
+                  ? 'bg-red-950/60 border-red-900/60 text-red-300 hover:bg-red-900/40'
+                  : 'bg-zinc-900 border-zinc-700/80 text-zinc-300 hover:text-emerald-400 hover:bg-zinc-800'
+              }`}
+            >
+              <BookA className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden sm:inline text-[10px] font-mono font-bold">DICT</span>
+            </button>
+          )}
 
           {/* Font Size Toggle Button */}
           <button

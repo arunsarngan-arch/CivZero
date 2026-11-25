@@ -288,7 +288,7 @@ export const PackManagerScreen: React.FC<PackManagerScreenProps> = ({
             <div className="space-y-1.5">
               <div className="flex justify-between text-[11px] font-mono text-zinc-400">
                 <span>Local Capacity Allocation</span>
-                <span>{stats?.installedTiers}/{stats?.totalTiers} Tiers Active (100% Offline)</span>
+                <span>{stats?.installedTiers}/{stats?.totalTiers} Tiers Active</span>
               </div>
               <div className="w-full h-3 rounded-full bg-zinc-900 border border-zinc-800 overflow-hidden flex">
                 {manifest?.tiers.map(t => {

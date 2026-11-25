@@ -15,7 +15,11 @@ import {
   Lightbulb,
   AlertTriangle,
   Layers,
-  Wrench
+  Wrench,
+  BookA,
+  BookText,
+  CheckSquare,
+  ExternalLink
 } from 'lucide-react';
 import type { Guide } from '../types';
 import { MarkdownRenderer } from './MarkdownRenderer';
@@ -23,6 +27,8 @@ import { DatabaseService } from '../services/databaseService';
 import { ScrollToTop } from './ScrollToTop';
 import { AudioGuidePlayer } from './AudioGuidePlayer';
 import { getKidFriendlyExplanation } from '../data/kidFriendlyGuideSummaries';
+import { getRelatedToolsForGuide, extractChecklistFromGuide } from '../utils/guideToolMapping';
+import { QuickLexiconLookupModal } from './QuickLexiconLookupModal';
 
 interface GuideDetailModalProps {
   guide: Guide;
@@ -30,6 +36,7 @@ interface GuideDetailModalProps {
   nightVision: boolean;
   fontSize: 'normal' | 'large' | 'huge';
   onBookmarkToggled: (id: string, state: boolean) => void;
+  onNavigateToTool?: (toolId: string, initialDraft?: { title: string; content: string }) => void;
 }
 
 export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
@@ -37,15 +44,18 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
   onClose,
   nightVision,
   fontSize,
-  onBookmarkToggled
+  onBookmarkToggled,
+  onNavigateToTool
 }) => {
   const [isBookmarked, setIsBookmarked] = useState(!!guide.is_bookmarked);
   const [copied, setCopied] = useState(false);
   const [modalContainerEl, setModalContainerEl] = useState<HTMLDivElement | null>(null);
   const [showAudioPlayer, setShowAudioPlayer] = useState<boolean>(false);
   const [kidFriendlyMode, setKidFriendlyMode] = useState<boolean>(false);
+  const [showLexiconModal, setShowLexiconModal] = useState<boolean>(false);
 
   const kidExplanation = getKidFriendlyExplanation(guide.id, guide.title, guide.category, guide.summary);
+  const relatedTools = getRelatedToolsForGuide(guide);
 
   useEffect(() => {
     setIsBookmarked(!!guide.is_bookmarked);
@@ -162,6 +172,24 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
               >
                 <Headphones className="w-4 h-4" />
                 <span>{showAudioPlayer ? 'LISTENING' : 'AUDIO'}</span>
+              </button>
+
+              {/* Lexicon Word Lookup Button */}
+              <button
+                onClick={() => setShowLexiconModal(true)}
+                title="Lookup word in 102k Civilization Lexicon"
+                className={`px-3 py-2 rounded-lg border transition-all flex items-center gap-1.5 text-xs font-mono ${
+                  showLexiconModal
+                    ? nightVision
+                      ? 'bg-red-900 border-red-500 text-white shadow-lg'
+                      : 'bg-emerald-500 border-emerald-400 text-black font-bold shadow-lg'
+                    : nightVision
+                    ? 'bg-red-950/30 border-red-900/40 text-red-300 hover:bg-red-900/40'
+                    : 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-emerald-400 hover:bg-zinc-800'
+                }`}
+              >
+                <BookA className="w-4 h-4 text-emerald-400" />
+                <span className="hidden sm:inline">LEXICON</span>
               </button>
 
               {/* Bookmark button */}
@@ -426,6 +454,95 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
               />
             </div>
 
+            {/* INTERCONNECTION PACK: Action Checklist & Related Survival Utilities */}
+            <div className="pt-6 border-t border-zinc-800/80 space-y-4">
+              {/* 1. Actionable Field Checklist & Survival Journal Card */}
+              <div
+                className={`p-4 sm:p-5 rounded-2xl border transition-all ${
+                  nightVision
+                    ? 'bg-red-950/20 border-red-900/50 text-red-200'
+                    : 'bg-gradient-to-br from-amber-500/10 via-zinc-900 to-black border-amber-500/30 text-zinc-100 shadow-lg'
+                }`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-400 shrink-0 mt-0.5">
+                      <CheckSquare className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold font-mono text-amber-400 uppercase tracking-wide flex items-center gap-2">
+                        <span>Action Checklist &amp; Field Journal</span>
+                      </h3>
+                      <p className="text-xs text-zinc-400 font-sans mt-0.5">
+                        Convert this guide's steps into interactive checkboxes in your personal survival logbook.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (onNavigateToTool) {
+                        const checklist = extractChecklistFromGuide(guide);
+                        onClose();
+                        onNavigateToTool('journal', checklist);
+                      }
+                    }}
+                    className="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-mono font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 active:scale-95 transition-all flex-shrink-0 cursor-pointer"
+                  >
+                    <BookText className="w-4 h-4" />
+                    <span>Export to My Diary</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 2. Related Survival Utilities & Calculators */}
+              {relatedTools.length > 0 && onNavigateToTool && (
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
+                      <Wrench className="w-3.5 h-3.5 text-amber-400" />
+                      Related Survival Utilities For This Guide
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-500">Live Field Calculations</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {relatedTools.map(tool => (
+                      <div
+                        key={tool.toolId}
+                        className={`p-3.5 rounded-xl border flex flex-col justify-between transition-all ${
+                          nightVision
+                            ? 'bg-red-950/30 border-red-900/50 text-red-200'
+                            : 'bg-zinc-900/90 border-zinc-800 text-zinc-200 hover:border-zinc-700'
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center gap-2 text-xs font-mono font-bold text-white">
+                            <Wrench className="w-3.5 h-3.5 text-amber-400" />
+                            <span>{tool.label}</span>
+                          </div>
+                          <p className="text-[11px] font-sans text-zinc-400 mt-1 leading-snug">
+                            {tool.reason}
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            onClose();
+                            onNavigateToTool(tool.toolId);
+                          }}
+                          className="mt-3 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-amber-500 hover:text-black border border-zinc-700 text-zinc-200 font-mono text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                        >
+                          <span>Launch Calculator</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Physical Bottom Spacer for Reader View */}
             <div className="h-16 w-full" aria-hidden="true" />
           </div>
@@ -454,6 +571,21 @@ export const GuideDetailModal: React.FC<GuideDetailModalProps> = ({
           summary={kidFriendlyMode ? kidExplanation.simpleWhatItIs : guide.summary}
           nightVision={nightVision}
           onClose={() => setShowAudioPlayer(false)}
+        />
+      )}
+
+      {/* Quick 102k Lexicon In-Guide Lookup Modal */}
+      {showLexiconModal && (
+        <QuickLexiconLookupModal
+          onClose={() => setShowLexiconModal(false)}
+          nightVision={nightVision}
+          onSendToJournal={(title, content) => {
+            setShowLexiconModal(false);
+            if (onNavigateToTool) {
+              onClose();
+              onNavigateToTool('journal', { title, content });
+            }
+          }}
         />
       )}
     </>,

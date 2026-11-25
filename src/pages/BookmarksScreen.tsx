@@ -15,12 +15,14 @@ interface BookmarksScreenProps {
   nightVision: boolean;
   fontSize: 'normal' | 'large' | 'huge';
   onBookmarkChange: () => void;
+  onNavigateToTool?: (toolId: string, initialDraft?: { title: string; content: string }) => void;
 }
 
 export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
   nightVision,
   fontSize,
-  onBookmarkChange
+  onBookmarkChange,
+  onNavigateToTool
 }) => {
   const [bookmarks, setBookmarks] = useState<Guide[]>([]);
   const [activeGuide, setActiveGuide] = useState<Guide | null>(null);
@@ -147,6 +149,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
           nightVision={nightVision}
           fontSize={fontSize}
           onBookmarkToggled={handleBookmarkToggle}
+          onNavigateToTool={onNavigateToTool}
         />
       )}
     </div>

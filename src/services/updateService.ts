@@ -7,8 +7,8 @@ export interface UpdateInfo {
   githubRepo?: string;
 }
 
-export const CURRENT_APP_VERSION = '1.1.1';
-export const CURRENT_VERSION_CODE = 3;
+export const CURRENT_APP_VERSION = '1.2';
+export const CURRENT_VERSION_CODE = 4;
 
 // Default feed URL pointing to the raw GitHub version.json
 export const DEFAULT_UPDATE_FEED_URL = 'https://raw.githubusercontent.com/arunsarngan-arch/CivZero/main/version.json';

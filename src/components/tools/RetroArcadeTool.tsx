@@ -1602,7 +1602,7 @@ export const RetroArcadeTool: React.FC<RetroArcadeToolProps> = ({ nightVision })
           In prolonged survival or off-grid operations, mental fatigue and isolation severely degrade decision-making. These 4 air-gapped retro mini-games provide low-power cognitive reflex training and morale stabilization.
         </p>
         <div className="flex flex-wrap gap-3 pt-1 text-[10px] text-zinc-500">
-          <span>• 100% Offline &amp; Air-Gapped</span>
+          <span>• Air-Gapped Simulation</span>
           <span>• Zero Battery Drain Web Audio Synth</span>
           <span>• Local High Score Storage</span>
           <span>• Original Mechanics &amp; Visuals</span>

@@ -5,7 +5,6 @@ import {
   Square,
   FastForward,
   Rewind,
-  Volume2,
   VolumeX,
   Headphones,
   X,
@@ -478,12 +477,6 @@ export const AudioGuidePlayer: React.FC<Props> = ({
             >
               <Square className="w-4 h-4" />
             </button>
-          </div>
-
-          {/* Quick status badge */}
-          <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-zinc-500">
-            <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>100% OFFLINE</span>
           </div>
         </div>
       </div>

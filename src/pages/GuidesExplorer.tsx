@@ -24,13 +24,15 @@ interface GuidesExplorerProps {
   fontSize: 'normal' | 'large' | 'huge';
   onBookmarkChange: () => void;
   onNavigateTab?: (tab: ViewTab) => void;
+  onNavigateToTool?: (toolId: string, initialDraft?: { title: string; content: string }) => void;
 }
 
 export const GuidesExplorer: React.FC<GuidesExplorerProps> = ({
   nightVision,
   fontSize,
   onBookmarkChange,
-  onNavigateTab
+  onNavigateTab,
+  onNavigateToTool
 }) => {
   const [tiers, setTiers] = useState<Tier[]>([]);
   const [guides, setGuides] = useState<Guide[]>([]);
@@ -304,6 +306,7 @@ export const GuidesExplorer: React.FC<GuidesExplorerProps> = ({
           nightVision={nightVision}
           fontSize={fontSize}
           onBookmarkToggled={handleBookmarkToggle}
+          onNavigateToTool={onNavigateToTool}
         />
       )}
     </div>

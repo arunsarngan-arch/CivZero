@@ -1,15 +1,16 @@
 {
-  "version": "1.1.1",
-  "versionCode": 3,
-  "releaseDate": "2026-11-20",
+  "version": "1.2",
+  "versionCode": 4,
+  "releaseDate": "2026-11-25",
   "minAndroidVersion": 22,
   "changelog": [
-    "Holy Books Canon: Complete 66-book Bible (KJV 1611 & Geneva 1599), Quran (114 Surahs), Gita, Dhammapada, Tao Te Ching, Guru Granth Sahib & Universal Moral Law with verse drill-down and TTS narration",
-    "Explain Like I'm 10 (ELI10): Kid-friendly, simplified summaries added to survival and engineering guides",
-    "Field Arcade & CivBlocks Overhaul: Fixed collision bugs and upgraded on-screen D-pad ergonomics with auto-repeat",
-    "Humanized American Voices: Natural male and female offline speech synthesis",
-    "Perfected Tag Alignment: Polished badge layout and middle typography across all screens"
+    "Emergency SOS Quick-Triage: Instant 1-tap protocols for Arterial Bleeding, CPR (with 110 BPM visual metronome), Severe Food Allergy & Anaphylaxis (EpiPen directives & airway swelling), Choking (Heimlich), Burns, Hypothermia & Heat Stroke",
+    "Guide Interconnection Pack: Direct contextual tool launchers (Water Dosing, Trauma Triage, Compass, Power, etc.) embedded in technical manuals",
+    "Action Checklist & Diary Integration: 1-tap 'Export to My Diary' converts any guide's steps into interactive checkboxes in your personal survival logbook",
+    "Inline Civilization Lexicon Lookup: Instant 102,223-word unabridged Webster's lookup modal directly inside guides with offline pronunciation",
+    "Field Journal & Survival Diary: Blank slate with personal diary, mood tracker, checklist generator, and full local persistence",
+    "UI Polish: Streamlined top header, removed cluttering badges for maximum reading area"
   ],
-  "downloadUrl": "https://github.com/arunsarngan-arch/CivZero/releases/latest/download/CivZero-v1.1.1-Offline-Rebuilder.apk",
+  "downloadUrl": "https://github.com/arunsarngan-arch/CivZero/releases/latest/download/CivZero-v1.2-Offline-Rebuilder.apk",
   "githubRepo": "https://github.com/arunsarngan-arch/CivZero"
 }

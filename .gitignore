@@ -13,6 +13,8 @@ releases/
 *.keystore
 android/keystore.properties
 keystore.properties
+*.apk
+android/app/release/baselineProfiles/
 
 # Android Build & Gradle
 android/.gradle/
@@ -23,6 +25,7 @@ android/local.properties
 *.iml
 
 # OS & Logs
+*.tsbuildinfo
 .DS_Store
 Thumbs.db
 *.log

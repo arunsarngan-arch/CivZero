@@ -6,7 +6,7 @@ import { BottomNav } from './components/BottomNav';
 import { GuidesExplorer } from './pages/GuidesExplorer';
 import { HolyBooksScreen } from './pages/HolyBooksScreen';
 import { SearchScreen } from './pages/SearchScreen';
-import { ToolsScreen } from './pages/ToolsScreen';
+import { ToolsScreen, type ActiveTool } from './pages/ToolsScreen';
 import { TechTreeVisualizer } from './components/techtree/TechTreeVisualizer';
 import { PackManagerScreen } from './pages/PackManagerScreen';
 import { ShareOfflineScreen } from './pages/ShareOfflineScreen';
@@ -15,13 +15,17 @@ import { GuideDetailModal } from './components/GuideDetailModal';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SplashScreen } from './components/SplashScreen';
 import { UpdateModal } from './components/UpdateModal';
+import { EmergencySosModal } from './components/EmergencySosModal';
 import { updateService, type UpdateInfo } from './services/updateService';
 
 export const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState<boolean>(true);
   const [availableUpdate, setAvailableUpdate] = useState<UpdateInfo | null>(null);
   const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
+  const [showSosModal, setShowSosModal] = useState<boolean>(false);
+  const [pendingToolDraft, setPendingToolDraft] = useState<{ title: string; content: string } | null>(null);
   const [currentTab, setCurrentTab] = useState<ViewTab>('guides');
+  const [selectedToolId, setSelectedToolId] = useState<ActiveTool>('journal');
   const [storageStats, setStorageStats] = useState<StorageStats | null>(null);
   const [nightVision, setNightVision] = useState<boolean>(false);
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'huge'>(() => {
@@ -80,6 +84,15 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleNavigateToTool = (toolId: string, draft?: { title: string; content: string }) => {
+    if (draft) {
+      setPendingToolDraft(draft);
+    }
+    setSelectedToolId(toolId as ActiveTool);
+    setCurrentTab('tools');
+    setModalGuide(null);
+  };
+
   return (
     <>
       {showSplash && (
@@ -104,6 +117,15 @@ export const App: React.FC = () => {
         setFontSize={setFontSize}
         availableUpdate={availableUpdate}
         onOpenUpdateModal={() => setShowUpdateModal(true)}
+        onOpenJournal={() => {
+          setCurrentTab('tools');
+          setSelectedToolId('journal');
+        }}
+        onOpenDictionary={() => {
+          setCurrentTab('tools');
+          setSelectedToolId('dictionary');
+        }}
+        onOpenSos={() => setShowSosModal(true)}
       />
 
       {/* Main Content Pane */}
@@ -114,6 +136,7 @@ export const App: React.FC = () => {
             fontSize={fontSize}
             onBookmarkChange={refreshStats}
             onNavigateTab={(tab) => setCurrentTab(tab)}
+            onNavigateToTool={handleNavigateToTool}
           />
         )}
 
@@ -129,12 +152,17 @@ export const App: React.FC = () => {
             nightVision={nightVision}
             fontSize={fontSize}
             onBookmarkChange={refreshStats}
+            onNavigateToTool={handleNavigateToTool}
           />
         )}
 
         {currentTab === 'tools' && (
           <ToolsScreen
             nightVision={nightVision}
+            selectedToolId={selectedToolId}
+            onSelectTool={(t) => setSelectedToolId(t)}
+            externalDraft={pendingToolDraft}
+            onClearExternalDraft={() => setPendingToolDraft(null)}
           />
         )}
 
@@ -167,6 +195,7 @@ export const App: React.FC = () => {
             nightVision={nightVision}
             fontSize={fontSize}
             onBookmarkChange={refreshStats}
+            onNavigateToTool={handleNavigateToTool}
           />
         )}
 
@@ -184,8 +213,20 @@ export const App: React.FC = () => {
           onBookmarkToggled={(id, state) => {
             refreshStats();
           }}
+          onNavigateToTool={handleNavigateToTool}
         />
       )}
+
+      {/* Emergency SOS Quick Triage Modal */}
+      <EmergencySosModal
+        isOpen={showSosModal}
+        onClose={() => setShowSosModal(false)}
+        nightVision={nightVision}
+        onOpenGuideById={(id) => {
+          setShowSosModal(false);
+          handleOpenGuideById(id);
+        }}
+      />
 
       {/* Direct In-App Updater Modal */}
       {showUpdateModal && availableUpdate && (

@@ -11,10 +11,27 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2,
-      "versionName": "1.1",
-      "outputFile": "CivZero-v1.1-Offline-Rebuilder.apk"
+      "versionCode": 4,
+      "versionName": "1.2",
+      "outputFile": "CivZero-v1.2-Offline-Rebuilder.apk"
     }
   ],
-  "elementType": "File"
+  "elementType": "File",
+  "baselineProfiles": [
+    {
+      "minApi": 28,
+      "maxApi": 30,
+      "baselineProfiles": [
+        "baselineProfiles/1/CivZero-v1.2-Offline-Rebuilder.dm"
+      ]
+    },
+    {
+      "minApi": 31,
+      "maxApi": 2147483647,
+      "baselineProfiles": [
+        "baselineProfiles/0/CivZero-v1.2-Offline-Rebuilder.dm"
+      ]
+    }
+  ],
+  "minSdkVersionForDexing": 22
 }

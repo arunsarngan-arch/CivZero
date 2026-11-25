@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+  BookText,
+  BookA,
   Compass,
   Droplet,
   Radio,
@@ -14,7 +16,10 @@ import {
   Wifi,
   Gamepad2,
   Route,
+  Sparkles
 } from 'lucide-react';
+import { FieldJournalTool } from '../components/tools/FieldJournalTool';
+import { CivilizationLexiconTool } from '../components/tools/CivilizationLexiconTool';
 import { TacticalCompassTool } from '../components/tools/TacticalCompassTool';
 import { WaterDosingCalculator } from '../components/tools/WaterDosingCalculator';
 import { MorseCodeFlasher } from '../components/tools/MorseCodeFlasher';
@@ -29,11 +34,10 @@ import { AntennaCalculator } from '../components/tools/AntennaCalculator';
 import { RetroArcadeTool } from '../components/tools/RetroArcadeTool';
 import { TrailBacktrackMapper } from '../components/tools/TrailBacktrackMapper';
 
-interface ToolsScreenProps {
-  nightVision: boolean;
-}
-
-type ActiveTool =
+export type ActiveTool =
+  | 'journal'
+  | 'dictionary'
+  | 'trail'
   | 'compass'
   | 'water'
   | 'morse'
@@ -45,13 +49,50 @@ type ActiveTool =
   | 'kinetic'
   | 'trauma'
   | 'antenna'
-  | 'arcade'
-  | 'trail';
+  | 'arcade';
 
-export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
-  const [activeTool, setActiveTool] = useState<ActiveTool>('compass');
+interface ToolsScreenProps {
+  nightVision: boolean;
+  selectedToolId?: ActiveTool;
+  onSelectTool?: (tool: ActiveTool) => void;
+  externalDraft?: { title: string; content: string } | null;
+  onClearExternalDraft?: () => void;
+}
+
+export const ToolsScreen: React.FC<ToolsScreenProps> = ({
+  nightVision,
+  selectedToolId,
+  onSelectTool,
+  externalDraft,
+  onClearExternalDraft
+}) => {
+  const [internalTool, setInternalTool] = useState<ActiveTool>('journal');
+  const [journalDraft, setJournalDraft] = useState<{ title: string; content: string } | null>(null);
+
+  useEffect(() => {
+    if (externalDraft) {
+      setJournalDraft(externalDraft);
+      setInternalTool('journal');
+      if (onSelectTool) onSelectTool('journal');
+      if (onClearExternalDraft) onClearExternalDraft();
+    }
+  }, [externalDraft]);
+
+  const activeTool = selectedToolId || internalTool;
+
+  const setActiveTool = (t: ActiveTool) => {
+    setInternalTool(t);
+    if (onSelectTool) onSelectTool(t);
+  };
+
+  const handleSendToJournal = (title: string, content: string) => {
+    setJournalDraft({ title, content });
+    setActiveTool('journal');
+  };
 
   const tools = [
+    { id: 'journal' as ActiveTool, label: 'Field Journal', icon: BookText, desc: "My Diary, daily logs & survival notes", isNew: true },
+    { id: 'dictionary' as ActiveTool, label: 'Offline Lexicon', icon: BookA, desc: '102,000+ words, definitions & speech', isNew: true },
     { id: 'trail' as ActiveTool, label: 'Trail & Backtrack', icon: Route, desc: 'GPS breadcrumb map & return HUD' },
     { id: 'compass' as ActiveTool, label: 'Field Compass', icon: Compass, desc: 'Live magnetometer azimuth & mils' },
     { id: 'water' as ActiveTool, label: 'Water Dosing', icon: Droplet, desc: 'Chemical titration & disinfection' },
@@ -82,19 +123,19 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
             <Wrench className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities</h2>
+            <h2 className="text-lg font-bold font-mono tracking-tight">Interactive Survival Utilities & Logbook</h2>
             <p className="text-xs text-zinc-400 font-mono">
-              13 Offline computational calculators, breadcrumb mappers &amp; retro field simulators
+              15 Offline calculators, breadcrumb mappers, personal diary & 102,000+ word lexicon
             </p>
           </div>
         </div>
         <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-          Real-time mathematical, sensor, and diagnostic utilities designed to run with zero cellular connectivity, helping you make accurate life-or-death decisions in the field.
+          Comprehensive offline operational tools designed to run with zero cellular connectivity: write your daily thoughts in <strong className="text-amber-400">My Diary</strong>, record survival memos, look up any English or scientific word in the <strong className="text-amber-400">Civilization Lexicon</strong>, or calculate critical survival formulas.
         </p>
       </div>
 
       {/* Tool Selector Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
         {tools.map(tool => {
           const Icon = tool.icon;
           const isActive = activeTool === tool.id;
@@ -103,14 +144,19 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
             <button
               key={tool.id}
               onClick={() => setActiveTool(tool.id)}
-              className={`p-3 rounded-xl border text-left transition-all ${
+              className={`relative p-3 rounded-xl border text-left transition-all ${
                 isActive
                   ? nightVision
                     ? 'bg-red-950/60 border-red-500 text-white shadow-lg'
-                    : 'bg-zinc-900 border-amber-500 text-white shadow-lg'
-                  : 'bg-[#0d1117] border-zinc-800 text-zinc-400 hover:text-zinc-200'
+                    : 'bg-zinc-900 border-amber-500 text-white shadow-lg ring-1 ring-amber-500/30'
+                  : 'bg-[#0d1117] border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
               }`}
             >
+              {tool.isNew && (
+                <span className="absolute top-2 right-2 px-1.5 py-0.2 rounded-full text-[9px] font-mono font-bold bg-amber-500 text-black leading-tight">
+                  NEW
+                </span>
+              )}
               <div className="flex items-center gap-2 mb-1">
                 <Icon className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-zinc-500'}`} />
                 <span className="text-xs font-bold font-mono truncate">{tool.label}</span>
@@ -123,6 +169,19 @@ export const ToolsScreen: React.FC<ToolsScreenProps> = ({ nightVision }) => {
 
       {/* Active Tool View */}
       <div className="pt-2">
+        {activeTool === 'journal' && (
+          <FieldJournalTool
+            nightVision={nightVision}
+            initialNoteDraft={journalDraft}
+            onClearInitialNoteDraft={() => setJournalDraft(null)}
+          />
+        )}
+        {activeTool === 'dictionary' && (
+          <CivilizationLexiconTool
+            nightVision={nightVision}
+            onSendToJournal={handleSendToJournal}
+          />
+        )}
         {activeTool === 'trail' && <TrailBacktrackMapper nightVision={nightVision} />}
         {activeTool === 'compass' && <TacticalCompassTool nightVision={nightVision} />}
         {activeTool === 'water' && <WaterDosingCalculator nightVision={nightVision} />}

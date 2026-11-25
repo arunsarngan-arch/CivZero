@@ -1,0 +1,39 @@
+{
+  "title": "CivZero Unabridged English Lexicon & Civilization Dictionary",
+  "totalWords": 102223,
+  "generatedAt": "2026-11-25T18:09:55.910Z",
+  "features": [
+    "Multiple distinct meanings (2-4 definitions per word)",
+    "Real-world illustrative examples and literary quotations",
+    "Full uncompressed Webster's Unabridged dictionary dataset"
+  ],
+  "letters": {
+    "A": 7520,
+    "B": 5123,
+    "C": 9389,
+    "D": 6019,
+    "E": 4715,
+    "F": 3780,
+    "G": 3112,
+    "H": 3813,
+    "I": 4890,
+    "J": 751,
+    "K": 846,
+    "L": 3146,
+    "M": 5669,
+    "N": 1933,
+    "O": 2972,
+    "P": 9329,
+    "Q": 580,
+    "R": 4476,
+    "S": 11375,
+    "T": 5393,
+    "U": 2422,
+    "V": 1708,
+    "W": 2273,
+    "X": 139,
+    "Y": 324,
+    "Z": 427,
+    "OTHER": 99
+  }
+}

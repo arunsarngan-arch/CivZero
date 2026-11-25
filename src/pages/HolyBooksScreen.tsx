@@ -327,9 +327,6 @@ export const HolyBooksScreen: React.FC<HolyBooksScreenProps> = ({
               <h2 className="text-base sm:text-lg font-bold font-mono tracking-tight text-zinc-100">
                 HOLY BOOKS &amp; SACRED WISDOM
               </h2>
-              <span className="inline-flex items-center justify-center whitespace-nowrap text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 leading-none">
-                100% OFFLINE
-              </span>
             </div>
             <p className="text-xs text-zinc-400 font-mono mt-1">
               Foundational Moral Laws, Sacred Covenants, Spiritual Fortitude &amp; Civilizational Ethics

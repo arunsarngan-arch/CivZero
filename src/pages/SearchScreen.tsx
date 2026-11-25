@@ -17,12 +17,14 @@ interface SearchScreenProps {
   nightVision: boolean;
   fontSize: 'normal' | 'large' | 'huge';
   onBookmarkChange: () => void;
+  onNavigateToTool?: (toolId: string, initialDraft?: { title: string; content: string }) => void;
 }
 
 export const SearchScreen: React.FC<SearchScreenProps> = ({
   nightVision,
   fontSize,
-  onBookmarkChange
+  onBookmarkChange,
+  onNavigateToTool
 }) => {
   const [query, setQuery] = useState('');
   const [tierFilter, setTierFilter] = useState<number | null>(null);
@@ -241,6 +243,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
           nightVision={nightVision}
           fontSize={fontSize}
           onBookmarkToggled={handleBookmarkToggle}
+          onNavigateToTool={onNavigateToTool}
         />
       )}
     </div>
